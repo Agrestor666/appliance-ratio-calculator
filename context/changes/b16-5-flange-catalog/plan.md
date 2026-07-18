@@ -291,16 +291,16 @@ WN schedule nesting grows `piping_catalog.js` modestly vs fittings’ full type�
 
 #### Automated
 
-- [x] 2.1 node --check data/piping_catalog.js passes
-- [x] 2.2 Slip-On / Blind class values are NPS arrays
-- [x] 2.3 Weld Neck class values are schedule objects
-- [x] 2.4 Deferred types Socket Weld / Threaded / Lap Joint still exist
-- [x] 2.5 Optional verify script: nest shape + sample Auto-apply wt
+- [x] 2.1 node --check data/piping_catalog.js passes — 7219577
+- [x] 2.2 Slip-On / Blind class values are NPS arrays — 7219577
+- [x] 2.3 Weld Neck class values are schedule objects — 7219577
+- [x] 2.4 Deferred types Socket Weld / Threaded / Lap Joint still exist — 7219577
+- [x] 2.5 Optional verify script: nest shape + sample Auto-apply wt — 7219577
 
 #### Manual
 
-- [x] 2.6 Spot-check Auto-apply / accepted Conflict rows match candidates
-- [x] 2.7 Rejected / Skipped cells absent; no coverage expansion
+- [x] 2.6 Spot-check Auto-apply / accepted Conflict rows match candidates — 7219577
+- [x] 2.7 Rejected / Skipped cells absent; no coverage expansion — 7219577
 
 ### Phase 3: Runtime — WN Schedule Cascade
 

@@ -16,4 +16,4 @@ archived_at: null
 - **WN nest shape:** `flanges["Weld Neck"][class][schedule] → [{ nps, wt }]`. Runtime Schedule cascade (Phase 3, `05374a8`) enables Schedule only for Flange + Weld Neck. Signed schedule keys: `STD`, `Sch 40` (NPS ≤ 10″), `Sch 40S` (NPS ≤ 10″) — aliases of chart STD/40S bore; other pipe schedules skipped (no published WN masses; no invent).
 - **SO / Blind shape:** unchanged `type → class → [{ nps, wt }]` with chart-aligned weights.
 - **Deferred (left unchanged):** `Socket Weld`, `Threaded`, `Lap Joint` — still selectable; weights unverified this slice.
-- Phase 1 Progress stamp commit: `0fd46bf` / `0ceae37`. Phase 3 runtime: `05374a8`. Phase 2 catalog apply may still be uncommitted in the working tree (`data/piping_catalog.js`).
+- Phase 1 Progress stamp: `0fd46bf` / `0ceae37`. Phase 2 catalog: `7219577`. Phase 3 runtime: `05374a8`. Phase 4 notes / epilogue: `417716e` / `3da7b50`.
