@@ -264,24 +264,24 @@ No data migration. `pipes.json` remains unused. If future work retires it, do th
 
 #### Automated
 
-- [x] 3.1 Escape handling invokes hideCargoModal when cargo modal visible
-- [x] 3.2 resetBtn handler clears cargoState.sentLog and log
-- [x] 3.3 node --check app.js passes
+- [x] 3.1 Escape handling invokes hideCargoModal when cargo modal visible — 02b0420
+- [x] 3.2 resetBtn handler clears cargoState.sentLog and log — 02b0420
+- [x] 3.3 node --check app.js passes — 02b0420
 
 #### Manual
 
-- [x] 3.4 Escape closes cargo modal
-- [x] 3.5 Reset clears cargo Te path evidence (list, sentLog/report cargo breakdown)
-- [x] 3.6 Rigging Escape and rigging log behavior unchanged
+- [x] 3.4 Escape closes cargo modal — 02b0420
+- [x] 3.5 Reset clears cargo Te path evidence (list, sentLog/report cargo breakdown) — 02b0420
+- [x] 3.6 Rigging Escape and rigging log behavior unchanged — 02b0420
 
 ### Phase 4: End-to-End Verification and Handoff
 
 #### Automated
 
-- [ ] 4.1 change.md Notes include S-02 handoff and gap-candidates pointer
+- [x] 4.1 change.md Notes include S-02 handoff and gap-candidates pointer
 
 #### Manual
 
-- [ ] 4.2 Typical multi-item catalog → Send → ratio updates; manual Te still works
-- [ ] 4.3 Manual-only Te path works without modal
-- [ ] 4.4 No fill UI introduced
+- [x] 4.2 Typical multi-item catalog → Send → ratio updates; manual Te still works
+- [x] 4.3 Manual-only Te path works without modal
+- [x] 4.4 No fill UI introduced
