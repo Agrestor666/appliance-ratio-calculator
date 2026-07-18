@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Scale } from "lucide-react";
 
 import { CargoSheet } from "@/components/calculator/cargo/CargoSheet";
 import { RiggingSheet } from "@/components/calculator/rigging/RiggingSheet";
+import { TechnicalReportView } from "@/components/calculator/report/TechnicalReportView";
 import { ThresholdControls, type ThresholdFormState } from "@/components/calculator/ThresholdControls";
-import { UtilizationChart } from "@/components/calculator/UtilizationChart";
+import { UtilizationChart, type UtilizationChartHandle } from "@/components/calculator/UtilizationChart";
 import { VisualAlerts } from "@/components/calculator/VisualAlerts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import type { CargoLogEntry } from "@/lib/cargo";
 import { formatKg, formatNumber } from "@/lib/format";
 import type { RiggingLogEntry } from "@/lib/rigging";
+import { buildReportPayload, type ReportPayloadOk } from "@/lib/report";
 import {
   chartPercentsFromUtilization,
   computeFromFormStrings,
@@ -80,10 +82,14 @@ function NumberField({
 export function CalculatorShell() {
   const [fields, setFields] = useState<FormFields>(defaultsAsFormStrings);
   const [thresholdForm, setThresholdForm] = useState<ThresholdFormState>(defaultsAsThresholdFormStrings);
+  const [notificationNumber, setNotificationNumber] = useState("Input");
   const [cargoLog, setCargoLog] = useState<CargoLogEntry[]>([]);
   const [cargoSentLog, setCargoSentLog] = useState<CargoLogEntry[]>([]);
   const [cargoSentSumKg, setCargoSentSumKg] = useState<number | null>(null);
   const [riggingLog, setRiggingLog] = useState<RiggingLogEntry[]>([]);
+  const [reportPayload, setReportPayload] = useState<ReportPayloadOk | null>(null);
+  const [reportError, setReportError] = useState<string | null>(null);
+  const chartRef = useRef<UtilizationChartHandle>(null);
 
   const result = computeFromFormStrings(fields);
   const thresholds = parseThresholdForm(thresholdForm);
@@ -97,10 +103,35 @@ export function CalculatorShell() {
   const reset = () => {
     setFields(defaultsAsFormStrings());
     setThresholdForm(defaultsAsThresholdFormStrings());
+    setNotificationNumber("Input");
     setCargoLog([]);
     setCargoSentLog([]);
     setCargoSentSumKg(null);
     setRiggingLog([]);
+    setReportPayload(null);
+    setReportError(null);
+  };
+
+  const openReport = () => {
+    const chartPng = chartRef.current?.toPngDataUrl() ?? null;
+    const payload = buildReportPayload({
+      fields,
+      thresholds,
+      alertSeverity: severity,
+      notificationNumber,
+      cargoSentLog,
+      cargoSentSumKg,
+      riggingLog,
+      chartPng,
+    });
+
+    if (!payload.ok) {
+      setReportError(payload.error);
+      return;
+    }
+
+    setReportError(null);
+    setReportPayload(payload);
   };
 
   const utilizationDisplay = result.ok ? formatPercent(result.utilization) : "—";
@@ -116,6 +147,17 @@ export function CalculatorShell() {
 
   const riggingSumKg = riggingLog.reduce((s, e) => s + e.subtotalKg, 0);
   const riggingHint = riggingLog.length > 0 ? `Rigging log sum: ${formatNumber(riggingSumKg / 1000, 6)} Te` : undefined;
+
+  if (reportPayload) {
+    return (
+      <TechnicalReportView
+        payload={reportPayload}
+        onClose={() => {
+          setReportPayload(null);
+        }}
+      />
+    );
+  }
 
   return (
     <div className="bg-background min-h-screen">
@@ -186,13 +228,21 @@ export function CalculatorShell() {
               <div className="space-y-2">
                 <div className="text-foreground text-sm font-medium">Capacity chart</div>
                 <div className="border-border bg-card rounded-md border px-3 py-4">
-                  <UtilizationChart usedPercent={usedPercent} remainingPercent={remainingPercent} severity={severity} />
+                  <UtilizationChart
+                    ref={chartRef}
+                    usedPercent={usedPercent}
+                    remainingPercent={remainingPercent}
+                    severity={severity}
+                  />
                 </div>
               </div>
 
-              <Button variant="outline" className="w-full" disabled>
-                Generate technical report
-              </Button>
+              <div className="space-y-2">
+                <Button type="button" variant="outline" className="w-full" disabled={!result.ok} onClick={openReport}>
+                  Generate technical report
+                </Button>
+                {reportError ? <p className="text-destructive text-xs">{reportError}</p> : null}
+              </div>
             </CardContent>
           </Card>
         </section>
@@ -204,6 +254,19 @@ export function CalculatorShell() {
               <CardDescription>Cargo, rigging, and lift factors for Appliance Ratio.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="notification-number">Notification number</Label>
+                <Input
+                  id="notification-number"
+                  type="text"
+                  value={notificationNumber}
+                  onChange={(e) => {
+                    setNotificationNumber(e.target.value);
+                  }}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="flex flex-wrap gap-2">
                 <CargoSheet
                   log={cargoLog}

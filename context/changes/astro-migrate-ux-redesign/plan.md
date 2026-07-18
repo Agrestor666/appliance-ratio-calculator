@@ -439,27 +439,27 @@ Make Astro `/` the sole product entry; relocate legacy tree; run full smoke agai
 
 #### Automated
 
-- [x] 4.1 `chart.js` listed in `package.json` dependencies
-- [x] 4.2 `npm run build` succeeds (Chart bundled; no CDN script required on `/`)
+- [x] 4.1 `chart.js` listed in `package.json` dependencies — 2e57036
+- [x] 4.2 `npm run build` succeeds (Chart bundled; no CDN script required on `/`) — 2e57036
 
 #### Manual
 
-- [x] 4.3 Raising utilization into warn/crit bands updates chart and shows visual alerts
-- [x] 4.4 No beep/speech on threshold cross
-- [x] 4.5 Reset clears or normalizes alert state appropriately
+- [x] 4.3 Raising utilization into warn/crit bands updates chart and shows visual alerts — 2e57036
+- [x] 4.4 No beep/speech on threshold cross — 2e57036
+- [x] 4.5 Reset clears or normalizes alert state appropriately — 2e57036
 
 ### Phase 5: Technical report (in-app print)
 
 #### Automated
 
-- [ ] 5.1 `npm run lint` / `npm run build` pass
+- [x] 5.1 `npm run lint` / `npm run build` pass
 
 #### Manual
 
-- [ ] 5.2 Happy path: Send cargo → open report → sees inputs/results/logs consistent with UI
-- [ ] 5.3 Mismatch path: Send then edit cargo Te → report discloses last-Send breakdown may not match Te
-- [ ] 5.4 Print dialog usable (browser Print / PDF)
-- [ ] 5.5 Report CTA lives with results, not as the only page purpose
+- [x] 5.2 Happy path: Send cargo → open report → sees inputs/results/logs consistent with UI
+- [x] 5.3 Mismatch path: Send then edit cargo Te → report discloses last-Send breakdown may not match Te
+- [x] 5.4 Print dialog usable (browser Print / PDF)
+- [x] 5.5 Report CTA lives with results, not as the only page purpose
 
 ### Phase 6: Cutover & smoke
 

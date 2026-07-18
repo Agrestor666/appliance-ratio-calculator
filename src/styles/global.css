@@ -122,3 +122,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* In-app technical report: hide chrome; print the report article only. */
+@media print {
+  .technical-report-actions {
+    display: none !important;
+  }
+
+  .technical-report {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+}
