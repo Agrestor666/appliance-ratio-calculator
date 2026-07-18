@@ -1,10 +1,10 @@
 ---
 change_id: verified-fill-media-v1
 title: Verified fill media v1
-status: impl_reviewed
+status: archived
 created: 2026-07-17
 updated: 2026-07-18
-archived_at: null
+archived_at: 2026-07-18T07:59:31Z
 ---
 
 ## Notes

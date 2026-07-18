@@ -3,7 +3,7 @@ project: appliance-ratio-calculator
 version: 1
 status: draft
 created: 2026-07-17
-updated: 2026-07-17
+updated: 2026-07-18
 prd_version: 1
 main_goal: speed
 top_blocker: time
@@ -29,7 +29,7 @@ Istniejący kalkulator dla osób budujących lifting plany ma łączyć w jednym
 
 | ID | Change ID | Outcome (user can …) | Prerequisites | PRD refs | Status |
 |---|---|---|---|---|---|
-| F-01 | verified-fill-media-v1 | (foundation) mała, zweryfikowana lista mediów wypełnienia z gęstościami gotowa do użycia w kalkulacji | — | FR-002, NFR (immediate fill response) | ready |
+| F-01 | verified-fill-media-v1 | (foundation) mała, zweryfikowana lista mediów wypełnienia z gęstościami gotowa do użycia w kalkulacji | — | FR-002, NFR (immediate fill response) | done |
 | S-01 | cargo-catalog-selection | Planner może wybrać elementy piping z katalogu do listy cargo | — | US-01, FR-001 | ready |
 | S-02 | pipe-fill-cargo-weight | Planner może wybrać wypełnienie rury i zobaczyć wagę cargo uwzględniającą fill | F-01, S-01 | US-01, FR-002, FR-003 | proposed |
 | S-03 | cargo-weight-to-ratio | Planner może przekazać wagę cargo do wejść Appliance Ratio bez regresji wzoru i raportu | S-02 | US-01, FR-004, FR-005 | proposed |
@@ -69,7 +69,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Unknowns:**
   - Które media (np. woda / powietrze / inne) i skąd pochodzą gęstości w v1? — Owner: user. Block: no (to jest wynik tej foundation).
 - **Risk:** Sequenced early and parallel with S-01 so S-02 nie czeka na decyzję o mediach po skończeniu katalogu; bez tej listy fill daje niewiarygodne wagi.
-- **Status:** ready
+- **Status:** done
 
 ## Slices
 
@@ -137,4 +137,4 @@ Foundations below assume these are present and do NOT re-scaffold them.
 
 ## Done
 
-(Empty on first generation. `/10x-archive` appends an entry here — and flips that item's `Status` to `done` — when a change whose `Change ID` matches the item is archived.)
+- **F-01: (foundation) mała, zweryfikowana lista mediów wypełnienia z gęstościami i źródłem jest gotowa do podpięcia pod masę fill.** — Archived 2026-07-18 → `context/archive/2026-07-17-verified-fill-media-v1/`. Lesson: —.
