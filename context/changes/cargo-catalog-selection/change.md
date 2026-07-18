@@ -1,7 +1,7 @@
 ﻿---
 change_id: cargo-catalog-selection
 title: Cargo catalog selection
-status: implemented
+status: impl_reviewed
 created: 2026-07-18
 updated: 2026-07-18
 archived_at: null
