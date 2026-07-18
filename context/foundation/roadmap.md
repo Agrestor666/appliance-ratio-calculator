@@ -30,7 +30,7 @@ Istniejący kalkulator dla osób budujących lifting plany ma łączyć w jednym
 | ID | Change ID | Outcome (user can …) | Prerequisites | PRD refs | Status |
 |---|---|---|---|---|---|
 | F-01 | verified-fill-media-v1 | (foundation) mała, zweryfikowana lista mediów wypełnienia z gęstościami gotowa do użycia w kalkulacji | — | FR-002, NFR (immediate fill response) | done |
-| S-01 | cargo-catalog-selection | Planner może wybrać elementy piping z katalogu do listy cargo | — | US-01, FR-001 | ready |
+| S-01 | cargo-catalog-selection | Planner może wybrać elementy piping z katalogu do listy cargo | — | US-01, FR-001 | done |
 | S-02 | pipe-fill-cargo-weight | Planner może wybrać wypełnienie rury i zobaczyć wagę cargo uwzględniającą fill | F-01, S-01 | US-01, FR-002, FR-003 | proposed |
 | S-03 | cargo-weight-to-ratio | Planner może przekazać wagę cargo do wejść Appliance Ratio bez regresji wzoru i raportu | S-02 | US-01, FR-004, FR-005 | proposed |
 
@@ -84,7 +84,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Unknowns:**
   - Jaki jest blast radius zmian w ścieżce cargo/katalog względem reszty aplikacji? — Owner: user. Block: no (odkrywane w `/10x-plan`; nie blokuje startu).
 - **Risk:** North star first — kontrargument Socrates przy FR-001 (katalog za wąski) to założenie o najwyższym ryzyku przed fillem; przy `time` nie odkładamy walidacji katalogu za polish UX.
-- **Status:** ready
+- **Status:** done
 
 ### S-02: Pipe fill → cargo weight
 
@@ -138,3 +138,4 @@ Foundations below assume these are present and do NOT re-scaffold them.
 ## Done
 
 - **F-01: (foundation) mała, zweryfikowana lista mediów wypełnienia z gęstościami i źródłem jest gotowa do podpięcia pod masę fill.** — Archived 2026-07-18 → `context/archive/2026-07-17-verified-fill-media-v1/`. Lesson: —.
+- **S-01: Planner może wybrać elementy piping z katalogu do listy cargo (z zachowaną możliwością ręcznego wpisania wagi).** — Archived 2026-07-18 → `context/archive/2026-07-18-cargo-catalog-selection/`. Lesson: —.
