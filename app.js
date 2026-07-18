@@ -1676,7 +1676,10 @@ function getTypeList(catId) {
   if (!cat) return [];
   if (catId === "pipe")    return Object.keys(cat.pipes   || {});
   if (catId === "fitting") return Object.keys(cat.fittings|| {});
-  if (catId === "flange")  return Object.keys(cat.flanges || {});
+  if (catId === "flange") {
+    const deferred = new Set(["Socket Weld", "Threaded", "Lap Joint"]);
+    return Object.keys(cat.flanges || {}).filter((t) => !deferred.has(t));
+  }
   if (catId === "valve")   return Object.keys(cat.valves  || {});
   return [];
 }
@@ -1848,6 +1851,7 @@ function syncCargoSchedule() {
     if (schedules.length > 0) {
       cargoSchSel.disabled = false;
       fillSelect(cargoSchSel, schedules);
+      if (schedules.includes("STD")) cargoSchSel.value = "STD";
     } else {
       cargoSchSel.disabled = true;
       cargoSchSel.innerHTML = '<option value="">—</option>';
