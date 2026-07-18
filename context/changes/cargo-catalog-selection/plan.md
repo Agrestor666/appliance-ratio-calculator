@@ -239,26 +239,26 @@ No data migration. `pipes.json` remains unused. If future work retires it, do th
 
 #### Automated
 
-- [x] 1.1 gap-candidates.md exists under the change folder
-- [x] 1.2 Proposed additions are absent from current PIPING_CATALOG.pipes for that schedule+NPS
-- [x] 1.3 No edits to data/piping_catalog.js in this phase
+- [x] 1.1 gap-candidates.md exists under the change folder — 896da08
+- [x] 1.2 Proposed additions are absent from current PIPING_CATALOG.pipes for that schedule+NPS — 896da08
+- [x] 1.3 No edits to data/piping_catalog.js in this phase — 896da08
 
 #### Manual
 
-- [x] 1.4 Human sign-off recorded on proposed gap list before Phase 2
+- [x] 1.4 Human sign-off recorded on proposed gap list before Phase 2 — 896da08
 
 ### Phase 2: Apply Approved Catalog Additions
 
 #### Automated
 
-- [ ] 2.1 data/piping_catalog.js parses (node --check)
-- [ ] 2.2 Every signed-off accepted NPS appears under the correct schedule key
-- [ ] 2.3 Spot-check: pre-existing sample NPS/wt unchanged
+- [x] 2.1 data/piping_catalog.js parses (node --check)
+- [x] 2.2 Every signed-off accepted NPS appears under the correct schedule key
+- [x] 2.3 Spot-check: pre-existing sample NPS/wt unchanged
 
 #### Manual
 
-- [ ] 2.4 Newly added pipe NPS selectable; preview + Add to list works
-- [ ] 2.5 Pre-existing common pipe path still works
+- [x] 2.4 Newly added pipe NPS selectable; preview + Add to list works
+- [x] 2.5 Pre-existing common pipe path still works
 
 ### Phase 3: Path-Critical Harden
 
