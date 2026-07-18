@@ -291,32 +291,32 @@ WN schedule nesting grows `piping_catalog.js` modestly vs fittings’ full type�
 
 #### Automated
 
-- [ ] 2.1 node --check data/piping_catalog.js passes
-- [ ] 2.2 Slip-On / Blind class values are NPS arrays
-- [ ] 2.3 Weld Neck class values are schedule objects
-- [ ] 2.4 Deferred types Socket Weld / Threaded / Lap Joint still exist
-- [ ] 2.5 Optional verify script: nest shape + sample Auto-apply wt
+- [x] 2.1 node --check data/piping_catalog.js passes
+- [x] 2.2 Slip-On / Blind class values are NPS arrays
+- [x] 2.3 Weld Neck class values are schedule objects
+- [x] 2.4 Deferred types Socket Weld / Threaded / Lap Joint still exist
+- [x] 2.5 Optional verify script: nest shape + sample Auto-apply wt
 
 #### Manual
 
-- [ ] 2.6 Spot-check Auto-apply / accepted Conflict rows match candidates
-- [ ] 2.7 Rejected / Skipped cells absent; no coverage expansion
+- [x] 2.6 Spot-check Auto-apply / accepted Conflict rows match candidates
+- [x] 2.7 Rejected / Skipped cells absent; no coverage expansion
 
 ### Phase 3: Runtime — WN Schedule Cascade
 
 #### Automated
 
-- [ ] 3.1 node --check app.js passes
-- [ ] 3.2 Schedule select exists in index.html
-- [ ] 3.3 Flange WN path reads nested schedule arrays
+- [x] 3.1 node --check app.js passes
+- [x] 3.2 Schedule select exists in index.html
+- [x] 3.3 Flange WN path reads nested schedule arrays
 
 #### Manual
 
-- [ ] 3.4 WN Class → Schedule → NPS cascade matches catalog
-- [ ] 3.5 WN preview/add weight equals nested wt
-- [ ] 3.6 Slip-On / Blind: Schedule disabled; Class → NPS works
-- [ ] 3.7 Deferred flange types still selectable with prior weights
-- [ ] 3.8 Fitting / Pipe / Valve cascades unchanged
+- [x] 3.4 WN Class → Schedule → NPS cascade matches catalog
+- [x] 3.5 WN preview/add weight equals nested wt
+- [x] 3.6 Slip-On / Blind: Schedule disabled; Class → NPS works
+- [x] 3.7 Deferred flange types still selectable with prior weights
+- [x] 3.8 Fitting / Pipe / Valve cascades unchanged
 
 ### Phase 4: Smoke + Handoff
 

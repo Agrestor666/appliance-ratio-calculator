@@ -1604,6 +1604,8 @@ const cargoCatSel       = el("cargoCatSel");
 const cargoTypeSel      = el("cargoTypeSel");
 const cargoClassWrap    = el("cargoClassWrap");
 const cargoClassSel     = el("cargoClassSel");
+const cargoSchWrap      = el("cargoSchWrap");
+const cargoSchSel       = el("cargoSchSel");
 const cargoNpsSel       = el("cargoNpsSel");
 const cargoLenWrap      = el("cargoLenWrap");
 const cargoLenInput     = el("cargoLenInput");
@@ -1690,19 +1692,48 @@ function getClassList(catId, typeId) {
   return Object.keys(group);
 }
 
-function getNpsList(catId, typeId, classId) {
+/** True when flange class value is schedule → [{ nps, wt }] (Weld Neck nest). */
+function isFlangeScheduleNest(classVal) {
+  if (!classVal || typeof classVal !== "object" || Array.isArray(classVal)) return false;
+  const vals = Object.values(classVal);
+  return vals.length > 0 && vals.every((v) => Array.isArray(v));
+}
+
+/** Schedule keys for Weld Neck flanges; empty for SO/Blind/deferred and other cats. */
+function getScheduleList(catId, typeId, classId) {
+  if (catId !== "flange") return [];
+  const cat = getCatalog();
+  if (!cat) return [];
+  const classVal = cat.flanges?.[typeId]?.[classId];
+  if (!isFlangeScheduleNest(classVal)) return [];
+  return Object.keys(classVal);
+}
+
+function getNpsList(catId, typeId, classId, scheduleId) {
   const cat = getCatalog();
   if (!cat) return [];
   let items = null;
   if (catId === "pipe")    items = cat.pipes?.[typeId];
   if (catId === "fitting") items = cat.fittings?.[typeId]?.[classId];
-  if (catId === "flange")  items = cat.flanges?.[typeId]?.[classId];
+  if (catId === "flange") {
+    const classVal = cat.flanges?.[typeId]?.[classId];
+    if (isFlangeScheduleNest(classVal)) {
+      items = scheduleId ? classVal[scheduleId] : null;
+    } else {
+      items = classVal;
+    }
+  }
   if (catId === "valve")   items = cat.valves?.[typeId]?.[classId];
   return Array.isArray(items) ? items : [];
 }
 
-function findItem(catId, typeId, classId, nps) {
-  return getNpsList(catId, typeId, classId).find(i => i.nps === nps) || null;
+function findItem(catId, typeId, classId, nps, scheduleId) {
+  return getNpsList(catId, typeId, classId, scheduleId).find(i => i.nps === nps) || null;
+}
+
+function selectedFlangeScheduleId() {
+  if (!cargoSchSel || cargoSchSel.disabled) return "";
+  return cargoSchSel.value || "";
 }
 
 function calcUnitKg(item, catId, classId, lenM, fillId) {
@@ -1803,28 +1834,49 @@ function syncCargoClass() {
       cargoLenInput.value = "—";
     }
   }
+  syncCargoSchedule();
+}
+
+/** Enable Schedule only for Flange + Weld Neck (nested schedule keys). */
+function syncCargoSchedule() {
+  const catId   = cargoCatSel.value;
+  const typeId  = cargoTypeSel.value;
+  const classId = cargoClassSel.value;
+  const schedules = getScheduleList(catId, typeId, classId);
+
+  if (cargoSchSel) {
+    if (schedules.length > 0) {
+      cargoSchSel.disabled = false;
+      fillSelect(cargoSchSel, schedules);
+    } else {
+      cargoSchSel.disabled = true;
+      cargoSchSel.innerHTML = '<option value="">—</option>';
+    }
+  }
   syncCargoNps();
 }
 
 function syncCargoNps() {
-  const catId   = cargoCatSel.value;
-  const typeId  = cargoTypeSel.value;
-  const classId = cargoClassSel.value;
-  const items   = getNpsList(catId, typeId, classId);
+  const catId      = cargoCatSel.value;
+  const typeId     = cargoTypeSel.value;
+  const classId    = cargoClassSel.value;
+  const scheduleId = selectedFlangeScheduleId();
+  const items      = getNpsList(catId, typeId, classId, scheduleId);
   fillSelect(cargoNpsSel, items, "nps", "nps");
   updateCargoPreview();
 }
 
 function updateCargoPreview() {
-  const catId   = cargoCatSel.value;
-  const typeId  = cargoTypeSel.value;
-  const classId = cargoClassSel.value;
-  const nps     = cargoNpsSel.value;
-  const lenM    = parseNumber(cargoLenInput?.value) ?? 1;
-  const fillId  = cargoFillSel?.value || "empty";
-  const fill    = findFillMedia(fillId);
-  const item    = findItem(catId, typeId, classId, nps);
-  const unitKg  = calcUnitKg(item, catId, classId, lenM, fillId);
+  const catId      = cargoCatSel.value;
+  const typeId     = cargoTypeSel.value;
+  const classId    = cargoClassSel.value;
+  const scheduleId = selectedFlangeScheduleId();
+  const nps        = cargoNpsSel.value;
+  const lenM       = parseNumber(cargoLenInput?.value) ?? 1;
+  const fillId     = cargoFillSel?.value || "empty";
+  const fill       = findFillMedia(fillId);
+  const item       = findItem(catId, typeId, classId, nps, scheduleId);
+  const unitKg     = calcUnitKg(item, catId, classId, lenM, fillId);
 
   if (!cargoPreview) return;
   const cats = cargoCategories();
@@ -1861,16 +1913,17 @@ function updateCargoPreview() {
 // ── Add item to log ────────────────────────────────────────────────────────
 
 function cargoAddItem() {
-  const catId   = cargoCatSel.value;
-  const typeId  = cargoTypeSel.value;
-  const classId = cargoClassSel.value;
-  const nps     = cargoNpsSel.value;
-  const lenM    = parseNumber(cargoLenInput?.value) ?? 1;
-  const fillId  = cargoFillSel?.value || "empty";
-  const fill    = findFillMedia(fillId);
-  const qty     = cargoState.qty;
-  const item    = findItem(catId, typeId, classId, nps);
-  const needsLen = !cargoLenInput?.disabled;
+  const catId      = cargoCatSel.value;
+  const typeId     = cargoTypeSel.value;
+  const classId    = cargoClassSel.value;
+  const scheduleId = selectedFlangeScheduleId();
+  const nps        = cargoNpsSel.value;
+  const lenM       = parseNumber(cargoLenInput?.value) ?? 1;
+  const fillId     = cargoFillSel?.value || "empty";
+  const fill       = findFillMedia(fillId);
+  const qty        = cargoState.qty;
+  const item       = findItem(catId, typeId, classId, nps, scheduleId);
+  const needsLen   = !cargoLenInput?.disabled;
 
   if (!item || qty < 1) return;
   if (needsLen && !(lenM > 0)) return;
@@ -1890,6 +1943,7 @@ function cargoAddItem() {
 
   let label = `${catLabel} | ${typeId}`;
   if (classId && !cargoClassSel.disabled) label += ` | ${classId}`;
+  if (scheduleId) label += ` | ${scheduleId}`;
   label += ` | NPS ${nps}"`;
   if (!cargoLenInput.disabled) label += ` | ${lenM} m`;
 
@@ -2059,7 +2113,10 @@ if (cargoTypeSel) {
   cargoTypeSel.addEventListener("change", () => syncCargoClass());
 }
 if (cargoClassSel) {
-  cargoClassSel.addEventListener("change", () => syncCargoNps());
+  cargoClassSel.addEventListener("change", () => syncCargoSchedule());
+}
+if (cargoSchSel) {
+  cargoSchSel.addEventListener("change", () => syncCargoNps());
 }
 if (cargoNpsSel) {
   cargoNpsSel.addEventListener("change", () => updateCargoPreview());
