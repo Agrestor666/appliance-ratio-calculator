@@ -1,10 +1,10 @@
 ﻿---
 change_id: b16-9-fitting-catalog-schedule
 title: B16 9 fitting catalog schedule
-status: impl_reviewed
+status: archived
 created: 2026-07-18
 updated: 2026-07-18
-archived_at: null
+archived_at: 2026-07-18T19:11:23Z
 ---
 
 ## Notes
