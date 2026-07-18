@@ -15,6 +15,102 @@ export const THRESHOLD_DEFAULTS = {
   enabled: true,
 } as const;
 
+export interface ThresholdState {
+  warn: number;
+  crit: number;
+  enabled: boolean;
+}
+
+export type AlertSeverity = "none" | "warn" | "crit" | "input";
+
+export interface AlertItem {
+  level: "warn" | "crit" | "input";
+  text: string;
+}
+
+export function clamp01(n: number): number {
+  if (!Number.isFinite(n)) return 0;
+  return Math.max(0, Math.min(1, n));
+}
+
+/** Chart percentages from utilization ratio (matches legacy `recompute` chart path). */
+export function chartPercentsFromUtilization(utilization: number | null): {
+  usedPercent: number;
+  remainingPercent: number;
+} {
+  if (utilization === null || !Number.isFinite(utilization)) {
+    return { usedPercent: 0, remainingPercent: 100 };
+  }
+  const usedRatio = clamp01(utilization);
+  return {
+    usedPercent: usedRatio * 100,
+    remainingPercent: clamp01(1 - usedRatio) * 100,
+  };
+}
+
+/**
+ * Visual alert evaluation — port of `updateAlerts` without audio/speech.
+ * Invalid compute results surface as an INPUT item (legacy recompute path).
+ */
+export function evaluateAlerts(
+  result: RatioResult,
+  thresholds: ThresholdState,
+): { severity: AlertSeverity; items: AlertItem[] } {
+  if (!result.ok) {
+    return { severity: "input", items: [{ level: "input", text: result.error }] };
+  }
+
+  if (!thresholds.enabled) {
+    return { severity: "none", items: [] };
+  }
+
+  const utilRatio = result.utilization;
+  const { warn, crit } = thresholds;
+
+  if (Number.isFinite(crit) && utilRatio >= crit) {
+    return {
+      severity: "crit",
+      items: [
+        {
+          level: "crit",
+          text: `Utilization ${formatPercent(utilRatio)} ≥ ${formatPercent(crit)}. Reduce load or increase WLL before lifting.`,
+        },
+      ],
+    };
+  }
+
+  if (Number.isFinite(warn) && utilRatio >= warn) {
+    return {
+      severity: "warn",
+      items: [
+        {
+          level: "warn",
+          text: `Utilization ${formatPercent(utilRatio)} ≥ ${formatPercent(warn)}. Approaching the limit.`,
+        },
+      ],
+    };
+  }
+
+  return { severity: "none", items: [] };
+}
+
+/** Form-string thresholds (UI) → numeric state for alert evaluation. */
+export function parseThresholdForm(fields: { warn: string; crit: string; enabled: boolean }): ThresholdState {
+  return {
+    warn: parseNumber(fields.warn) ?? THRESHOLD_DEFAULTS.warn,
+    crit: parseNumber(fields.crit) ?? THRESHOLD_DEFAULTS.crit,
+    enabled: fields.enabled,
+  };
+}
+
+export function defaultsAsThresholdFormStrings() {
+  return {
+    warn: String(THRESHOLD_DEFAULTS.warn),
+    crit: String(THRESHOLD_DEFAULTS.crit),
+    enabled: THRESHOLD_DEFAULTS.enabled,
+  };
+}
+
 export interface RatioInputs {
   cargoTe: number;
   riggingTe: number;

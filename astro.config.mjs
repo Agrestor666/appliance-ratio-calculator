@@ -12,6 +12,15 @@ export default defineConfig({
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
+    // @supabase/ssr breaks Vite SSR dep prebundling (stale/missing deps_ssr entries).
+    optimizeDeps: {
+      exclude: ["@supabase/ssr"],
+    },
+    ssr: {
+      optimizeDeps: {
+        exclude: ["@supabase/ssr"],
+      },
+    },
   },
   adapter: cloudflare(),
   env: {

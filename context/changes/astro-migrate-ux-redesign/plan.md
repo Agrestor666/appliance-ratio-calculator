@@ -425,28 +425,28 @@ Make Astro `/` the sole product entry; relocate legacy tree; run full smoke agai
 
 #### Automated
 
-- [x] 3.1 `npm run lint` / `npm run build` pass
-- [x] 3.2 Catalog modules resolve without `window.*` in the Astro island bundle path
+- [x] 3.1 `npm run lint` / `npm run build` pass — 6749bd6
+- [x] 3.2 Catalog modules resolve without `window.*` in the Astro island bundle path — 6749bd6
 
 #### Manual
 
-- [x] 3.3 Build a fill-aware pipe cargo list → Send → cargo Te and utilization update correctly
-- [x] 3.4 Build a rigging list → Send → rigging Te updates; ratio recomputes
-- [x] 3.5 Manual edit of Te after Send still recomputes (list not required to auto-clear)
-- [x] 3.6 Sheets work on desktop and are usable on mobile
+- [x] 3.3 Build a fill-aware pipe cargo list → Send → cargo Te and utilization update correctly — 6749bd6
+- [x] 3.4 Build a rigging list → Send → rigging Te updates; ratio recomputes — 6749bd6
+- [x] 3.5 Manual edit of Te after Send still recomputes (list not required to auto-clear) — 6749bd6
+- [x] 3.6 Sheets work on desktop and are usable on mobile — 6749bd6
 
 ### Phase 4: Chart & visual alerts
 
 #### Automated
 
-- [ ] 4.1 `chart.js` listed in `package.json` dependencies
-- [ ] 4.2 `npm run build` succeeds (Chart bundled; no CDN script required on `/`)
+- [x] 4.1 `chart.js` listed in `package.json` dependencies
+- [x] 4.2 `npm run build` succeeds (Chart bundled; no CDN script required on `/`)
 
 #### Manual
 
-- [ ] 4.3 Raising utilization into warn/crit bands updates chart and shows visual alerts
-- [ ] 4.4 No beep/speech on threshold cross
-- [ ] 4.5 Reset clears or normalizes alert state appropriately
+- [x] 4.3 Raising utilization into warn/crit bands updates chart and shows visual alerts
+- [x] 4.4 No beep/speech on threshold cross
+- [x] 4.5 Reset clears or normalizes alert state appropriately
 
 ### Phase 5: Technical report (in-app print)
 
