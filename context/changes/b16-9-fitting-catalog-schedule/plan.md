@@ -277,30 +277,30 @@ Nested fittings increase `piping_catalog.js` size substantially (full types × s
 
 #### Automated
 
-- [x] 2.1 node --check data/piping_catalog.js passes
-- [x] 2.2 Spot-check nested schedule + wt > 0 for an existing type
-- [x] 2.3 Spot-check new signed-off type key if included
-- [x] 2.4 No remaining top-level fittings[type] arrays
+- [x] 2.1 node --check data/piping_catalog.js passes — 1e77370
+- [x] 2.2 Spot-check nested schedule + wt > 0 for an existing type — 1e77370
+- [x] 2.3 Spot-check new signed-off type key if included — 1e77370
+- [x] 2.4 No remaining top-level fittings[type] arrays — 1e77370
 
 #### Manual
 
-- [x] 2.5 Spot-check proposed rows match Sign-off wt
-- [x] 2.6 Rejected/skipped rows absent from file
+- [x] 2.5 Spot-check proposed rows match Sign-off wt — 1e77370
+- [x] 2.6 Rejected/skipped rows absent from file — 1e77370
 
 ### Phase 3: Runtime — Drop FITTING_SCH_FACTORS
 
 #### Automated
 
-- [ ] 3.1 node --check app.js passes
-- [ ] 3.2 No FITTING_SCH_FACTORS identifier in app.js / data/
-- [ ] 3.3 Fitting path no longer multiplies by schedule factor table
+- [x] 3.1 node --check app.js passes
+- [x] 3.2 No FITTING_SCH_FACTORS identifier in app.js / data/
+- [x] 3.3 Fitting path no longer multiplies by schedule factor table
 
 #### Manual
 
-- [ ] 3.4 Schedule list matches catalog keys for selected type
-- [ ] 3.5 Schedule change updates NPS list when coverage differs
-- [ ] 3.6 Preview/add weight equals catalog wt (no × factor)
-- [ ] 3.7 Reducer compound NPS uses nested schedule wt
+- [x] 3.4 Schedule list matches catalog keys for selected type
+- [x] 3.5 Schedule change updates NPS list when coverage differs
+- [x] 3.6 Preview/add weight equals catalog wt (no × factor)
+- [x] 3.7 Reducer compound NPS uses nested schedule wt
 
 ### Phase 4: Smoke + Handoff
 

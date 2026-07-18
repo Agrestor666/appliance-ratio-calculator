@@ -1596,112 +1596,6 @@ init();
 // CARGO WEIGHT CALCULATOR
 // ═══════════════════════════════════════════════════════════════════════════
 
-// Butt-weld fitting weight multipliers vs Sch 40 base.
-// factor = (t·(OD−t)) / (t40·(OD−t40))  per ASME B36.10M / B36.19M.
-// Schedules in the same order as the pipe catalog.
-// For sizes where a schedule doesn't exist in B36.10M the nearest
-// equivalent schedule value is reused (_default covers unlisted NPS).
-const FITTING_SCH_FACTORS = {
-  // ── Light wall (stainless, B36.19M) ──────────────────────────────────────
-  "Sch 5S": {
-    "1/2":0.35,"3/4":0.34,"1":0.39,"1-1/4":0.37,"1-1/2":0.36,
-    "2":0.44,"2-1/2":0.34,"3":0.31,"3-1/2":0.30,"4":0.29,
-    "5":0.26,"6":0.24,"8":0.27,"10":0.31,"12":0.30, _default:0.32
-  },
-  // ── Sch 5 / 10S (B36.10M Sch5 ≡ B36.19M Sch10S walls) ──────────────────
-  "Sch 5": {
-    "1/2":0.49,"3/4":0.61,"1":0.52,"1-1/4":0.49,"1-1/2":0.47,
-    "2":0.44,"2-1/2":0.43,"3":0.40,"3-1/2":0.38,"4":0.36,
-    "5":0.44,"6":0.40,"8":0.35,"10":0.38,"12":0.42, _default:0.41
-  },
-  "Sch 10S": {
-    "1/2":0.49,"3/4":0.61,"1":0.52,"1-1/4":0.49,"1-1/2":0.47,
-    "2":0.44,"2-1/2":0.43,"3":0.40,"3-1/2":0.38,"4":0.36,
-    "5":0.44,"6":0.40,"8":0.35,"10":0.38,"12":0.42, _default:0.41
-  },
-  // ── Sch 10 ────────────────────────────────────────────────────────────────
-  "Sch 10": {
-    "1/2":0.63,"3/4":0.61,"1":0.52,"1-1/4":0.49,"1-1/2":0.47,
-    "2":0.56,"2-1/2":0.56,"3":0.52,"3-1/2":0.50,"4":0.47,
-    "5":0.44,"6":0.40,"8":0.35,"10":0.38,"12":0.42, _default:0.46
-  },
-  // ── Sch 20 / 20S (20S uses same walls for fittings) ──────────────────────
-  "Sch 20S": {
-    "1/2":0.63,"3/4":0.61,"1":0.52,"1-1/4":0.49,"1-1/2":0.47,
-    "2":0.56,"2-1/2":0.56,"3":0.52,"3-1/2":0.50,"4":0.47,
-    "5":0.44,"6":0.40,"8":0.47,"10":0.46,"12":0.45, _default:0.47
-  },
-  "Sch 20": {
-    "1/2":0.63,"3/4":0.61,"1":0.52,"1-1/4":0.49,"1-1/2":0.47,
-    "2":0.56,"2-1/2":0.56,"3":0.52,"3-1/2":0.50,"4":0.47,
-    "5":0.44,"6":0.40,"8":0.47,"10":0.46,"12":0.45, _default:0.47
-  },
-  // ── Sch 30 (starts at 8" in B36.10M; smaller = Sch 20 approx) ────────────
-  "Sch 30": {
-    "1/2":0.63,"3/4":0.61,"1":0.52,"1-1/4":0.49,"1-1/2":0.47,
-    "2":0.56,"2-1/2":0.56,"3":0.52,"3-1/2":0.50,"4":0.47,
-    "5":0.44,"6":0.40,"8":0.59,"10":0.52,"12":0.51, _default:0.55
-  },
-  // ── Standard wall ────────────────────────────────────────────────────────
-  "Sch 40S": { _default:1.00 },
-  "Sch 40":  { _default:1.00 },
-  // ── Sch 60 (starts at 8" in B36.10M; smaller = Sch 40 approx) ────────────
-  "Sch 60": {
-    "1/2":1.00,"3/4":1.00,"1":1.00,"1-1/4":1.00,"1-1/2":1.00,
-    "2":1.00,"2-1/2":1.00,"3":1.00,"3-1/2":1.00,"4":1.00,
-    "5":1.00,"6":1.00,"8":1.25,"10":1.35,"12":1.48, _default:1.25
-  },
-  // ── Sch 80S = Sch 80 walls for NPS ≤ 12" ─────────────────────────────────
-  "Sch 80S": {
-    "1/2":1.28,"3/4":1.30,"1":1.29,"1-1/4":1.32,"1-1/2":1.34,
-    "2":1.38,"2-1/2":1.32,"3":1.35,"3-1/2":1.37,"4":1.39,
-    "5":1.42,"6":1.51,"8":1.52,"10":1.59,"12":1.79, _default:1.40
-  },
-  "Sch 80": {
-    "1/2":1.28,"3/4":1.30,"1":1.29,"1-1/4":1.32,"1-1/2":1.34,
-    "2":1.38,"2-1/2":1.32,"3":1.35,"3-1/2":1.37,"4":1.39,
-    "5":1.42,"6":1.51,"8":1.52,"10":1.59,"12":1.79,
-    "14":1.32,"16":1.64,"18":1.96,"20":2.12, _default:1.40
-  },
-  // ── Heavy wall (starts at 8" in B36.10M; smaller = Sch 80 approx) ────────
-  "Sch 100": {
-    "1/2":1.28,"3/4":1.30,"1":1.29,"1-1/4":1.32,"1-1/2":1.34,
-    "2":1.38,"2-1/2":1.32,"3":1.35,"3-1/2":1.37,"4":1.39,
-    "5":1.42,"6":1.51,"8":1.78,"10":1.90,"12":2.09, _default:1.90
-  },
-  "Sch 120": {
-    "1/2":1.54,"3/4":1.72,"1":1.69,"1-1/4":1.66,"1-1/2":1.79,
-    "2":2.04,"2-1/2":1.73,"3":1.89,"4":2.09,"5":2.26,
-    "6":2.39,"8":2.13,"10":2.21,"12":2.53, _default:2.30
-  },
-  "Sch 140": {
-    "1/2":1.54,"3/4":1.72,"1":1.69,"1-1/4":1.66,"1-1/2":1.79,
-    "2":2.04,"2-1/2":1.73,"3":1.89,"4":2.09,"5":2.26,
-    "6":2.39,"8":2.37,"10":2.57,"12":2.82, _default:2.60
-  },
-  "Sch 160": {
-    "1/2":1.54,"3/4":1.72,"1":1.69,"1-1/4":1.66,"1-1/2":1.79,
-    "2":2.04,"2-1/2":1.73,"3":1.89,"4":2.09,"5":2.26,
-    "6":2.39,"8":2.62,"10":2.86,"12":3.23,
-    "14":2.40,"16":2.86,"18":3.17,"20":3.33, _default:2.60
-  },
-  // ── STD = Sch 40 for all practical sizes ─────────────────────────────────
-  "STD": { _default:1.00 },
-  // ── XS = Sch 80 for NPS ≤ 8", diverges for larger sizes ─────────────────
-  "XS": {
-    "1/2":1.28,"3/4":1.30,"1":1.29,"1-1/4":1.32,"1-1/2":1.34,
-    "2":1.38,"2-1/2":1.32,"3":1.35,"3-1/2":1.37,"4":1.39,
-    "5":1.42,"6":1.51,"8":1.52,"10":1.35,"12":1.32,
-    "14":1.32,"16":1.32,"18":1.32,"20":1.32, _default:1.35
-  },
-  // ── Double extra strong ───────────────────────────────────────────────────
-  "XXS": {
-    "1/2":2.01,"3/4":2.16,"1":2.18,"1-1/4":2.29,"1-1/2":2.36,
-    "2":2.47,"2-1/2":2.36,"3":2.45,"4":2.55,"5":2.64,
-    "6":2.80,"8":2.54, _default:2.50
-  }
-};
-
 const cargoModal        = el("cargoModal");
 const cargoModalCloseBtn= el("cargoModalCloseBtn");
 const cargoCalcBtn      = el("cargoCalcBtn");
@@ -1788,10 +1682,10 @@ function getTypeList(catId) {
 function getClassList(catId, typeId) {
   const cat = getCatalog();
   if (!cat) return [];
-  if (catId === "fitting") return Object.keys(FITTING_SCH_FACTORS);
   const group =
-    catId === "flange" ? cat.flanges?.[typeId] :
-    catId === "valve"  ? cat.valves?.[typeId]  : null;
+    catId === "fitting" ? cat.fittings?.[typeId] :
+    catId === "flange"  ? cat.flanges?.[typeId]  :
+    catId === "valve"   ? cat.valves?.[typeId]   : null;
   if (!group) return [];
   return Object.keys(group);
 }
@@ -1801,7 +1695,7 @@ function getNpsList(catId, typeId, classId) {
   if (!cat) return [];
   let items = null;
   if (catId === "pipe")    items = cat.pipes?.[typeId];
-  if (catId === "fitting") items = cat.fittings?.[typeId]; // base Sch40 data; schedule only affects weight
+  if (catId === "fitting") items = cat.fittings?.[typeId]?.[classId];
   if (catId === "flange")  items = cat.flanges?.[typeId]?.[classId];
   if (catId === "valve")   items = cat.valves?.[typeId]?.[classId];
   return Array.isArray(items) ? items : [];
@@ -1817,11 +1711,6 @@ function calcUnitKg(item, catId, classId, lenM, fillId) {
     const fill = findFillMedia(fillId);
     const density = fill?.densityKgPerM3 ?? 0;
     return pipeUnitMass(item, lenM, density).unitKg;
-  }
-  if (catId === "fitting") {
-    const tbl = FITTING_SCH_FACTORS[classId] || {};
-    const factor = tbl[item.nps] !== undefined ? tbl[item.nps] : (tbl._default || 1.0);
-    return item.wt * factor;
   }
   return item.wt;
 }
@@ -1964,10 +1853,6 @@ function updateCargoPreview() {
       text += ` = ${formatKg(mass.unitKg)} kg/pc`;
     }
     cargoPreview.textContent = text;
-  } else if (catId === "fitting" && classId && classId !== "Sch 40") {
-    const tbl = FITTING_SCH_FACTORS[classId] || {};
-    const f   = tbl[item.nps] !== undefined ? tbl[item.nps] : (tbl._default || 1.0);
-    cargoPreview.textContent = `${formatKg(item.wt)} kg (Sch40) × ${f.toFixed(2)} = ${formatKg(unitKg)} kg/pc`;
   } else {
     cargoPreview.textContent = `${formatKg(unitKg)} kg/pc`;
   }
