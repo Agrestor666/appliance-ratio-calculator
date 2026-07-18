@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Package, Scale, Wrench } from "lucide-react";
+import { Scale } from "lucide-react";
 
+import { CargoSheet } from "@/components/calculator/cargo/CargoSheet";
+import { RiggingSheet } from "@/components/calculator/rigging/RiggingSheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import type { CargoLogEntry } from "@/lib/cargo";
+import { formatKg, formatNumber } from "@/lib/format";
+import type { RiggingLogEntry } from "@/lib/rigging";
 import {
   THRESHOLD_DEFAULTS,
   computeFromFormStrings,
@@ -68,6 +73,11 @@ function NumberField({
 
 export function CalculatorShell() {
   const [fields, setFields] = useState<FormFields>(defaultsAsFormStrings);
+  const [cargoLog, setCargoLog] = useState<CargoLogEntry[]>([]);
+  const [cargoSentLog, setCargoSentLog] = useState<CargoLogEntry[]>([]);
+  const [cargoSentSumKg, setCargoSentSumKg] = useState<number | null>(null);
+  const [riggingLog, setRiggingLog] = useState<RiggingLogEntry[]>([]);
+
   const result = computeFromFormStrings(fields);
 
   const setField = (key: FieldKey, value: string) => {
@@ -76,11 +86,25 @@ export function CalculatorShell() {
 
   const reset = () => {
     setFields(defaultsAsFormStrings());
+    setCargoLog([]);
+    setCargoSentLog([]);
+    setCargoSentSumKg(null);
+    setRiggingLog([]);
   };
 
   const utilizationDisplay = result.ok ? formatPercent(result.utilization) : "—";
   const totalWeightDisplay = result.ok ? `${formatTe(result.totalWeightTe)} Te` : "—";
   const remainingDisplay = result.ok ? formatPercent(result.remaining) : "—";
+
+  const cargoHint =
+    cargoLog.length > 0
+      ? `${cargoLog.length} item(s) · ${formatKg(cargoLog.reduce((s, e) => s + e.totalKg, 0))} kg total`
+      : cargoSentSumKg != null
+        ? `Last send: ${formatNumber(cargoSentSumKg / 1000, 6)} Te (${cargoSentLog.length} items)`
+        : undefined;
+
+  const riggingSumKg = riggingLog.reduce((s, e) => s + e.subtotalKg, 0);
+  const riggingHint = riggingLog.length > 0 ? `Rigging log sum: ${formatNumber(riggingSumKg / 1000, 6)} Te` : undefined;
 
   return (
     <div className="bg-background min-h-screen">
@@ -102,7 +126,6 @@ export function CalculatorShell() {
       </header>
 
       <main className="mx-auto grid max-w-6xl gap-4 px-4 py-4 sm:px-6 sm:py-6 lg:grid-cols-2 lg:gap-6">
-        {/* Mobile: results first so utilization is never buried */}
         <section aria-labelledby="results-heading" className="order-1 lg:order-2">
           <Card className="sticky top-4 gap-4 py-5 lg:static">
             <CardHeader className="border-border border-b pb-4">
@@ -160,15 +183,32 @@ export function CalculatorShell() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex flex-wrap gap-2">
-                <Button type="button" variant="secondary" size="sm" disabled>
-                  <Package className="size-4" aria-hidden />
-                  Cargo
-                </Button>
-                <Button type="button" variant="secondary" size="sm" disabled>
-                  <Wrench className="size-4" aria-hidden />
-                  Rigging
-                </Button>
+                <CargoSheet
+                  log={cargoLog}
+                  onLogChange={setCargoLog}
+                  hint={cargoHint}
+                  onSend={({ te, sentLog, sentSumKg }) => {
+                    setCargoSentLog(sentLog);
+                    setCargoSentSumKg(sentSumKg);
+                    setField("cargoTe", formatNumber(te, 6));
+                  }}
+                />
+                <RiggingSheet
+                  log={riggingLog}
+                  onLogChange={setRiggingLog}
+                  hint={riggingHint}
+                  onSend={(te) => {
+                    setField("riggingTe", formatNumber(te, 6));
+                  }}
+                />
               </div>
+
+              {cargoHint != null || riggingHint != null ? (
+                <div className="text-muted-foreground space-y-1 text-xs">
+                  {cargoHint != null ? <p>{cargoHint}</p> : null}
+                  {riggingHint != null ? <p>{riggingHint}</p> : null}
+                </div>
+              ) : null}
 
               <Separator />
 

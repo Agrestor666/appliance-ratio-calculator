@@ -70,6 +70,19 @@ const astroConfig = tseslint.config({
 
 export default tseslint.config(
   includeIgnoreFile(gitignorePath),
+  {
+    ignores: [
+      // Legacy calculator host (relocated in Phase 6) — not part of the Astro app.
+      "app.js",
+      "styles.css",
+      "index.html",
+      "data/**",
+      // Archived change scripts / one-offs — not runtime source.
+      "context/archive/**",
+      // Static catalog dumps (ESM ports of legacy data/*) — not hand-edited source.
+      "src/lib/data/*-catalog.js",
+    ],
+  },
   baseConfig,
   reactConfig,
   eslintPluginAstro.configs["flat/recommended"],

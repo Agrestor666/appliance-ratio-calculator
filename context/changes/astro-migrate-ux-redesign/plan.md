@@ -411,29 +411,29 @@ Make Astro `/` the sole product entry; relocate legacy tree; run full smoke agai
 
 #### Automated
 
-- [x] 2.1 One-shot Node (or equivalent) against `src/lib` yields E6=1.730925 and E8=0.576975 for golden inputs
-- [x] 2.2 `golden-utilization.md` exists in this change folder
-- [x] 2.3 `npm run lint` / `npm run build` pass
+- [x] 2.1 One-shot Node (or equivalent) against `src/lib` yields E6=1.730925 and E8=0.576975 for golden inputs — 1d5f517
+- [x] 2.2 `golden-utilization.md` exists in this change folder — 1d5f517
+- [x] 2.3 `npm run lint` / `npm run build` pass — 1d5f517
 
 #### Manual
 
-- [x] 2.4 Reset (or default load) shows Total Weight / Utilization consistent with golden (display rounding OK)
-- [x] 2.5 Editing any input updates results immediately (perceived instant)
-- [x] 2.6 Manual Te entry works without catalog Sheets
+- [x] 2.4 Reset (or default load) shows Total Weight / Utilization consistent with golden (display rounding OK) — 1d5f517
+- [x] 2.5 Editing any input updates results immediately (perceived instant) — 1d5f517
+- [x] 2.6 Manual Te entry works without catalog Sheets — 1d5f517
 
 ### Phase 3: Cargo & Rigging Sheets
 
 #### Automated
 
-- [ ] 3.1 `npm run lint` / `npm run build` pass
-- [ ] 3.2 Catalog modules resolve without `window.*` in the Astro island bundle path
+- [x] 3.1 `npm run lint` / `npm run build` pass
+- [x] 3.2 Catalog modules resolve without `window.*` in the Astro island bundle path
 
 #### Manual
 
-- [ ] 3.3 Build a fill-aware pipe cargo list → Send → cargo Te and utilization update correctly
-- [ ] 3.4 Build a rigging list → Send → rigging Te updates; ratio recomputes
-- [ ] 3.5 Manual edit of Te after Send still recomputes (list not required to auto-clear)
-- [ ] 3.6 Sheets work on desktop and are usable on mobile
+- [x] 3.3 Build a fill-aware pipe cargo list → Send → cargo Te and utilization update correctly
+- [x] 3.4 Build a rigging list → Send → rigging Te updates; ratio recomputes
+- [x] 3.5 Manual edit of Te after Send still recomputes (list not required to auto-clear)
+- [x] 3.6 Sheets work on desktop and are usable on mobile
 
 ### Phase 4: Chart & visual alerts
 
