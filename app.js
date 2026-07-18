@@ -1420,6 +1420,11 @@ function wireEvents() {
     contingency.value = String(EXCEL_DEFAULTS.contingency);
     daf.value = String(EXCEL_DEFAULTS.daf);
     wll.value = String(EXCEL_DEFAULTS.wll);
+    // Clear cargo calculator list + Send snapshot so report/hints cannot lie after Reset
+    cargoState.log = [];
+    cargoState.sentLog = [];
+    cargoState.sentSumKg = null;
+    renderCargoLog();
     recompute();
   });
   generateReportBtn.addEventListener("click", generateTechnicalReport);
@@ -1442,6 +1447,7 @@ function wireEvents() {
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && riggingModal && !riggingModal.hidden) hideRiggingModal();
     if (e.key === "Escape" && riggingHelpModal && !riggingHelpModal.hidden) hideRiggingHelp();
+    if (e.key === "Escape" && cargoModal && !cargoModal.hidden) hideCargoModal();
     if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey && !e.altKey && riggingModal && !riggingModal.hidden) {
       const t = e.target;
       const tag = String(t?.tagName || "").toLowerCase();

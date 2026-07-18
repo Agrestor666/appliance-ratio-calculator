@@ -251,28 +251,28 @@ No data migration. `pipes.json` remains unused. If future work retires it, do th
 
 #### Automated
 
-- [x] 2.1 data/piping_catalog.js parses (node --check)
-- [x] 2.2 Every signed-off accepted NPS appears under the correct schedule key
-- [x] 2.3 Spot-check: pre-existing sample NPS/wt unchanged
+- [x] 2.1 data/piping_catalog.js parses (node --check) — bf06f3f
+- [x] 2.2 Every signed-off accepted NPS appears under the correct schedule key — bf06f3f
+- [x] 2.3 Spot-check: pre-existing sample NPS/wt unchanged — bf06f3f
 
 #### Manual
 
-- [x] 2.4 Newly added pipe NPS selectable; preview + Add to list works
-- [x] 2.5 Pre-existing common pipe path still works
+- [x] 2.4 Newly added pipe NPS selectable; preview + Add to list works — bf06f3f
+- [x] 2.5 Pre-existing common pipe path still works — bf06f3f
 
 ### Phase 3: Path-Critical Harden
 
 #### Automated
 
-- [ ] 3.1 Escape handling invokes hideCargoModal when cargo modal visible
-- [ ] 3.2 resetBtn handler clears cargoState.sentLog and log
-- [ ] 3.3 node --check app.js passes
+- [x] 3.1 Escape handling invokes hideCargoModal when cargo modal visible
+- [x] 3.2 resetBtn handler clears cargoState.sentLog and log
+- [x] 3.3 node --check app.js passes
 
 #### Manual
 
-- [ ] 3.4 Escape closes cargo modal
-- [ ] 3.5 Reset clears cargo Te path evidence (list, sentLog/report cargo breakdown)
-- [ ] 3.6 Rigging Escape and rigging log behavior unchanged
+- [x] 3.4 Escape closes cargo modal
+- [x] 3.5 Reset clears cargo Te path evidence (list, sentLog/report cargo breakdown)
+- [x] 3.6 Rigging Escape and rigging log behavior unchanged
 
 ### Phase 4: End-to-End Verification and Handoff
 
