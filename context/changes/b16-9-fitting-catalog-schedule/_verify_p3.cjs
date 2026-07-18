@@ -1,5 +1,6 @@
 /**
  * Phase 3 automated checks: nested fittings runtime helpers (no FITTING_SCH_FACTORS).
+ * Helpers are extracted from live app.js (not re-embedded copies).
  * Run: node context/changes/b16-9-fitting-catalog-schedule/_verify_p3.cjs
  */
 const fs = require("fs");
@@ -24,39 +25,43 @@ ok(
   "fitting path does not multiply wt by a factor"
 );
 
-// Extract helper bodies into a sandbox with the catalog loaded
-const helpers = `
+/** Slice a top-level `function name(...) { ... }` from app.js by brace matching. */
+function extractFn(src, name) {
+  const start = src.search(new RegExp(`^function ${name}\\(`, "m"));
+  if (start < 0) throw new Error(`Could not find function ${name} in app.js`);
+  let i = src.indexOf("{", start);
+  let depth = 0;
+  for (; i < src.length; i++) {
+    const ch = src[i];
+    if (ch === "{") depth++;
+    else if (ch === "}") {
+      depth--;
+      if (depth === 0) return src.slice(start, i + 1);
+    }
+  }
+  throw new Error(`Unbalanced braces for function ${name}`);
+}
+
+const liveHelpers = [
+  extractFn(appSrc, "getCatalog"),
+  extractFn(appSrc, "getClassList"),
+  extractFn(appSrc, "getNpsList"),
+  extractFn(appSrc, "calcUnitKg"),
+].join("\n\n");
+
+// Stubs only for pipe branch of calcUnitKg (unused by fitting checks below)
+const sandboxSrc = `
 ${catSrc}
-function getCatalog() { return window.PIPING_CATALOG || null; }
-function getClassList(catId, typeId) {
-  const cat = getCatalog();
-  if (!cat) return [];
-  const group =
-    catId === "fitting" ? cat.fittings?.[typeId] :
-    catId === "flange"  ? cat.flanges?.[typeId]  :
-    catId === "valve"   ? cat.valves?.[typeId]   : null;
-  if (!group) return [];
-  return Object.keys(group);
-}
-function getNpsList(catId, typeId, classId) {
-  const cat = getCatalog();
-  if (!cat) return [];
-  let items = null;
-  if (catId === "pipe")    items = cat.pipes?.[typeId];
-  if (catId === "fitting") items = cat.fittings?.[typeId]?.[classId];
-  if (catId === "flange")  items = cat.flanges?.[typeId]?.[classId];
-  if (catId === "valve")   items = cat.valves?.[typeId]?.[classId];
-  return Array.isArray(items) ? items : [];
-}
-function calcUnitKg(item, catId) {
-  if (!item) return null;
-  if (catId === "pipe") return null;
-  return item.wt;
-}
+function findFillMedia() { return null; }
+function pipeUnitMass() { return { unitKg: 0 }; }
+${liveHelpers}
 `;
 
 const ctx = { window: {}, console };
-vm.runInNewContext(helpers, ctx);
+vm.runInNewContext(sandboxSrc, ctx);
+ok(typeof ctx.getClassList === "function", "live getClassList extracted from app.js");
+ok(typeof ctx.getNpsList === "function", "live getNpsList extracted from app.js");
+ok(typeof ctx.calcUnitKg === "function", "live calcUnitKg extracted from app.js");
 
 const schs = ctx.getClassList("fitting", "90° LR Elbow");
 ok(schs.includes("Sch 40") && schs.includes("Sch 80"), "LR Elbow schedules include Sch 40/80");

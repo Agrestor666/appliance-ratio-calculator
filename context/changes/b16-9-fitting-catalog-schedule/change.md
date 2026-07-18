@@ -1,7 +1,7 @@
 ﻿---
 change_id: b16-9-fitting-catalog-schedule
 title: B16 9 fitting catalog schedule
-status: implemented
+status: impl_reviewed
 created: 2026-07-18
 updated: 2026-07-18
 archived_at: null
@@ -15,7 +15,8 @@ archived_at: null
 - **Nested shape:** `PIPING_CATALOG.fittings[type][schedule] = [{ nps, wt }]` — same nesting idea as flanges (`type → class → rows`). Schedule keys ⊆ the 18 pipe schedule strings. Runtime (`app.js`) lists Schedule/NPS from keys present in the catalog; `calcUnitKg` returns row `wt` (no B36 multiplier). `FITTING_SCH_FACTORS` removed.
 - **Types with numeric rows (12):** `90° LR Elbow`, `90° SR Elbow`, `45° LR Elbow`, `180° LR Return`, `180° SR Return`, `90° 3D Elbow`, `45° 3D Elbow`, `Equal Tee`, `Cap`, `Concentric Reducer`, `Eccentric Reducer`, `Lap Joint Stub End (Long)`.
 - **Schedules with rows:** `Sch 40S`, `Sch 40`, `Sch 80S`, `Sch 80`, `Sch 160`, `STD`, `XS`, `XXS` (coverage varies by type). Chart-missing schedules (`Sch 5S`…`Sch 30`, `Sch 60`, `Sch 100`…`Sch 140`) are omitted from dropdowns — no silent factor fill-in.
-- **Approval artifact:** `fitting-weight-candidates.md` (Sources, Type inventory, Proposed A+B, Skipped, Sign-off). Apply/verify helpers: `_apply_p2.cjs`, `_verify_p2.cjs`, `_verify_p3.cjs`.
+- **Approval artifact:** `fitting-weight-candidates.md` (Sources, Type inventory, Proposed A+B, Skipped, Sign-off).
+- **Change-folder tooling (not runtime):** `_gen_candidates.cjs` (Phase 1 generator), `_apply_p2.cjs` (Sign-off → nested catalog), `_verify_p1.cjs` / `_verify_p2.cjs` / `_verify_p3.cjs` (spot-checks). `plan-brief.md` is a planning aid only.
 
 ### Deferred / leftovers
 
