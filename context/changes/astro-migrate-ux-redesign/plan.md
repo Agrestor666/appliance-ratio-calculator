@@ -397,29 +397,29 @@ Make Astro `/` the sole product entry; relocate legacy tree; run full smoke agai
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes on touched `src/` files
-- [x] 1.2 `npm run build` succeeds
-- [x] 1.3 `/` is served by Astro (no Welcome hero as primary content)
+- [x] 1.1 `npm run lint` passes on touched `src/` files — 82082a3
+- [x] 1.2 `npm run build` succeeds — 82082a3
+- [x] 1.3 `/` is served by Astro (no Welcome hero as primary content) — 82082a3
 
 #### Manual
 
-- [x] 1.4 Desktop shows clear L|R split chrome; mobile stacks readably
-- [x] 1.5 Visual language is light/neutral (not legacy purple glass)
-- [x] 1.6 No Dialogflow widget on the page
+- [x] 1.4 Desktop shows clear L|R split chrome; mobile stacks readably — 82082a3
+- [x] 1.5 Visual language is light/neutral (not legacy purple glass) — 82082a3
+- [x] 1.6 No Dialogflow widget on the page — 82082a3
 
 ### Phase 2: Core ratio engine
 
 #### Automated
 
-- [ ] 2.1 One-shot Node (or equivalent) against `src/lib` yields E6=1.730925 and E8=0.576975 for golden inputs
-- [ ] 2.2 `golden-utilization.md` exists in this change folder
-- [ ] 2.3 `npm run lint` / `npm run build` pass
+- [x] 2.1 One-shot Node (or equivalent) against `src/lib` yields E6=1.730925 and E8=0.576975 for golden inputs
+- [x] 2.2 `golden-utilization.md` exists in this change folder
+- [x] 2.3 `npm run lint` / `npm run build` pass
 
 #### Manual
 
-- [ ] 2.4 Reset (or default load) shows Total Weight / Utilization consistent with golden (display rounding OK)
-- [ ] 2.5 Editing any input updates results immediately (perceived instant)
-- [ ] 2.6 Manual Te entry works without catalog Sheets
+- [x] 2.4 Reset (or default load) shows Total Weight / Utilization consistent with golden (display rounding OK)
+- [x] 2.5 Editing any input updates results immediately (perceived instant)
+- [x] 2.6 Manual Te entry works without catalog Sheets
 
 ### Phase 3: Cargo & Rigging Sheets
 

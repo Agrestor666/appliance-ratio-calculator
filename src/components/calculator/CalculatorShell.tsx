@@ -1,28 +1,25 @@
+import { useState } from "react";
 import { Package, Scale, Wrench } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import {
+  THRESHOLD_DEFAULTS,
+  computeFromFormStrings,
+  defaultsAsFormStrings,
+  formatPercent,
+  formatTe,
+} from "@/lib/appliance-ratio";
 import { cn } from "@/lib/utils";
 
-function PlaceholderField({ label, hint }: { label: string; hint: string }) {
-  return (
-    <div className="space-y-1.5">
-      <div className="text-foreground text-sm font-medium">{label}</div>
-      <div
-        className={cn(
-          "border-border bg-muted/40 flex h-9 items-center rounded-md border border-dashed px-3",
-          "text-muted-foreground text-sm",
-        )}
-      >
-        {hint}
-      </div>
-    </div>
-  );
-}
+type FormFields = ReturnType<typeof defaultsAsFormStrings>;
+type FieldKey = keyof FormFields;
 
-function MetricPlaceholder({ label, value }: { label: string; value: string }) {
+function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-1">
       <div className="text-muted-foreground text-xs font-medium tracking-wide uppercase">{label}</div>
@@ -31,7 +28,60 @@ function MetricPlaceholder({ label, value }: { label: string; value: string }) {
   );
 }
 
+function NumberField({
+  id,
+  label,
+  value,
+  onChange,
+  suffix,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  suffix?: string;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <Label htmlFor={id}>{label}</Label>
+      <div className="relative">
+        <Input
+          id={id}
+          type="text"
+          inputMode="decimal"
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+          className={cn(suffix && "pr-10")}
+          autoComplete="off"
+        />
+        {suffix ? (
+          <span className="text-muted-foreground pointer-events-none absolute inset-y-0 right-3 flex items-center text-xs">
+            {suffix}
+          </span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
 export function CalculatorShell() {
+  const [fields, setFields] = useState<FormFields>(defaultsAsFormStrings);
+  const result = computeFromFormStrings(fields);
+
+  const setField = (key: FieldKey, value: string) => {
+    setFields((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const reset = () => {
+    setFields(defaultsAsFormStrings());
+  };
+
+  const utilizationDisplay = result.ok ? formatPercent(result.utilization) : "—";
+  const totalWeightDisplay = result.ok ? `${formatTe(result.totalWeightTe)} Te` : "—";
+  const remainingDisplay = result.ok ? formatPercent(result.remaining) : "—";
+
   return (
     <div className="bg-background min-h-screen">
       <header className="border-border bg-card/80 border-b backdrop-blur-sm">
@@ -63,16 +113,20 @@ export function CalculatorShell() {
               <div className="border-border bg-muted/30 rounded-lg border px-4 py-5">
                 <div className="text-muted-foreground text-xs font-medium tracking-wide uppercase">Utilization</div>
                 <div className="text-foreground mt-2 text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
-                  —
+                  {utilizationDisplay}
                 </div>
-                <p className="text-muted-foreground mt-2 text-sm">Hero metric · Phase 2 wires live compute</p>
+                <p className="text-muted-foreground mt-2 text-sm">
+                  {result.ok
+                    ? `Warn ${formatPercent(THRESHOLD_DEFAULTS.warn)} · Crit ${formatPercent(THRESHOLD_DEFAULTS.crit)}`
+                    : result.error}
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <MetricPlaceholder label="Total weight" value="—" />
-                <MetricPlaceholder label="Appliance ratio" value="—" />
-                <MetricPlaceholder label="Used" value="—" />
-                <MetricPlaceholder label="Remaining" value="—" />
+                <Metric label="Total weight" value={totalWeightDisplay} />
+                <Metric label="Appliance ratio" value={utilizationDisplay} />
+                <Metric label="Used" value={utilizationDisplay} />
+                <Metric label="Remaining" value={remainingDisplay} />
               </div>
 
               <Separator />
@@ -119,15 +173,53 @@ export function CalculatorShell() {
               <Separator />
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <PlaceholderField label="Cargo weight" hint="Te · placeholder" />
-                <PlaceholderField label="Rigging weight" hint="Te · placeholder" />
-                <PlaceholderField label="Contingency" hint="factor · placeholder" />
-                <PlaceholderField label="DAF" hint="factor · placeholder" />
-                <PlaceholderField label="WLL" hint="Te · placeholder" />
+                <NumberField
+                  id="cargo-weight"
+                  label="Cargo weight"
+                  value={fields.cargoTe}
+                  onChange={(v) => {
+                    setField("cargoTe", v);
+                  }}
+                  suffix="Te"
+                />
+                <NumberField
+                  id="rigging-weight"
+                  label="Rigging weight"
+                  value={fields.riggingTe}
+                  onChange={(v) => {
+                    setField("riggingTe", v);
+                  }}
+                  suffix="Te"
+                />
+                <NumberField
+                  id="contingency"
+                  label="Contingency"
+                  value={fields.contingency}
+                  onChange={(v) => {
+                    setField("contingency", v);
+                  }}
+                />
+                <NumberField
+                  id="daf"
+                  label="DAF"
+                  value={fields.daf}
+                  onChange={(v) => {
+                    setField("daf", v);
+                  }}
+                />
+                <NumberField
+                  id="wll"
+                  label="WLL"
+                  value={fields.wll}
+                  onChange={(v) => {
+                    setField("wll", v);
+                  }}
+                  suffix="Te"
+                />
               </div>
 
               <div className="flex flex-wrap gap-2 pt-1">
-                <Button type="button" variant="outline" size="sm" disabled>
+                <Button type="button" variant="outline" size="sm" onClick={reset}>
                   Reset to defaults
                 </Button>
               </div>
