@@ -1843,6 +1843,7 @@ function buildCargoFillSelect() {
   const items = getFillMediaItems();
   if (!items.length) {
     cargoFillSel.innerHTML = '<option value="empty">Empty</option>';
+    if (cargoPreview) cargoPreview.textContent = "⚠ fill_media_catalog.js not loaded";
     console.error("CARGO: window.FILL_MEDIA_CATALOG is not defined. Check that data/fill_media_catalog.js loads without errors.");
     return;
   }
@@ -1937,13 +1938,17 @@ function updateCargoPreview() {
   const unitKg  = calcUnitKg(item, catId, classId, lenM, fillId);
 
   if (!cargoPreview) return;
+  const cats = cargoCategories();
+  const cat  = cats.find(c => c.id === catId);
+  if (cat?.hasLength && !(lenM > 0)) {
+    cargoPreview.textContent = "—";
+    return;
+  }
   if (unitKg == null || !Number.isFinite(unitKg)) {
     cargoPreview.textContent = "—";
     return;
   }
 
-  const cats = cargoCategories();
-  const cat  = cats.find(c => c.id === catId);
   if (cat?.hasLength) {
     const density = fill?.densityKgPerM3 ?? 0;
     const mass = pipeUnitMass(item, lenM, density);
@@ -1980,9 +1985,20 @@ function cargoAddItem() {
   const fill    = findFillMedia(fillId);
   const qty     = cargoState.qty;
   const item    = findItem(catId, typeId, classId, nps);
-  const unitKg  = calcUnitKg(item, catId, classId, lenM, fillId);
+  const needsLen = !cargoLenInput?.disabled;
 
-  if (!item || !Number.isFinite(unitKg) || qty < 1) return;
+  if (!item || qty < 1) return;
+  if (needsLen && !(lenM > 0)) return;
+
+  let unitKg;
+  let pipeMass = null;
+  if (catId === "pipe") {
+    pipeMass = pipeUnitMass(item, lenM, fill?.densityKgPerM3 ?? 0);
+    unitKg = pipeMass.unitKg;
+  } else {
+    unitKg = calcUnitKg(item, catId, classId, lenM, fillId);
+  }
+  if (!Number.isFinite(unitKg)) return;
 
   const cats    = cargoCategories();
   const catLabel= cats.find(c => c.id === catId)?.label || catId;
@@ -2000,11 +2016,16 @@ function cargoAddItem() {
     totalKg: unitKg * qty
   };
 
-  if (catId === "pipe") {
+  if (catId === "pipe" && pipeMass) {
     const fillLabel = fill?.label || "Empty";
+    const density = fill?.densityKgPerM3 ?? 0;
+    const displayFill =
+      density > 0 && !pipeMass.geometryOk
+        ? `${fillLabel} (geometry unavailable)`
+        : fillLabel;
     entry.fillId = fill?.id || "empty";
-    entry.fillLabel = fillLabel;
-    entry.label = `${label} | ${fillLabel}`;
+    entry.fillLabel = displayFill;
+    entry.label = `${label} | ${displayFill}`;
   }
 
   cargoState.log.push(entry);
