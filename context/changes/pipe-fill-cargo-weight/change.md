@@ -1,7 +1,7 @@
 ﻿---
 change_id: pipe-fill-cargo-weight
 title: Pipe fill cargo weight
-status: implementing
+status: implemented
 created: 2026-07-18
 updated: 2026-07-18
 archived_at: null

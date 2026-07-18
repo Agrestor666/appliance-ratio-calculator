@@ -297,9 +297,9 @@ Fill recompute is O(1) per preview (one pipe × density lookup). Catalog enrichm
 
 #### Automated
 
-- [x] 4.1 `change.md` Notes contain S-03 handoff bullets
+- [x] 4.1 `change.md` Notes contain S-03 handoff bullets — 42d1299
 
 #### Manual
 
-- [x] 4.2 Mixed list (pipe with fill + non-pipe) → Send Te matches sum/1000
-- [x] 4.3 Manual Te still works; report generates with medium visible via label
+- [x] 4.2 Mixed list (pipe with fill + non-pipe) → Send Te matches sum/1000 — 42d1299
+- [x] 4.3 Manual Te still works; report generates with medium visible via label — 42d1299
