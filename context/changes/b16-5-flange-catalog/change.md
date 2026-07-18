@@ -9,4 +9,4 @@ archived_at: null
 
 ## Notes
 
-<!-- Free-form notes for this change: links, ad-hoc context, decisions that don't belong in research/frame/plan. -->
+Phase 1 candidates + Conflict Sign-off (accept all → S1 chart_wt) landed in `0fd46bf` (same commit also contains `cargo-weight-to-ratio` plan artifacts under a different subject line — concurrent commit race).

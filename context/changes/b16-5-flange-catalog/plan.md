@@ -277,15 +277,15 @@ WN schedule nesting grows `piping_catalog.js` modestly vs fittings’ full type�
 
 #### Automated
 
-- [x] 1.1 flange-weight-candidates.md exists under the change folder
-- [x] 1.2 Type inventory marks core 3 in-scope and other three deferred
-- [x] 1.3 Proposed WN schedule keys ⊆ the 18 pipe schedule strings
-- [x] 1.4 No edits to piping_catalog.js, app.js, or index.html in this phase
+- [x] 1.1 flange-weight-candidates.md exists under the change folder — 0fd46bf
+- [x] 1.2 Type inventory marks core 3 in-scope and other three deferred — 0fd46bf
+- [x] 1.3 Proposed WN schedule keys ⊆ the 18 pipe schedule strings — 0fd46bf
+- [x] 1.4 No edits to piping_catalog.js, app.js, or index.html in this phase — 0fd46bf
 
 #### Manual
 
-- [x] 1.5 Conflict Sign-off (or no conflicts) recorded before Phase 2
-- [x] 1.6 Source citations and facing/material assumption acceptable
+- [x] 1.5 Conflict Sign-off (or no conflicts) recorded before Phase 2 — 0fd46bf
+- [x] 1.6 Source citations and facing/material assumption acceptable — 0fd46bf
 
 ### Phase 2: Apply Catalog Data (Core 3 + WN Nest)
 
