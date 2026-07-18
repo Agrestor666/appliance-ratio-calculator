@@ -263,29 +263,29 @@ Nested fittings increase `piping_catalog.js` size substantially (full types × s
 
 #### Automated
 
-- [x] 1.1 fitting-weight-candidates.md exists under the change folder
-- [x] 1.2 Type inventory lists all locked-in keys
-- [x] 1.3 Proposed rows use only the 18 pipe schedule keys
-- [x] 1.4 No edits to piping_catalog.js or app.js in this phase
+- [x] 1.1 fitting-weight-candidates.md exists under the change folder — cf65266
+- [x] 1.2 Type inventory lists all locked-in keys — cf65266
+- [x] 1.3 Proposed rows use only the 18 pipe schedule keys — cf65266
+- [x] 1.4 No edits to piping_catalog.js or app.js in this phase — cf65266
 
 #### Manual
 
-- [x] 1.5 Human Sign-off recorded before Phase 2
-- [x] 1.6 Source citations acceptable to human for cargo planning
+- [x] 1.5 Human Sign-off recorded before Phase 2 — cf65266
+- [x] 1.6 Source citations acceptable to human for cargo planning — cf65266
 
 ### Phase 2: Apply Nested Catalog Data
 
 #### Automated
 
-- [ ] 2.1 node --check data/piping_catalog.js passes
-- [ ] 2.2 Spot-check nested schedule + wt > 0 for an existing type
-- [ ] 2.3 Spot-check new signed-off type key if included
-- [ ] 2.4 No remaining top-level fittings[type] arrays
+- [x] 2.1 node --check data/piping_catalog.js passes
+- [x] 2.2 Spot-check nested schedule + wt > 0 for an existing type
+- [x] 2.3 Spot-check new signed-off type key if included
+- [x] 2.4 No remaining top-level fittings[type] arrays
 
 #### Manual
 
-- [ ] 2.5 Spot-check proposed rows match Sign-off wt
-- [ ] 2.6 Rejected/skipped rows absent from file
+- [x] 2.5 Spot-check proposed rows match Sign-off wt
+- [x] 2.6 Rejected/skipped rows absent from file
 
 ### Phase 3: Runtime — Drop FITTING_SCH_FACTORS
 
