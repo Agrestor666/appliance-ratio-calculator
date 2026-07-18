@@ -258,25 +258,25 @@ Fill recompute is O(1) per preview (one pipe × density lookup). Catalog enrichm
 
 #### Automated
 
-- [x] 1.1 `wall-thickness-candidates.md` exists under the change folder
-- [x] 1.2 Proposed rows reference existing schedule+NPS keys in `PIPING_CATALOG.pipes`
-- [x] 1.3 No edits to `data/piping_catalog.js` in this phase
+- [x] 1.1 `wall-thickness-candidates.md` exists under the change folder — a3f0cbf
+- [x] 1.2 Proposed rows reference existing schedule+NPS keys in `PIPING_CATALOG.pipes` — a3f0cbf
+- [x] 1.3 No edits to `data/piping_catalog.js` in this phase — a3f0cbf
 
 #### Manual
 
-- [x] 1.4 Human sign-off recorded before Phase 2
+- [x] 1.4 Human sign-off recorded before Phase 2 — a3f0cbf
 
 ### Phase 2: Apply Approved Wall Thickness
 
 #### Automated
 
-- [ ] 2.1 `node --check data/piping_catalog.js` passes
-- [ ] 2.2 Every signed-off accepted row has numeric `t > 0` and `od - 2*t > 0`
-- [ ] 2.3 Spot-check: pre-change `od`/`wt` samples unchanged
+- [x] 2.1 `node --check data/piping_catalog.js` passes
+- [x] 2.2 Every signed-off accepted row has numeric `t > 0` and `od - 2*t > 0`
+- [x] 2.3 Spot-check: pre-change `od`/`wt` samples unchanged
 
 #### Manual
 
-- [ ] 2.4 Spot-check Sch 40 / Sch 80 / STD `t` vs signed-off proposal
+- [x] 2.4 Spot-check Sch 40 / Sch 80 / STD `t` vs signed-off proposal
 
 ### Phase 3: Wire Fill → Cargo Weight
 
