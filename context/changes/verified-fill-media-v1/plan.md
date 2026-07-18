@@ -172,21 +172,21 @@ None. Additive file only. S-02 will add the script tag beside existing catalog l
 
 #### Automated
 
-- [x] 1.1 File exists at `data/fill_media_catalog.js`
-- [x] 1.2 Node evaluation asserts version, unit, four items, and densities 0/1000/1025/850
-- [x] 1.3 `npm run lint` still passes (or confirms file out of lint scope)
+- [x] 1.1 File exists at `data/fill_media_catalog.js` — 414d63d
+- [x] 1.2 Node evaluation asserts version, unit, four items, and densities 0/1000/1025/850 — 414d63d
+- [x] 1.3 `npm run lint` still passes (or confirms file out of lint scope) — 414d63d
 
 #### Manual
 
-- [x] 1.4 Spot-check each `source` and `notes` string for clarity and non-empty content
-- [x] 1.5 Confirm file is not referenced from `index.html` or `app.js` in this change
+- [x] 1.4 Spot-check each `source` and `notes` string for clarity and non-empty content — 414d63d
+- [x] 1.5 Confirm file is not referenced from `index.html` or `app.js` in this change — 414d63d
 
 ### Phase 2: Handoff verification
 
 #### Automated
 
-- [ ] 2.1 `change.md` Notes section mentions `FILL_MEDIA_CATALOG` and is non-empty
+- [x] 2.1 `change.md` Notes section mentions `FILL_MEDIA_CATALOG` and is non-empty
 
 #### Manual
 
-- [ ] 2.2 Reader can answer from Notes alone: path, four media, density unit, and no UI/calc wiring in F-01
+- [x] 2.2 Reader can answer from Notes alone: path, four media, density unit, and no UI/calc wiring in F-01
