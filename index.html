@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appliance Ratio Calculator</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div>
+          <div class="brand">Appliance Ratio Calculator</div>
+          <div class="subtitle">Fast utilization calculator with chart and threshold alerts.</div>
+        </div>
+        <div class="pill">Utilization</div>
+      </div>
+    </header>
+
+    <main class="container grid">
+      <section class="card" aria-label="Inputs and outputs">
+        <div class="row row--wrap">
+          <div class="stack">
+            <div class="h">Inputs</div>
+            <div class="p">Update values to recalculate instantly.</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row row--wrap" id="inputs">
+          <div class="field">
+            <label for="notificationNumber">Notification Number</label>
+            <input id="notificationNumber" type="text" value="Input" />
+          </div>
+          <div class="field">
+            <label for="riggingWeight">1. Rigging Weight (Te)</label>
+            <div class="fieldRow">
+              <input id="riggingWeight" type="text" inputmode="decimal" value="0.07" />
+              <button class="btn btn--primary" id="riggingCalcBtn" type="button" title="Select rigging elements and calculate total weight">
+                Rigging calculator
+              </button>
+            </div>
+            <div class="hint" id="riggingCalcHint" style="margin-top:6px" hidden></div>
+          </div>
+          <div class="field">
+            <label for="cargoWeight">2. Cargo Weight (Te)</label>
+            <div class="fieldRow">
+              <input id="cargoWeight" type="text" inputmode="decimal" value="1.5" />
+              <button class="btn btn--primary" id="cargoCalcBtn" type="button" title="Build cargo item list and calculate total weight">
+                Cargo calculator
+              </button>
+            </div>
+            <div class="hint" id="cargoCalcHint" style="margin-top:6px" hidden></div>
+          </div>
+          <div class="field">
+            <label for="contingency">3. Weight Contingencies (Factor)</label>
+            <input id="contingency" type="text" inputmode="decimal" value="1.05" />
+          </div>
+          <div class="field">
+            <label for="daf">4. DAF (Factor)</label>
+            <input id="daf" type="text" inputmode="decimal" value="1.05" />
+          </div>
+          <div class="field">
+            <label for="wll">6. Appliance WLL at Radius (Te)</label>
+            <input id="wll" type="text" inputmode="decimal" value="3" />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row row--wrap">
+          <div class="stack" style="flex:1">
+            <div class="h">Results</div>
+            <div class="p">Safety rule: <b>utilization &lt; 90%</b>.</div>
+          </div>
+          <div class="row">
+            <button class="btn" id="resetBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="row row--wrap">
+          <div class="metric">
+            <div class="metric__label">5. Total Weight (Te)</div>
+            <div class="metric__value" id="totalWeightOut">—</div>
+            <div class="metric__sub" id="totalWeightFormula">(C3 + C2) * C4 * C5</div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">7. Utilization Ratio</div>
+            <div class="metric__value" id="ratioOut">—</div>
+            <div class="metric__sub">Percent of WLL used</div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">Used Capacity</div>
+            <div class="metric__value" id="usedOut">—</div>
+            <div class="metric__sub">Used</div>
+          </div>
+          <div class="metric">
+            <div class="metric__label">Remaining Capacity</div>
+            <div class="metric__value" id="remainingOut">—</div>
+            <div class="metric__sub">Remaining</div>
+          </div>
+        </div>
+
+        <div class="alertbar" id="alerts" hidden>
+          <div class="alertbar__title">Alerts</div>
+          <ul class="alertbar__list" id="alertsList"></ul>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Chart">
+        <div class="row row--wrap row--between">
+          <div class="stack">
+            <div class="h">Chart</div>
+            <div class="p">Used vs Remaining.</div>
+          </div>
+          <div class="row">
+            <button class="btn btn--primary" id="generateReportBtn">Generate Technical Report</button>
+          </div>
+        </div>
+
+        <div class="row row--wrap">
+          <div class="field field--wide">
+            <label>Utilization thresholds</label>
+            <div class="thresholds" id="thresholds"></div>
+            <div class="hint">Defaults: warn = 85%, critical = 90%.</div>
+          </div>
+        </div>
+
+        <div class="chartWrap">
+          <canvas id="chart" height="120"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer container"></footer>
+
+    <!-- Rigging weight calculator modal -->
+    <div class="modalOverlay" id="riggingModal" hidden aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="riggingModalTitle">
+        <div class="modal__head">
+          <div class="stack">
+            <div class="h" id="riggingModalTitle">Rigging weight calculator</div>
+            <div class="p" id="riggingModalSubtitle">Pick elements from the catalog and confirm to compute total weight.</div>
+          </div>
+          <div class="row">
+            <button class="btn" id="riggingHelpBtn" type="button">Help</button>
+            <button class="btn" id="riggingModalCloseBtn" type="button">Close</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="modal__body">
+          <div class="riggingTopbar">
+            <div class="row row--wrap row--between">
+              <div class="tabs" id="riggingTabs" aria-label="Catalog sheets"></div>
+            </div>
+          </div>
+
+          <div class="riggingTables" aria-label="Rigging tables">
+            <div class="tableWrap tableWrap--rigging tableWrap--catalog">
+              <table class="table" id="riggingTable" aria-label="Rigging catalog table"></table>
+            </div>
+
+            <div class="tableWrap tableWrap--rigging tableWrap--log">
+              <table class="table" id="riggingLogTable" aria-label="Rigging log"></table>
+            </div>
+          </div>
+
+          <div class="riggingFooter">
+            <div class="row row--wrap row--between">
+              <div class="stack">
+                <div class="h">Selection summary</div>
+                <div class="p">Confirmed entries are appended to the log.</div>
+              </div>
+              <div class="row row--wrap">
+                <div class="pill" id="riggingSumPill">Sum: —</div>
+                <button class="btn" id="riggingClearSelectionBtn" type="button">Clear selection</button>
+              <button class="btn" id="riggingClearLogBtn" type="button">Clear the log</button>
+                <button class="btn btn--primary" id="riggingConfirmBtn" type="button">Confirm & add to log</button>
+                <button class="btn" id="riggingSendToMainBtn" type="button" disabled>Send sum to Rigging Weight</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rigging help dialog -->
+    <div class="modalOverlay" id="riggingHelpModal" hidden aria-hidden="true">
+      <div class="modal modal--small" role="dialog" aria-modal="true" aria-labelledby="riggingHelpTitle">
+        <div class="modal__head">
+          <div class="stack">
+            <div class="h" id="riggingHelpTitle">Rigging calculator – help</div>
+            <div class="p">How to pick items, use buttons, and send the result.</div>
+          </div>
+          <div class="row">
+            <button class="btn" id="riggingHelpCloseBtn" type="button">Close</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="modal__body">
+          <div class="stack" style="gap:10px">
+            <div class="stack" style="gap:6px">
+              <div class="h">What this window does</div>
+              <div class="p">
+                This window lets you select rigging elements and calculate their total weight. Confirmed items go to the log, and the log total can be sent back to the main <span class="mono">Rigging Weight</span> field.
+              </div>
+            </div>
+
+            <div class="stack" style="gap:6px">
+              <div class="h">Selecting rows</div>
+              <div class="p">
+                - Use the <b>Pick</b> checkbox, or <b>double left-click</b> a row to toggle Pick.<br/>
+                - Edit <b>Qty</b> and (where available) <b>Len (m)</b> using the input or the <b>− / +</b> buttons (step = 1).
+              </div>
+            </div>
+
+            <div class="stack" style="gap:6px">
+              <div class="h">Buttons</div>
+              <div class="p">
+                - <b>Confirm &amp; add to log</b>: adds picked rows to the log and clears the current selection. (Press <b>Enter</b> to do the same.)<br/>
+                - <b>Clear selection</b>: unpicks rows in the current selection only.<br/>
+                - <b>Clear the log</b>: removes all log entries and resets the log total.<br/>
+                - <b>Send sum to Rigging Weight</b>: writes the log total (Te) into the main <span class="mono">Rigging Weight</span> field and recalculates results.
+              </div>
+            </div>
+
+            <div class="stack" style="gap:6px">
+              <div class="h">Notes</div>
+              <div class="p">
+                The catalog is read-only. Only the log total is sent to the main calculator when you click <b>Send sum to Rigging Weight</b>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cargo weight calculator modal -->
+    <div class="modalOverlay" id="cargoModal" hidden aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cargoModalTitle">
+        <div class="modal__head">
+          <div class="stack">
+            <div class="h" id="cargoModalTitle">Cargo weight calculator</div>
+            <div class="p">Select component, configure parameters and add to the list. Confirm to send total to Cargo Weight.</div>
+          </div>
+          <div class="row">
+            <button class="btn" id="cargoModalCloseBtn" type="button">Close</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="modal__body cargo__body">
+          <!-- Selector row -->
+          <div class="cargoSelector">
+            <div class="cargoSelector__row">
+              <div class="field field--cargo">
+                <label>Category</label>
+                <select id="cargoCatSel">
+                  <option value="pipe">Pipe</option>
+                  <option value="fitting">Butt-Weld Fitting</option>
+                  <option value="flange">Flange</option>
+                  <option value="valve">Valve</option>
+                </select>
+              </div>
+              <div class="field field--cargo">
+                <label id="cargoTypeLabel">Type / Schedule</label>
+                <select id="cargoTypeSel"></select>
+              </div>
+              <div class="field field--cargo" id="cargoClassWrap">
+                <label id="cargoClassLabel">Class / Rating</label>
+                <select id="cargoClassSel"></select>
+              </div>
+              <div class="field field--cargo">
+                <label>NPS (inch)</label>
+                <select id="cargoNpsSel"></select>
+              </div>
+            </div>
+            <div class="cargoSelector__row cargoSelector__row--bottom">
+              <div class="field field--cargo" id="cargoLenWrap">
+                <label>Length (m)</label>
+                <input id="cargoLenInput" type="text" inputmode="decimal" value="1" />
+              </div>
+              <div class="field field--cargo">
+                <label>Quantity</label>
+                <div id="cargoQtyWrap"></div>
+              </div>
+              <div class="cargoPreview" id="cargoPreview">—</div>
+              <button class="btn btn--primary" id="cargoAddBtn" type="button">Add to list</button>
+            </div>
+          </div>
+
+          <!-- Log table -->
+          <div class="tableWrap tableWrap--cargo">
+            <table class="table" id="cargoLogTable" aria-label="Cargo item list"></table>
+          </div>
+
+          <!-- Footer -->
+          <div class="cargoFooter">
+            <div class="row row--wrap row--between">
+              <div class="stack">
+                <div class="h">Cargo summary</div>
+                <div class="p">Add items, then send total to main calculator.</div>
+              </div>
+              <div class="row row--wrap">
+                <div class="pill" id="cargoSumPill">Total: —</div>
+                <button class="btn" id="cargoClearLogBtn" type="button">Clear list</button>
+                <button class="btn btn--primary" id="cargoSendBtn" type="button" disabled>Send to Cargo Weight</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+      location="eu"
+      project-id="kaktus-chatbot"
+      agent-id="86b71725-02d7-44b7-85bc-d7ddf8606ecf"
+      language-code="en"
+      max-query-length="-1"
+    >
+      <df-messenger-chat-bubble chat-title="LiftSpec Bot"></df-messenger-chat-bubble>
+    </df-messenger>
+    <style>
+      df-messenger {
+        z-index: 999;
+        position: fixed;
+        bottom: max(16px, env(safe-area-inset-bottom, 0px));
+        right: max(16px, env(safe-area-inset-right, 0px));
+
+        /* Native controls inside shadow DOM follow colour scheme (fixes white textarea on Safari / mobile). */
+        color-scheme: dark;
+
+        /* Align with app theme (dark surface + purple / teal accents) */
+        --df-messenger-font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        --df-messenger-font-size: 14px;
+        --df-messenger-font-color: rgba(255, 255, 255, 0.92);
+
+        --df-messenger-primary-color: #7c5cff;
+        --df-messenger-focus-color: #31d6c4;
+        --df-messenger-focus-color-contrast: #ffffff;
+
+        --df-messenger-chat-border: 1px solid rgba(255, 255, 255, 0.14);
+        --df-messenger-chat-border-radius: 16px;
+        --df-messenger-chat-window-box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+
+        /* Floating launcher bubble */
+        --df-messenger-chat-bubble-background: linear-gradient(135deg, #7c5cff 0%, #31d6c4 100%);
+        --df-messenger-chat-bubble-icon-color: #ffffff;
+        --df-messenger-chat-bubble-border-radius: 32px;
+
+        /* Title bar */
+        --df-messenger-titlebar-background: linear-gradient(135deg, rgba(124, 92, 255, 0.92), rgba(49, 214, 196, 0.45));
+        --df-messenger-titlebar-font-color: rgba(255, 255, 255, 0.96);
+        --df-messenger-titlebar-border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+        /* Message area */
+        --df-messenger-chat-background: #131c30;
+        --df-messenger-message-bot-background: rgba(255, 255, 255, 0.08);
+        --df-messenger-message-bot-font-color: rgba(255, 255, 255, 0.9);
+        --df-messenger-message-user-background: rgba(124, 92, 255, 0.35);
+        --df-messenger-message-user-font-color: rgba(255, 255, 255, 0.96);
+
+        --df-messenger-message-bot-writing-background: rgba(255, 255, 255, 0.06);
+        --df-messenger-message-bot-writing-font-color: rgba(255, 255, 255, 0.75);
+
+        /* Gen AI / citations / links (defaults from df-messenger-default.css :root are light-themed). */
+        --df-messenger-message-inline-citation-background: rgba(255, 255, 255, 0.1);
+        --df-messenger-message-inline-citation-font-color: rgba(255, 255, 255, 0.92);
+        --df-messenger-link-font-color: #7ee8dc;
+        --df-messenger-link-visited-font-color: #9bb5ff;
+        --df-messenger-link-hover-font-color: #b8fff4;
+        --df-messenger-link-background-color: rgba(255, 255, 255, 0.06);
+        --df-messenger-link-border: 1px solid rgba(126, 232, 220, 0.35);
+
+        /* df-card / list cards default to white — fixes bright “document snippet” bubbles. */
+        --df-messenger-card-background: rgba(255, 255, 255, 0.09);
+        --df-messenger-card-border: 1px solid rgba(255, 255, 255, 0.12);
+        --df-messenger-card-box-shadow: none;
+
+        --df-messenger-chips-background: rgba(255, 255, 255, 0.08);
+        --df-messenger-chips-border-color: rgba(255, 255, 255, 0.22);
+        --df-messenger-chips-font-color: rgba(255, 255, 255, 0.92);
+
+        --df-messenger-citations-background: rgba(255, 255, 255, 0.07);
+        --df-messenger-citations-font-color: #7ee8dc;
+        --df-messenger-citations-border-color: rgba(126, 232, 220, 0.45);
+        --df-messenger-citations-message-font-color: rgba(255, 255, 255, 0.62);
+
+        --df-messenger-message-rich-feedback-background: rgba(255, 255, 255, 0.08);
+        --df-messenger-message-rich-feedback-chips-background: rgba(255, 255, 255, 0.06);
+        --df-messenger-message-rich-feedback-chips-font-color: rgba(255, 255, 255, 0.88);
+        --df-messenger-message-feedback-icon-background: rgba(255, 255, 255, 0.06);
+        --df-messenger-message-feedback-icon-font-color: rgba(255, 255, 255, 0.55);
+        --df-messenger-message-feedback-icon-font-color-active: #31d6c4;
+        --df-messenger-message-feedback-icon-border: 1px solid rgba(255, 255, 255, 0.14);
+
+        /* Composer — strong contrast (some browsers ignore vars on inner textarea unless colour-scheme is set). */
+        --df-messenger-input-background: #0f1628;
+        --df-messenger-input-font-color: #ffffff;
+        --df-messenger-input-font-size: 15px;
+        --df-messenger-input-font-weight: 500;
+        --df-messenger-input-border: none;
+        --df-messenger-input-border-top: 1px solid rgba(255, 255, 255, 0.16);
+        /* Inherited from global theme otherwise stays #fff → thick white “pill”. */
+        --df-messenger-input-box-background: rgba(255, 255, 255, 0.05);
+        --df-messenger-input-placeholder-font-color: rgba(255, 255, 255, 0.45);
+        --df-messenger-input-box-border: 1px solid rgba(255, 255, 255, 0.14);
+        --df-messenger-input-box-focus-border: 1px solid rgba(49, 214, 196, 0.85);
+        --df-messenger-input-box-border-radius: 10px;
+        --df-messenger-input-box-padding: 10px 12px;
+        --df-messenger-input-box-focus-padding: 10px 12px;
+        --df-messenger-input-padding: 10px;
+
+        --df-messenger-send-icon-color: #31d6c4;
+        --df-messenger-send-icon-color-hover: #49e8d4;
+        --df-messenger-send-icon-color-active: #ffffff;
+        --df-messenger-send-icon-color-disabled: rgba(255, 255, 255, 0.28);
+
+        /* Jump to bottom button */
+        --df-messenger-chat-scroll-button-background: #7c5cff;
+        --df-messenger-chat-scroll-button-font-color: #ffffff;
+      }
+    </style>
+
+    <script src="./data/catalog.js"></script>
+    <script src="./data/piping_catalog.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

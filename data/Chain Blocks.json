@@ -1,0 +1,44 @@
+﻿[
+    {
+        "WLL (t)":  0.5,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  9,
+        "Extra Weight per m of lift (kg)":  1.5
+    },
+    {
+        "WLL (t)":  1,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  11.5,
+        "Extra Weight per m of lift (kg)":  1.7
+    },
+    {
+        "WLL (t)":  1.5,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  14.5,
+        "Extra Weight per m of lift (kg)":  2.3
+    },
+    {
+        "WLL (t)":  2,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  20,
+        "Extra Weight per m of lift (kg)":  2.3
+    },
+    {
+        "WLL (t)":  3,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  23,
+        "Extra Weight per m of lift (kg)":  3.2
+    },
+    {
+        "WLL (t)":  5,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  40,
+        "Extra Weight per m of lift (kg)":  4.5
+    },
+    {
+        "WLL (t)":  10,
+        "Standard Lift (m)":  3,
+        "Weight (kg)":  73,
+        "Extra Weight per m of lift (kg)":  9.7
+    }
+]

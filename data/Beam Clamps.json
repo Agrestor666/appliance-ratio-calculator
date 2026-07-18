@@ -1,0 +1,27 @@
+﻿[
+    {
+        "WLL (t)":  1,
+        "Flange Width (mm)":  "75-230",
+        "Weight (kg)":  4.5
+    },
+    {
+        "WLL (t)":  2,
+        "Flange Width (mm)":  "75-230",
+        "Weight (kg)":  5
+    },
+    {
+        "WLL (t)":  3,
+        "Flange Width (mm)":  "80-320",
+        "Weight (kg)":  9.5
+    },
+    {
+        "WLL (t)":  5,
+        "Flange Width (mm)":  "90-320",
+        "Weight (kg)":  11
+    },
+    {
+        "WLL (t)":  10,
+        "Flange Width (mm)":  "90-320",
+        "Weight (kg)":  16
+    }
+]

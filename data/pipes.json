@@ -1,0 +1,1987 @@
+﻿{
+    "PIPE10":  {
+                   "schedule":  "Schedule 10",
+                   "pipes":  [
+                                 {
+                                     "nps":  "0+1/4",
+                                     "od_mm":  13.7,
+                                     "wt_per_m_kg":  0.49
+                                 },
+                                 {
+                                     "nps":  "0+3/8",
+                                     "od_mm":  17.1,
+                                     "wt_per_m_kg":  0.63
+                                 },
+                                 {
+                                     "nps":  "0+1/2",
+                                     "od_mm":  21.3,
+                                     "wt_per_m_kg":  1
+                                 },
+                                 {
+                                     "nps":  "0+3/4",
+                                     "od_mm":  26.7,
+                                     "wt_per_m_kg":  1.28
+                                 },
+                                 {
+                                     "nps":  "1",
+                                     "od_mm":  33.4,
+                                     "wt_per_m_kg":  2.09
+                                 },
+                                 {
+                                     "nps":  "1+1/4",
+                                     "od_mm":  42.2,
+                                     "wt_per_m_kg":  2.69
+                                 },
+                                 {
+                                     "nps":  "1+1/2",
+                                     "od_mm":  48.3,
+                                     "wt_per_m_kg":  3.11
+                                 },
+                                 {
+                                     "nps":  "2",
+                                     "od_mm":  60.3,
+                                     "wt_per_m_kg":  3.93
+                                 },
+                                 {
+                                     "nps":  "2+1/2",
+                                     "od_mm":  73,
+                                     "wt_per_m_kg":  5.26
+                                 },
+                                 {
+                                     "nps":  "3",
+                                     "od_mm":  88.9,
+                                     "wt_per_m_kg":  6.46
+                                 },
+                                 {
+                                     "nps":  "3+1/2",
+                                     "od_mm":  101.6,
+                                     "wt_per_m_kg":  7.41
+                                 },
+                                 {
+                                     "nps":  "4",
+                                     "od_mm":  114.3,
+                                     "wt_per_m_kg":  8.37
+                                 },
+                                 {
+                                     "nps":  "5",
+                                     "od_mm":  141.3,
+                                     "wt_per_m_kg":  11.56
+                                 },
+                                 {
+                                     "nps":  "6",
+                                     "od_mm":  168.3,
+                                     "wt_per_m_kg":  13.83
+                                 },
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  19.97
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  27.78
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  35.98
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  54.69
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  62.65
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  70.57
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  78.56
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  86.55
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  94.53
+                                 },
+                                 {
+                                     "nps":  "26",
+                                     "od_mm":  660,
+                                     "wt_per_m_kg":  127.36
+                                 },
+                                 {
+                                     "nps":  "28",
+                                     "od_mm":  711,
+                                     "wt_per_m_kg":  137.32
+                                 },
+                                 {
+                                     "nps":  "30",
+                                     "od_mm":  762,
+                                     "wt_per_m_kg":  147.29
+                                 },
+                                 {
+                                     "nps":  "32",
+                                     "od_mm":  813,
+                                     "wt_per_m_kg":  157.25
+                                 },
+                                 {
+                                     "nps":  "34",
+                                     "od_mm":  864,
+                                     "wt_per_m_kg":  167.21
+                                 },
+                                 {
+                                     "nps":  "36",
+                                     "od_mm":  914,
+                                     "wt_per_m_kg":  176.97
+                                 }
+                             ]
+               },
+    "PIPE100":  {
+                    "schedule":  "Schedule 100",
+                    "pipes":  [
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  75.92
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273,
+                                      "wt_per_m_kg":  114.71
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.8,
+                                      "wt_per_m_kg":  159.87
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  194.98
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  245.57
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  309.64
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  381.55
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  451.45
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  547.74
+                                  }
+                              ]
+                },
+    "PIPE10S":  {
+                    "schedule":  "Schedule 10S",
+                    "pipes":  [
+                                  {
+                                      "nps":  "0+1/4",
+                                      "od_mm":  13.7,
+                                      "wt_per_m_kg":  0.49
+                                  },
+                                  {
+                                      "nps":  "0+3/8",
+                                      "od_mm":  17.1,
+                                      "wt_per_m_kg":  0.63
+                                  },
+                                  {
+                                      "nps":  "0+1/2",
+                                      "od_mm":  21.3,
+                                      "wt_per_m_kg":  1
+                                  },
+                                  {
+                                      "nps":  "0+3/4",
+                                      "od_mm":  26.7,
+                                      "wt_per_m_kg":  1.28
+                                  },
+                                  {
+                                      "nps":  "1",
+                                      "od_mm":  33.4,
+                                      "wt_per_m_kg":  2.09
+                                  },
+                                  {
+                                      "nps":  "1+1/4",
+                                      "od_mm":  42.2,
+                                      "wt_per_m_kg":  2.69
+                                  },
+                                  {
+                                      "nps":  "1+1/2",
+                                      "od_mm":  48.3,
+                                      "wt_per_m_kg":  3.11
+                                  },
+                                  {
+                                      "nps":  "2",
+                                      "od_mm":  60.3,
+                                      "wt_per_m_kg":  3.93
+                                  },
+                                  {
+                                      "nps":  "2+1/2",
+                                      "od_mm":  73,
+                                      "wt_per_m_kg":  5.26
+                                  },
+                                  {
+                                      "nps":  "3",
+                                      "od_mm":  88.9,
+                                      "wt_per_m_kg":  6.46
+                                  },
+                                  {
+                                      "nps":  "3+1/2",
+                                      "od_mm":  101.6,
+                                      "wt_per_m_kg":  7.41
+                                  },
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  8.37
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  11.56
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  13.83
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  19.97
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273.1,
+                                      "wt_per_m_kg":  27.79
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.9,
+                                      "wt_per_m_kg":  35.99
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  41.36
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  47.34
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  53.31
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  68.65
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  75.62
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  94.53
+                                  },
+                                  {
+                                      "nps":  "30",
+                                      "od_mm":  762,
+                                      "wt_per_m_kg":  147.29
+                                  }
+                              ]
+                },
+    "PIPE120":  {
+                    "schedule":  "Schedule 120",
+                    "pipes":  [
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  28.32
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  40.28
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  54.21
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  90.44
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273,
+                                      "wt_per_m_kg":  133.01
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.8,
+                                      "wt_per_m_kg":  186.92
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  224.66
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  286.66
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  363.58
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  441.52
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  527.05
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  640.07
+                                  }
+                              ]
+                },
+    "PIPE140":  {
+                    "schedule":  "Schedule 140",
+                    "pipes":  [
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  100.93
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273,
+                                      "wt_per_m_kg":  155.1
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.8,
+                                      "wt_per_m_kg":  208.08
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  253.58
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  333.21
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  408.28
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  508.15
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  600.67
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  720.19
+                                  }
+                              ]
+                },
+    "PIPE160":  {
+                    "schedule":  "Schedule 160",
+                    "pipes":  [
+                                  {
+                                      "nps":  "0+1/2",
+                                      "od_mm":  21.3,
+                                      "wt_per_m_kg":  1.95
+                                  },
+                                  {
+                                      "nps":  "0+3/4",
+                                      "od_mm":  26.7,
+                                      "wt_per_m_kg":  2.9
+                                  },
+                                  {
+                                      "nps":  "1",
+                                      "od_mm":  33.4,
+                                      "wt_per_m_kg":  4.24
+                                  },
+                                  {
+                                      "nps":  "1+1/4",
+                                      "od_mm":  42.2,
+                                      "wt_per_m_kg":  5.61
+                                  },
+                                  {
+                                      "nps":  "1+1/2",
+                                      "od_mm":  48.3,
+                                      "wt_per_m_kg":  7.25
+                                  },
+                                  {
+                                      "nps":  "2",
+                                      "od_mm":  60.3,
+                                      "wt_per_m_kg":  11.11
+                                  },
+                                  {
+                                      "nps":  "2+1/2",
+                                      "od_mm":  73,
+                                      "wt_per_m_kg":  14.92
+                                  },
+                                  {
+                                      "nps":  "3",
+                                      "od_mm":  88.9,
+                                      "wt_per_m_kg":  21.35
+                                  },
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  33.54
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  49.12
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  67.57
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  111.27
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273,
+                                      "wt_per_m_kg":  172.27
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.8,
+                                      "wt_per_m_kg":  238.69
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  281.72
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  365.38
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  459.39
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  564.85
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  672.3
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  808.27
+                                  }
+                              ]
+                },
+    "PIPE20":  {
+                   "schedule":  "Schedule 20",
+                   "pipes":  [
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  33.32
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  41.76
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  49.71
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  67.91
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  77.83
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  87.71
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  117.15
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  129.14
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  141.12
+                                 },
+                                 {
+                                     "nps":  "26",
+                                     "od_mm":  660,
+                                     "wt_per_m_kg":  202.74
+                                 },
+                                 {
+                                     "nps":  "28",
+                                     "od_mm":  711,
+                                     "wt_per_m_kg":  218.71
+                                 },
+                                 {
+                                     "nps":  "30",
+                                     "od_mm":  762,
+                                     "wt_per_m_kg":  234.68
+                                 },
+                                 {
+                                     "nps":  "32",
+                                     "od_mm":  813,
+                                     "wt_per_m_kg":  250.65
+                                 },
+                                 {
+                                     "nps":  "34",
+                                     "od_mm":  864,
+                                     "wt_per_m_kg":  266.63
+                                 },
+                                 {
+                                     "nps":  "36",
+                                     "od_mm":  914,
+                                     "wt_per_m_kg":  282.29
+                                 }
+                             ]
+               },
+    "PIPE30":  {
+                   "schedule":  "Schedule 30",
+                   "pipes":  [
+                                 {
+                                     "nps":  "0+1/4",
+                                     "od_mm":  13.7,
+                                     "wt_per_m_kg":  0.54
+                                 },
+                                 {
+                                     "nps":  "0+3/8",
+                                     "od_mm":  17.1,
+                                     "wt_per_m_kg":  0.7
+                                 },
+                                 {
+                                     "nps":  "0+1/2",
+                                     "od_mm":  21.3,
+                                     "wt_per_m_kg":  1.12
+                                 },
+                                 {
+                                     "nps":  "0+3/4",
+                                     "od_mm":  26.7,
+                                     "wt_per_m_kg":  1.44
+                                 },
+                                 {
+                                     "nps":  "1",
+                                     "od_mm":  33.4,
+                                     "wt_per_m_kg":  2.18
+                                 },
+                                 {
+                                     "nps":  "1+1/4",
+                                     "od_mm":  42.2,
+                                     "wt_per_m_kg":  2.87
+                                 },
+                                 {
+                                     "nps":  "1+1/2",
+                                     "od_mm":  48.3,
+                                     "wt_per_m_kg":  3.53
+                                 },
+                                 {
+                                     "nps":  "2",
+                                     "od_mm":  60.3,
+                                     "wt_per_m_kg":  4.48
+                                 },
+                                 {
+                                     "nps":  "2+1/2",
+                                     "od_mm":  73,
+                                     "wt_per_m_kg":  8.04
+                                 },
+                                 {
+                                     "nps":  "3",
+                                     "od_mm":  88.9,
+                                     "wt_per_m_kg":  9.92
+                                 },
+                                 {
+                                     "nps":  "3+1/2",
+                                     "od_mm":  101.6,
+                                     "wt_per_m_kg":  11.41
+                                 },
+                                 {
+                                     "nps":  "4",
+                                     "od_mm":  114.3,
+                                     "wt_per_m_kg":  12.91
+                                 },
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  36.82
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  51.01
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  65.19
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  81.33
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  93.27
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  122.38
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  155.13
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  171.1
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  209.65
+                                 },
+                                 {
+                                     "nps":  "28",
+                                     "od_mm":  711,
+                                     "wt_per_m_kg":  272.23
+                                 },
+                                 {
+                                     "nps":  "30",
+                                     "od_mm":  762,
+                                     "wt_per_m_kg":  292.2
+                                 },
+                                 {
+                                     "nps":  "32",
+                                     "od_mm":  813,
+                                     "wt_per_m_kg":  312.17
+                                 },
+                                 {
+                                     "nps":  "34",
+                                     "od_mm":  864,
+                                     "wt_per_m_kg":  332.14
+                                 },
+                                 {
+                                     "nps":  "36",
+                                     "od_mm":  914,
+                                     "wt_per_m_kg":  351.73
+                                 }
+                             ]
+               },
+    "PIPE40":  {
+                   "schedule":  "Schedule 40",
+                   "pipes":  [
+                                 {
+                                     "nps":  "0+1/4",
+                                     "od_mm":  13.7,
+                                     "wt_per_m_kg":  0.63
+                                 },
+                                 {
+                                     "nps":  "0+3/8",
+                                     "od_mm":  17.1,
+                                     "wt_per_m_kg":  0.84
+                                 },
+                                 {
+                                     "nps":  "0+1/2",
+                                     "od_mm":  21.3,
+                                     "wt_per_m_kg":  1.27
+                                 },
+                                 {
+                                     "nps":  "0+3/4",
+                                     "od_mm":  26.7,
+                                     "wt_per_m_kg":  1.69
+                                 },
+                                 {
+                                     "nps":  "1",
+                                     "od_mm":  33.4,
+                                     "wt_per_m_kg":  2.5
+                                 },
+                                 {
+                                     "nps":  "1+1/4",
+                                     "od_mm":  42.2,
+                                     "wt_per_m_kg":  3.39
+                                 },
+                                 {
+                                     "nps":  "1+1/2",
+                                     "od_mm":  48.3,
+                                     "wt_per_m_kg":  4.05
+                                 },
+                                 {
+                                     "nps":  "2",
+                                     "od_mm":  60.3,
+                                     "wt_per_m_kg":  5.44
+                                 },
+                                 {
+                                     "nps":  "2+1/2",
+                                     "od_mm":  73,
+                                     "wt_per_m_kg":  8.63
+                                 },
+                                 {
+                                     "nps":  "3",
+                                     "od_mm":  88.9,
+                                     "wt_per_m_kg":  11.29
+                                 },
+                                 {
+                                     "nps":  "3+1/2",
+                                     "od_mm":  101.6,
+                                     "wt_per_m_kg":  13.57
+                                 },
+                                 {
+                                     "nps":  "4",
+                                     "od_mm":  114.3,
+                                     "wt_per_m_kg":  16.08
+                                 },
+                                 {
+                                     "nps":  "5",
+                                     "od_mm":  141.3,
+                                     "wt_per_m_kg":  21.77
+                                 },
+                                 {
+                                     "nps":  "6",
+                                     "od_mm":  168.3,
+                                     "wt_per_m_kg":  28.26
+                                 },
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  42.55
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  60.29
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  79.71
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  94.55
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  123.31
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  155.81
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  183.43
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  255.43
+                                 },
+                                 {
+                                     "nps":  "32",
+                                     "od_mm":  813,
+                                     "wt_per_m_kg":  342.94
+                                 },
+                                 {
+                                     "nps":  "34",
+                                     "od_mm":  864,
+                                     "wt_per_m_kg":  364.92
+                                 },
+                                 {
+                                     "nps":  "36",
+                                     "od_mm":  914,
+                                     "wt_per_m_kg":  420.45
+                                 }
+                             ]
+               },
+    "PIPE40S":  {
+                    "schedule":  "Schedule 40S",
+                    "pipes":  [
+                                  {
+                                      "nps":  "0+1/4",
+                                      "od_mm":  13.7,
+                                      "wt_per_m_kg":  0.63
+                                  },
+                                  {
+                                      "nps":  "0+3/8",
+                                      "od_mm":  17.1,
+                                      "wt_per_m_kg":  0.84
+                                  },
+                                  {
+                                      "nps":  "0+1/2",
+                                      "od_mm":  21.3,
+                                      "wt_per_m_kg":  1.27
+                                  },
+                                  {
+                                      "nps":  "0+3/4",
+                                      "od_mm":  26.7,
+                                      "wt_per_m_kg":  1.69
+                                  },
+                                  {
+                                      "nps":  "1",
+                                      "od_mm":  33.4,
+                                      "wt_per_m_kg":  2.5
+                                  },
+                                  {
+                                      "nps":  "1+1/4",
+                                      "od_mm":  42.2,
+                                      "wt_per_m_kg":  3.39
+                                  },
+                                  {
+                                      "nps":  "1+1/2",
+                                      "od_mm":  48.3,
+                                      "wt_per_m_kg":  4.05
+                                  },
+                                  {
+                                      "nps":  "2",
+                                      "od_mm":  60.3,
+                                      "wt_per_m_kg":  5.44
+                                  },
+                                  {
+                                      "nps":  "2+1/2",
+                                      "od_mm":  73,
+                                      "wt_per_m_kg":  8.63
+                                  },
+                                  {
+                                      "nps":  "3",
+                                      "od_mm":  88.9,
+                                      "wt_per_m_kg":  11.29
+                                  },
+                                  {
+                                      "nps":  "3+1/2",
+                                      "od_mm":  101.6,
+                                      "wt_per_m_kg":  13.57
+                                  },
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  16.08
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  21.77
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  28.26
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  42.55
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273.1,
+                                      "wt_per_m_kg":  60.31
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.9,
+                                      "wt_per_m_kg":  73.88
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  81.33
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  93.27
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  105.5
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  117.15
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  0
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  141.12
+                                  },
+                                  {
+                                      "nps":  "30",
+                                      "od_mm":  762,
+                                      "wt_per_m_kg":  0
+                                  }
+                              ]
+                },
+    "PIPE5":  {
+                  "schedule":  "Schedule 5",
+                  "pipes":  [
+                                {
+                                    "nps":  "0+1/2",
+                                    "od_mm":  21.3,
+                                    "wt_per_m_kg":  0.8
+                                },
+                                {
+                                    "nps":  "0+3/4",
+                                    "od_mm":  26.7,
+                                    "wt_per_m_kg":  1.03
+                                },
+                                {
+                                    "nps":  "1",
+                                    "od_mm":  33.4,
+                                    "wt_per_m_kg":  1.29
+                                },
+                                {
+                                    "nps":  "1+1/4",
+                                    "od_mm":  42.2,
+                                    "wt_per_m_kg":  1.65
+                                },
+                                {
+                                    "nps":  "1+1/2",
+                                    "od_mm":  48.3,
+                                    "wt_per_m_kg":  1.9
+                                },
+                                {
+                                    "nps":  "2",
+                                    "od_mm":  60.3,
+                                    "wt_per_m_kg":  2.39
+                                },
+                                {
+                                    "nps":  "2+1/2",
+                                    "od_mm":  73,
+                                    "wt_per_m_kg":  3.69
+                                },
+                                {
+                                    "nps":  "3",
+                                    "od_mm":  88.9,
+                                    "wt_per_m_kg":  4.52
+                                },
+                                {
+                                    "nps":  "3+1/2",
+                                    "od_mm":  101.6,
+                                    "wt_per_m_kg":  5.18
+                                },
+                                {
+                                    "nps":  "4",
+                                    "od_mm":  114.3,
+                                    "wt_per_m_kg":  5.84
+                                },
+                                {
+                                    "nps":  "5",
+                                    "od_mm":  141.3,
+                                    "wt_per_m_kg":  9.46
+                                },
+                                {
+                                    "nps":  "6",
+                                    "od_mm":  168.3,
+                                    "wt_per_m_kg":  11.31
+                                },
+                                {
+                                    "nps":  "8",
+                                    "od_mm":  219.1,
+                                    "wt_per_m_kg":  14.78
+                                },
+                                {
+                                    "nps":  "10",
+                                    "od_mm":  273,
+                                    "wt_per_m_kg":  22.61
+                                },
+                                {
+                                    "nps":  "12",
+                                    "od_mm":  323.8,
+                                    "wt_per_m_kg":  31.24
+                                },
+                                {
+                                    "nps":  "14",
+                                    "od_mm":  355.6,
+                                    "wt_per_m_kg":  34.34
+                                },
+                                {
+                                    "nps":  "16",
+                                    "od_mm":  406.4,
+                                    "wt_per_m_kg":  41.56
+                                },
+                                {
+                                    "nps":  "18",
+                                    "od_mm":  457,
+                                    "wt_per_m_kg":  46.79
+                                },
+                                {
+                                    "nps":  "20",
+                                    "od_mm":  508,
+                                    "wt_per_m_kg":  59.32
+                                },
+                                {
+                                    "nps":  "22",
+                                    "od_mm":  559,
+                                    "wt_per_m_kg":  65.33
+                                },
+                                {
+                                    "nps":  "24",
+                                    "od_mm":  610,
+                                    "wt_per_m_kg":  82.58
+                                },
+                                {
+                                    "nps":  "30",
+                                    "od_mm":  762,
+                                    "wt_per_m_kg":  118.34
+                                }
+                            ]
+              },
+    "PIPE5S":  {
+                   "schedule":  "Schedule 5S",
+                   "pipes":  [
+                                 {
+                                     "nps":  "0+1/4",
+                                     "od_mm":  13.7,
+                                     "wt_per_m_kg":  0
+                                 },
+                                 {
+                                     "nps":  "0+3/8",
+                                     "od_mm":  17.1,
+                                     "wt_per_m_kg":  0
+                                 },
+                                 {
+                                     "nps":  "0+1/2",
+                                     "od_mm":  21.3,
+                                     "wt_per_m_kg":  0.8
+                                 },
+                                 {
+                                     "nps":  "0+3/4",
+                                     "od_mm":  26.7,
+                                     "wt_per_m_kg":  1.02
+                                 },
+                                 {
+                                     "nps":  "1",
+                                     "od_mm":  33.4,
+                                     "wt_per_m_kg":  1.29
+                                 },
+                                 {
+                                     "nps":  "1+1/4",
+                                     "od_mm":  42.2,
+                                     "wt_per_m_kg":  1.65
+                                 },
+                                 {
+                                     "nps":  "1+1/2",
+                                     "od_mm":  48.3,
+                                     "wt_per_m_kg":  1.9
+                                 },
+                                 {
+                                     "nps":  "2",
+                                     "od_mm":  60.3,
+                                     "wt_per_m_kg":  2.39
+                                 },
+                                 {
+                                     "nps":  "2+1/2",
+                                     "od_mm":  73,
+                                     "wt_per_m_kg":  3.69
+                                 },
+                                 {
+                                     "nps":  "3",
+                                     "od_mm":  88.9,
+                                     "wt_per_m_kg":  4.52
+                                 },
+                                 {
+                                     "nps":  "3+1/2",
+                                     "od_mm":  101.6,
+                                     "wt_per_m_kg":  5.18
+                                 },
+                                 {
+                                     "nps":  "4",
+                                     "od_mm":  114.3,
+                                     "wt_per_m_kg":  5.84
+                                 },
+                                 {
+                                     "nps":  "5",
+                                     "od_mm":  141.3,
+                                     "wt_per_m_kg":  9.46
+                                 },
+                                 {
+                                     "nps":  "6",
+                                     "od_mm":  168.3,
+                                     "wt_per_m_kg":  11.31
+                                 },
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  14.78
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273.1,
+                                     "wt_per_m_kg":  22.61
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.9,
+                                     "wt_per_m_kg":  31.25
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  34.34
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  41.56
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  46.79
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  59.32
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  65.33
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  82.58
+                                 },
+                                 {
+                                     "nps":  "30",
+                                     "od_mm":  762,
+                                     "wt_per_m_kg":  118.34
+                                 }
+                             ]
+               },
+    "PIPE60":  {
+                   "schedule":  "Schedule 60",
+                   "pipes":  [
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  53.09
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  81.53
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  108.93
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  126.72
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  160.13
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  205.75
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  247.84
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  294.27
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  355.28
+                                 }
+                             ]
+               },
+    "PIPE80":  {
+                   "schedule":  "Schedule 80",
+                   "pipes":  [
+                                 {
+                                     "nps":  "0+1/4",
+                                     "od_mm":  13.7,
+                                     "wt_per_m_kg":  0.8
+                                 },
+                                 {
+                                     "nps":  "0+3/8",
+                                     "od_mm":  17.1,
+                                     "wt_per_m_kg":  1.1
+                                 },
+                                 {
+                                     "nps":  "0+1/2",
+                                     "od_mm":  21.3,
+                                     "wt_per_m_kg":  1.62
+                                 },
+                                 {
+                                     "nps":  "0+3/4",
+                                     "od_mm":  26.7,
+                                     "wt_per_m_kg":  2.2
+                                 },
+                                 {
+                                     "nps":  "1",
+                                     "od_mm":  33.4,
+                                     "wt_per_m_kg":  3.24
+                                 },
+                                 {
+                                     "nps":  "1+1/4",
+                                     "od_mm":  42.2,
+                                     "wt_per_m_kg":  4.47
+                                 },
+                                 {
+                                     "nps":  "1+1/2",
+                                     "od_mm":  48.3,
+                                     "wt_per_m_kg":  5.41
+                                 },
+                                 {
+                                     "nps":  "2",
+                                     "od_mm":  60.3,
+                                     "wt_per_m_kg":  7.48
+                                 },
+                                 {
+                                     "nps":  "2+1/2",
+                                     "od_mm":  73,
+                                     "wt_per_m_kg":  11.41
+                                 },
+                                 {
+                                     "nps":  "3",
+                                     "od_mm":  88.9,
+                                     "wt_per_m_kg":  15.27
+                                 },
+                                 {
+                                     "nps":  "3+1/2",
+                                     "od_mm":  101.6,
+                                     "wt_per_m_kg":  18.64
+                                 },
+                                 {
+                                     "nps":  "4",
+                                     "od_mm":  114.3,
+                                     "wt_per_m_kg":  22.32
+                                 },
+                                 {
+                                     "nps":  "5",
+                                     "od_mm":  141.3,
+                                     "wt_per_m_kg":  30.97
+                                 },
+                                 {
+                                     "nps":  "6",
+                                     "od_mm":  168.3,
+                                     "wt_per_m_kg":  42.56
+                                 },
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  64.64
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  95.98
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  132.05
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  158.11
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  203.54
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  254.57
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  311.19
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  373.85
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  442.11
+                                 }
+                             ]
+               },
+    "PIPE80S":  {
+                    "schedule":  "Schedule 80S",
+                    "pipes":  [
+                                  {
+                                      "nps":  "0+1/4",
+                                      "od_mm":  13.7,
+                                      "wt_per_m_kg":  0.8
+                                  },
+                                  {
+                                      "nps":  "0+3/8",
+                                      "od_mm":  17.1,
+                                      "wt_per_m_kg":  1.1
+                                  },
+                                  {
+                                      "nps":  "0+1/2",
+                                      "od_mm":  21.3,
+                                      "wt_per_m_kg":  1.62
+                                  },
+                                  {
+                                      "nps":  "0+3/4",
+                                      "od_mm":  26.7,
+                                      "wt_per_m_kg":  2.2
+                                  },
+                                  {
+                                      "nps":  "1",
+                                      "od_mm":  33.4,
+                                      "wt_per_m_kg":  3.24
+                                  },
+                                  {
+                                      "nps":  "1+1/4",
+                                      "od_mm":  42.2,
+                                      "wt_per_m_kg":  4.47
+                                  },
+                                  {
+                                      "nps":  "1+1/2",
+                                      "od_mm":  48.3,
+                                      "wt_per_m_kg":  5.41
+                                  },
+                                  {
+                                      "nps":  "2",
+                                      "od_mm":  60.3,
+                                      "wt_per_m_kg":  7.48
+                                  },
+                                  {
+                                      "nps":  "2+1/2",
+                                      "od_mm":  73,
+                                      "wt_per_m_kg":  11.41
+                                  },
+                                  {
+                                      "nps":  "3",
+                                      "od_mm":  88.9,
+                                      "wt_per_m_kg":  15.27
+                                  },
+                                  {
+                                      "nps":  "3+1/2",
+                                      "od_mm":  101.6,
+                                      "wt_per_m_kg":  18.64
+                                  },
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  22.32
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  30.97
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  42.56
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  64.64
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273.1,
+                                      "wt_per_m_kg":  81.56
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.9,
+                                      "wt_per_m_kg":  97.47
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  107.4
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  123.31
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  138.11
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  155.13
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  171.55
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  187.07
+                                  },
+                                  {
+                                      "nps":  "30",
+                                      "od_mm":  762,
+                                      "wt_per_m_kg":  0
+                                  }
+                              ]
+                },
+    "PIPESTD":  {
+                    "schedule":  "Standard (STD)",
+                    "pipes":  [
+                                  {
+                                      "nps":  "0+1/4",
+                                      "od_mm":  13.7,
+                                      "wt_per_m_kg":  0.63
+                                  },
+                                  {
+                                      "nps":  "0+3/8",
+                                      "od_mm":  17.1,
+                                      "wt_per_m_kg":  0.84
+                                  },
+                                  {
+                                      "nps":  "0+1/2",
+                                      "od_mm":  21.3,
+                                      "wt_per_m_kg":  1.27
+                                  },
+                                  {
+                                      "nps":  "0+3/4",
+                                      "od_mm":  26.7,
+                                      "wt_per_m_kg":  1.69
+                                  },
+                                  {
+                                      "nps":  "1",
+                                      "od_mm":  33.4,
+                                      "wt_per_m_kg":  2.5
+                                  },
+                                  {
+                                      "nps":  "1+1/4",
+                                      "od_mm":  42.2,
+                                      "wt_per_m_kg":  3.39
+                                  },
+                                  {
+                                      "nps":  "1+1/2",
+                                      "od_mm":  48.3,
+                                      "wt_per_m_kg":  4.05
+                                  },
+                                  {
+                                      "nps":  "2",
+                                      "od_mm":  60.3,
+                                      "wt_per_m_kg":  5.44
+                                  },
+                                  {
+                                      "nps":  "2+1/2",
+                                      "od_mm":  73,
+                                      "wt_per_m_kg":  8.63
+                                  },
+                                  {
+                                      "nps":  "3",
+                                      "od_mm":  88.9,
+                                      "wt_per_m_kg":  11.29
+                                  },
+                                  {
+                                      "nps":  "3+1/2",
+                                      "od_mm":  101.6,
+                                      "wt_per_m_kg":  13.57
+                                  },
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  16.08
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  21.77
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  28.26
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  42.55
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273,
+                                      "wt_per_m_kg":  60.29
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.8,
+                                      "wt_per_m_kg":  73.86
+                                  },
+                                  {
+                                      "nps":  "14",
+                                      "od_mm":  355.6,
+                                      "wt_per_m_kg":  81.33
+                                  },
+                                  {
+                                      "nps":  "16",
+                                      "od_mm":  406.4,
+                                      "wt_per_m_kg":  93.27
+                                  },
+                                  {
+                                      "nps":  "18",
+                                      "od_mm":  457,
+                                      "wt_per_m_kg":  105.17
+                                  },
+                                  {
+                                      "nps":  "20",
+                                      "od_mm":  508,
+                                      "wt_per_m_kg":  117.15
+                                  },
+                                  {
+                                      "nps":  "22",
+                                      "od_mm":  559,
+                                      "wt_per_m_kg":  129.14
+                                  },
+                                  {
+                                      "nps":  "24",
+                                      "od_mm":  610,
+                                      "wt_per_m_kg":  141.12
+                                  },
+                                  {
+                                      "nps":  "26",
+                                      "od_mm":  660,
+                                      "wt_per_m_kg":  152.88
+                                  },
+                                  {
+                                      "nps":  "28",
+                                      "od_mm":  711,
+                                      "wt_per_m_kg":  164.86
+                                  },
+                                  {
+                                      "nps":  "30",
+                                      "od_mm":  762,
+                                      "wt_per_m_kg":  176.85
+                                  },
+                                  {
+                                      "nps":  "32",
+                                      "od_mm":  813,
+                                      "wt_per_m_kg":  188.83
+                                  },
+                                  {
+                                      "nps":  "34",
+                                      "od_mm":  864,
+                                      "wt_per_m_kg":  200.82
+                                  },
+                                  {
+                                      "nps":  "36",
+                                      "od_mm":  914,
+                                      "wt_per_m_kg":  212.57
+                                  },
+                                  {
+                                      "nps":  "38",
+                                      "od_mm":  965,
+                                      "wt_per_m_kg":  224.56
+                                  },
+                                  {
+                                      "nps":  "40",
+                                      "od_mm":  1016,
+                                      "wt_per_m_kg":  236.54
+                                  },
+                                  {
+                                      "nps":  "42",
+                                      "od_mm":  1067,
+                                      "wt_per_m_kg":  248.53
+                                  },
+                                  {
+                                      "nps":  "44",
+                                      "od_mm":  1118,
+                                      "wt_per_m_kg":  260.52
+                                  },
+                                  {
+                                      "nps":  "46",
+                                      "od_mm":  1168,
+                                      "wt_per_m_kg":  272.27
+                                  },
+                                  {
+                                      "nps":  "48",
+                                      "od_mm":  1219,
+                                      "wt_per_m_kg":  284.25
+                                  }
+                              ]
+                },
+    "PIPEXS":  {
+                   "schedule":  "Extra Strong (XS)",
+                   "pipes":  [
+                                 {
+                                     "nps":  "0+1/4",
+                                     "od_mm":  13.7,
+                                     "wt_per_m_kg":  0.8
+                                 },
+                                 {
+                                     "nps":  "0+3/8",
+                                     "od_mm":  17.1,
+                                     "wt_per_m_kg":  1.1
+                                 },
+                                 {
+                                     "nps":  "0+1/2",
+                                     "od_mm":  21.3,
+                                     "wt_per_m_kg":  1.62
+                                 },
+                                 {
+                                     "nps":  "0+3/4",
+                                     "od_mm":  26.7,
+                                     "wt_per_m_kg":  2.2
+                                 },
+                                 {
+                                     "nps":  "1",
+                                     "od_mm":  33.4,
+                                     "wt_per_m_kg":  3.24
+                                 },
+                                 {
+                                     "nps":  "1+1/4",
+                                     "od_mm":  42.2,
+                                     "wt_per_m_kg":  4.47
+                                 },
+                                 {
+                                     "nps":  "1+1/2",
+                                     "od_mm":  48.3,
+                                     "wt_per_m_kg":  5.41
+                                 },
+                                 {
+                                     "nps":  "2",
+                                     "od_mm":  60.3,
+                                     "wt_per_m_kg":  7.48
+                                 },
+                                 {
+                                     "nps":  "2+1/2",
+                                     "od_mm":  73,
+                                     "wt_per_m_kg":  11.41
+                                 },
+                                 {
+                                     "nps":  "3",
+                                     "od_mm":  88.9,
+                                     "wt_per_m_kg":  15.27
+                                 },
+                                 {
+                                     "nps":  "3+1/2",
+                                     "od_mm":  101.6,
+                                     "wt_per_m_kg":  18.64
+                                 },
+                                 {
+                                     "nps":  "4",
+                                     "od_mm":  114.3,
+                                     "wt_per_m_kg":  22.32
+                                 },
+                                 {
+                                     "nps":  "5",
+                                     "od_mm":  141.3,
+                                     "wt_per_m_kg":  30.97
+                                 },
+                                 {
+                                     "nps":  "6",
+                                     "od_mm":  168.3,
+                                     "wt_per_m_kg":  42.56
+                                 },
+                                 {
+                                     "nps":  "8",
+                                     "od_mm":  219.1,
+                                     "wt_per_m_kg":  64.64
+                                 },
+                                 {
+                                     "nps":  "10",
+                                     "od_mm":  273,
+                                     "wt_per_m_kg":  81.53
+                                 },
+                                 {
+                                     "nps":  "12",
+                                     "od_mm":  323.8,
+                                     "wt_per_m_kg":  97.44
+                                 },
+                                 {
+                                     "nps":  "14",
+                                     "od_mm":  355.6,
+                                     "wt_per_m_kg":  107.4
+                                 },
+                                 {
+                                     "nps":  "16",
+                                     "od_mm":  406.4,
+                                     "wt_per_m_kg":  123.31
+                                 },
+                                 {
+                                     "nps":  "18",
+                                     "od_mm":  457,
+                                     "wt_per_m_kg":  139.16
+                                 },
+                                 {
+                                     "nps":  "20",
+                                     "od_mm":  508,
+                                     "wt_per_m_kg":  155.13
+                                 },
+                                 {
+                                     "nps":  "22",
+                                     "od_mm":  559,
+                                     "wt_per_m_kg":  171.1
+                                 },
+                                 {
+                                     "nps":  "24",
+                                     "od_mm":  610,
+                                     "wt_per_m_kg":  187.07
+                                 },
+                                 {
+                                     "nps":  "26",
+                                     "od_mm":  660,
+                                     "wt_per_m_kg":  202.74
+                                 },
+                                 {
+                                     "nps":  "28",
+                                     "od_mm":  711,
+                                     "wt_per_m_kg":  218.71
+                                 },
+                                 {
+                                     "nps":  "30",
+                                     "od_mm":  762,
+                                     "wt_per_m_kg":  234.68
+                                 },
+                                 {
+                                     "nps":  "32",
+                                     "od_mm":  813,
+                                     "wt_per_m_kg":  250.65
+                                 },
+                                 {
+                                     "nps":  "34",
+                                     "od_mm":  864,
+                                     "wt_per_m_kg":  266.63
+                                 },
+                                 {
+                                     "nps":  "36",
+                                     "od_mm":  914,
+                                     "wt_per_m_kg":  282.29
+                                 },
+                                 {
+                                     "nps":  "38",
+                                     "od_mm":  965,
+                                     "wt_per_m_kg":  298.26
+                                 },
+                                 {
+                                     "nps":  "40",
+                                     "od_mm":  1016,
+                                     "wt_per_m_kg":  314.23
+                                 },
+                                 {
+                                     "nps":  "42",
+                                     "od_mm":  1067,
+                                     "wt_per_m_kg":  330.21
+                                 },
+                                 {
+                                     "nps":  "44",
+                                     "od_mm":  1118,
+                                     "wt_per_m_kg":  346.18
+                                 },
+                                 {
+                                     "nps":  "46",
+                                     "od_mm":  1168,
+                                     "wt_per_m_kg":  361.84
+                                 },
+                                 {
+                                     "nps":  "48",
+                                     "od_mm":  1219,
+                                     "wt_per_m_kg":  377.81
+                                 }
+                             ]
+               },
+    "PIPEXXS":  {
+                    "schedule":  "Double Extra Strong (XXS)",
+                    "pipes":  [
+                                  {
+                                      "nps":  "0+1/2",
+                                      "od_mm":  21.3,
+                                      "wt_per_m_kg":  2.55
+                                  },
+                                  {
+                                      "nps":  "0+3/4",
+                                      "od_mm":  26.7,
+                                      "wt_per_m_kg":  3.64
+                                  },
+                                  {
+                                      "nps":  "1",
+                                      "od_mm":  33.4,
+                                      "wt_per_m_kg":  5.45
+                                  },
+                                  {
+                                      "nps":  "1+1/4",
+                                      "od_mm":  42.2,
+                                      "wt_per_m_kg":  7.77
+                                  },
+                                  {
+                                      "nps":  "1+1/2",
+                                      "od_mm":  48.3,
+                                      "wt_per_m_kg":  9.55
+                                  },
+                                  {
+                                      "nps":  "2",
+                                      "od_mm":  60.3,
+                                      "wt_per_m_kg":  13.44
+                                  },
+                                  {
+                                      "nps":  "2+1/2",
+                                      "od_mm":  73,
+                                      "wt_per_m_kg":  20.39
+                                  },
+                                  {
+                                      "nps":  "3",
+                                      "od_mm":  88.9,
+                                      "wt_per_m_kg":  27.68
+                                  },
+                                  {
+                                      "nps":  "4",
+                                      "od_mm":  114.3,
+                                      "wt_per_m_kg":  41.03
+                                  },
+                                  {
+                                      "nps":  "5",
+                                      "od_mm":  141.3,
+                                      "wt_per_m_kg":  57.43
+                                  },
+                                  {
+                                      "nps":  "6",
+                                      "od_mm":  168.3,
+                                      "wt_per_m_kg":  79.22
+                                  },
+                                  {
+                                      "nps":  "8",
+                                      "od_mm":  219.1,
+                                      "wt_per_m_kg":  107.93
+                                  },
+                                  {
+                                      "nps":  "10",
+                                      "od_mm":  273,
+                                      "wt_per_m_kg":  155.1
+                                  },
+                                  {
+                                      "nps":  "12",
+                                      "od_mm":  323.8,
+                                      "wt_per_m_kg":  186.92
+                                  }
+                              ]
+                }
+}

@@ -1,0 +1,42 @@
+﻿[
+    {
+        "WLL (t)":  1,
+        "Color Code":  "Violet",
+        "Approx. Weight per Meter (kg/m)":  0.25
+    },
+    {
+        "WLL (t)":  2,
+        "Color Code":  "Green",
+        "Approx. Weight per Meter (kg/m)":  0.45
+    },
+    {
+        "WLL (t)":  3,
+        "Color Code":  "Yellow",
+        "Approx. Weight per Meter (kg/m)":  0.6
+    },
+    {
+        "WLL (t)":  4,
+        "Color Code":  "Grey",
+        "Approx. Weight per Meter (kg/m)":  0.8
+    },
+    {
+        "WLL (t)":  5,
+        "Color Code":  "Red",
+        "Approx. Weight per Meter (kg/m)":  1
+    },
+    {
+        "WLL (t)":  6,
+        "Color Code":  "Brown",
+        "Approx. Weight per Meter (kg/m)":  1.2
+    },
+    {
+        "WLL (t)":  8,
+        "Color Code":  "Blue",
+        "Approx. Weight per Meter (kg/m)":  1.6
+    },
+    {
+        "WLL (t)":  10,
+        "Color Code":  "Orange",
+        "Approx. Weight per Meter (kg/m)":  2
+    }
+]
