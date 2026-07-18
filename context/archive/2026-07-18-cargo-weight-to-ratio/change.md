@@ -1,10 +1,10 @@
 ---
 change_id: cargo-weight-to-ratio
 title: Cargo weight to ratio
-status: implementing
+status: archived
 created: 2026-07-18
 updated: 2026-07-18
-archived_at: null
+archived_at: 2026-07-18T19:16:08Z
 ---
 
 ## Notes
