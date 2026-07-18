@@ -322,12 +322,12 @@ WN schedule nesting grows `piping_catalog.js` modestly vs fittings’ full type�
 
 #### Automated
 
-- [x] 4.1 change.md Notes mention chart policy, WN nest, deferred types
+- [x] 4.1 change.md Notes mention chart policy, WN nest, deferred types — 417716e
 
 #### Manual
 
-- [x] 4.2 WN two schedules differ and match catalog when both present
-- [x] 4.3 Slip-On and Blind add without Schedule step
-- [x] 4.4 Deferred type still adds
-- [x] 4.5 Mixed list and Send still work
-- [x] 4.6 Fill does not change flange steel mass
+- [x] 4.2 WN two schedules differ and match catalog when both present — 417716e
+- [x] 4.3 Slip-On and Blind add without Schedule step — 417716e
+- [x] 4.4 Deferred type still adds — 417716e
+- [x] 4.5 Mixed list and Send still work — 417716e
+- [x] 4.6 Fill does not change flange steel mass — 417716e
