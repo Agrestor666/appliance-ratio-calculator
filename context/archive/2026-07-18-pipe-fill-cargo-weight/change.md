@@ -1,10 +1,10 @@
 ﻿---
 change_id: pipe-fill-cargo-weight
 title: Pipe fill cargo weight
-status: impl_reviewed
+status: archived
 created: 2026-07-18
 updated: 2026-07-18
-archived_at: null
+archived_at: 2026-07-18T17:04:21Z
 ---
 
 ## Notes
