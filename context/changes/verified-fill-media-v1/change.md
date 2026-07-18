@@ -1,7 +1,7 @@
 ---
 change_id: verified-fill-media-v1
 title: Verified fill media v1
-status: implementing
+status: implemented
 created: 2026-07-17
 updated: 2026-07-18
 archived_at: null

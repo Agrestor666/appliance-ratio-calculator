@@ -185,8 +185,8 @@ None. Additive file only. S-02 will add the script tag beside existing catalog l
 
 #### Automated
 
-- [x] 2.1 `change.md` Notes section mentions `FILL_MEDIA_CATALOG` and is non-empty
+- [x] 2.1 `change.md` Notes section mentions `FILL_MEDIA_CATALOG` and is non-empty — 89ab1a2
 
 #### Manual
 
-- [x] 2.2 Reader can answer from Notes alone: path, four media, density unit, and no UI/calc wiring in F-01
+- [x] 2.2 Reader can answer from Notes alone: path, four media, density unit, and no UI/calc wiring in F-01 — 89ab1a2
