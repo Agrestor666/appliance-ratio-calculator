@@ -291,27 +291,27 @@ Nested fittings increase `piping_catalog.js` size substantially (full types × s
 
 #### Automated
 
-- [x] 3.1 node --check app.js passes
-- [x] 3.2 No FITTING_SCH_FACTORS identifier in app.js / data/
-- [x] 3.3 Fitting path no longer multiplies by schedule factor table
+- [x] 3.1 node --check app.js passes — 6e7434b
+- [x] 3.2 No FITTING_SCH_FACTORS identifier in app.js / data/ — 6e7434b
+- [x] 3.3 Fitting path no longer multiplies by schedule factor table — 6e7434b
 
 #### Manual
 
-- [x] 3.4 Schedule list matches catalog keys for selected type
-- [x] 3.5 Schedule change updates NPS list when coverage differs
-- [x] 3.6 Preview/add weight equals catalog wt (no × factor)
-- [x] 3.7 Reducer compound NPS uses nested schedule wt
+- [x] 3.4 Schedule list matches catalog keys for selected type — 6e7434b
+- [x] 3.5 Schedule change updates NPS list when coverage differs — 6e7434b
+- [x] 3.6 Preview/add weight equals catalog wt (no × factor) — 6e7434b
+- [x] 3.7 Reducer compound NPS uses nested schedule wt — 6e7434b
 
 ### Phase 4: Smoke + Handoff
 
 #### Automated
 
-- [ ] 4.1 change.md Notes mention chart source policy and nested shape
+- [x] 4.1 change.md Notes mention chart source policy and nested shape
 
 #### Manual
 
-- [ ] 4.2 LR Elbow Sch 40 vs Sch 80 weights match catalog
-- [ ] 4.3 New type appears and adds to cargo log (if signed)
-- [ ] 4.4 Concentric reducer weight from nested schedule row
-- [ ] 4.5 Mixed pipe+fitting list and Send still work
-- [ ] 4.6 Fill does not change fitting steel mass
+- [x] 4.2 LR Elbow Sch 40 vs Sch 80 weights match catalog
+- [x] 4.3 New type appears and adds to cargo log (if signed)
+- [x] 4.4 Concentric reducer weight from nested schedule row
+- [x] 4.5 Mixed pipe+fitting list and Send still work
+- [x] 4.6 Fill does not change fitting steel mass
