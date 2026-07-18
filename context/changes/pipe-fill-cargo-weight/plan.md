@@ -282,24 +282,24 @@ Fill recompute is O(1) per preview (one pipe × density lookup). Catalog enrichm
 
 #### Automated
 
-- [x] 3.1 `node --check` passes on `app.js` and `fill_media_catalog.js`
-- [x] 3.2 `index.html` loads `fill_media_catalog.js` before `app.js`
-- [x] 3.3 Fixture check: Empty vs fresh-water unitKg for a known pipe with `t`
+- [x] 3.1 `node --check` passes on `app.js` and `fill_media_catalog.js` — 0ef3cf4
+- [x] 3.2 `index.html` loads `fill_media_catalog.js` before `app.js` — 0ef3cf4
+- [x] 3.3 Fixture check: Empty vs fresh-water unitKg for a known pipe with `t` — 0ef3cf4
 
 #### Manual
 
-- [x] 3.4 Fill select lists four media; default Empty
-- [x] 3.5 Pipe Empty matches prior steel-only; wet fill increases mass; fill change updates preview immediately
-- [x] 3.6 Non-pipe with Seawater selected stays steel-only
-- [x] 3.7 Send → Te + recompute; Escape/Reset cargo behavior preserved
+- [x] 3.4 Fill select lists four media; default Empty — 0ef3cf4
+- [x] 3.5 Pipe Empty matches prior steel-only; wet fill increases mass; fill change updates preview immediately — 0ef3cf4
+- [x] 3.6 Non-pipe with Seawater selected stays steel-only — 0ef3cf4
+- [x] 3.7 Send → Te + recompute; Escape/Reset cargo behavior preserved — 0ef3cf4
 
 ### Phase 4: E2E Smoke + S-03 Handoff
 
 #### Automated
 
-- [ ] 4.1 `change.md` Notes contain S-03 handoff bullets
+- [x] 4.1 `change.md` Notes contain S-03 handoff bullets
 
 #### Manual
 
-- [ ] 4.2 Mixed list (pipe with fill + non-pipe) → Send Te matches sum/1000
-- [ ] 4.3 Manual Te still works; report generates with medium visible via label
+- [x] 4.2 Mixed list (pipe with fill + non-pipe) → Send Te matches sum/1000
+- [x] 4.3 Manual Te still works; report generates with medium visible via label

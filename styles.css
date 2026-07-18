@@ -579,15 +579,19 @@ select:disabled,input:disabled{
   border: 1px solid var(--border);
   border-radius: 12px;
   background: rgba(255,255,255,.03);
+  min-width: 0;
+  max-width: 100%;
 }
 .cargoSelector__row{
   display:flex;
   flex-wrap:wrap;
   gap: 10px;
   align-items:flex-end;
+  min-width: 0;
 }
 .cargoSelector__row--bottom{
   align-items:center;
+  min-width: 0;
 }
 .field--cargo{
   min-width: 140px;
@@ -597,8 +601,9 @@ select:disabled,input:disabled{
   min-width: 160px;
 }
 .cargoPreview{
-  flex: 1;
-  min-width: 120px;
+  flex: 1 1 180px;
+  min-width: 0;
+  max-width: 100%;
   padding: 9px 12px;
   border-radius: 12px;
   border: 1px solid rgba(49,214,196,.25);
@@ -606,7 +611,10 @@ select:disabled,input:disabled{
   color: rgba(49,214,196,.95);
   font-family: var(--mono);
   font-size: 13px;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.35;
 }
 
 .tableWrap--cargo{
