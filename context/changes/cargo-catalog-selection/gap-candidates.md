@@ -171,3 +171,7 @@ Record the decision below (or confirm the same choice in chat) **before Phase 2*
 | Date | 2026-07-18 |
 
 Phase 2 will add **only** accepted rows into `data/piping_catalog.js` (add-only; existing objects untouched).
+
+### Post-apply note (impl-review F1)
+
+Add-only inserts for **Sch 10S NPS 22** (`wt: 75.62`) and **Sch 80S NPS 22** (`wt: 171.55`) are source-faithful to `pipes.json`, but sit between larger pre-existing *S neighbors that appear aliased from the matching non-S schedule. Result: kg/m is non-monotonic across 20 → 22 → 24 for those two series. Per conflict policy, neighbors were **not** overwritten. Planners comparing adjacent large NPS on Sch 10S / Sch 80S should treat the series as mixed provenance.

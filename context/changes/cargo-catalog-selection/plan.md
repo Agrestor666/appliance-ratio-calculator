@@ -278,10 +278,10 @@ No data migration. `pipes.json` remains unused. If future work retires it, do th
 
 #### Automated
 
-- [x] 4.1 change.md Notes include S-02 handoff and gap-candidates pointer
+- [x] 4.1 change.md Notes include S-02 handoff and gap-candidates pointer — ca55672
 
 #### Manual
 
-- [x] 4.2 Typical multi-item catalog → Send → ratio updates; manual Te still works
-- [x] 4.3 Manual-only Te path works without modal
-- [x] 4.4 No fill UI introduced
+- [x] 4.2 Typical multi-item catalog → Send → ratio updates; manual Te still works — ca55672
+- [x] 4.3 Manual-only Te path works without modal — ca55672
+- [x] 4.4 No fill UI introduced — ca55672

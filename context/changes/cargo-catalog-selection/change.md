@@ -1,7 +1,7 @@
 ﻿---
 change_id: cargo-catalog-selection
 title: Cargo catalog selection
-status: implementing
+status: implemented
 created: 2026-07-18
 updated: 2026-07-18
 archived_at: null
@@ -18,6 +18,7 @@ Sign-off and full candidate/skip tables: [`gap-candidates.md`](./gap-candidates.
 - **Accepted (11 rows, set A):** Sch 10S 22 & 30; Sch 120 4; Sch 30 1/4 & 3/8; Sch 40 34 & 36; Sch 60 / 80 / 80S 22; XXS 5 — applied add-only into `data/piping_catalog.js`.
 - **Deferred (set B):** Sch 100–160 @ 22″; STD/XS 38–48″.
 - **Skipped:** 5 zero-wt JSON gaps; 193 overlap weight conflicts (catalog SSOT, no overwrite). `pipes.json` remains unused at runtime.
+- **Known cliff (impl-review):** Sch 10S / Sch 80S NPS 22 are pipes.json-faithful but non-monotonic vs existing *S 20/24 neighbors (aliased from non-S); documented in `gap-candidates.md` — no overwrite.
 
 ### Harden behaviors shipped
 
