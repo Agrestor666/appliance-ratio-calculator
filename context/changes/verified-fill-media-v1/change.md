@@ -1,7 +1,7 @@
 ---
 change_id: verified-fill-media-v1
 title: Verified fill media v1
-status: implemented
+status: impl_reviewed
 created: 2026-07-17
 updated: 2026-07-18
 archived_at: null
@@ -25,3 +25,6 @@ Brief: `context/changes/verified-fill-media-v1/plan-brief.md`
   - `seawater` → 1025
   - `light-oil` → 850
 - **Not wired in F-01**: catalog is not loaded by `index.html` or read by `app.js`. No fill selector UI and no cargo fill-mass formula here — that is S-02 (`pipe-fill-cargo-weight`).
+
+### Git note
+- `414d63d` was the initial full-repo snapshot (git init + stage-all), not fill-media-only scope.

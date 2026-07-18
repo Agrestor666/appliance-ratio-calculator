@@ -16,7 +16,7 @@ window.FILL_MEDIA_CATALOG = {
       id: "fresh-water",
       label: "Fresh water",
       densityKgPerM3: 1000,
-      source: "Engineering Toolbox / equivalent engineering reference for pure water ≈1000 kg/m³ at 4 °C, 1 atm.",
+      source: "CIPM / IAPWS pure-water density near maximum ≈1000 kg/m³ at ~4 °C, 1 atm (planning value).",
       notes: "CIPM/IAPWS max ≈999.97; ~998–999 at 15–20 °C; 1000 is the planning value.",
     },
     {
