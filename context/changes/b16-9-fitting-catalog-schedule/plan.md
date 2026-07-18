@@ -306,12 +306,12 @@ Nested fittings increase `piping_catalog.js` size substantially (full types × s
 
 #### Automated
 
-- [x] 4.1 change.md Notes mention chart source policy and nested shape
+- [x] 4.1 change.md Notes mention chart source policy and nested shape — e4b0957
 
 #### Manual
 
-- [x] 4.2 LR Elbow Sch 40 vs Sch 80 weights match catalog
-- [x] 4.3 New type appears and adds to cargo log (if signed)
-- [x] 4.4 Concentric reducer weight from nested schedule row
-- [x] 4.5 Mixed pipe+fitting list and Send still work
-- [x] 4.6 Fill does not change fitting steel mass
+- [x] 4.2 LR Elbow Sch 40 vs Sch 80 weights match catalog — e4b0957
+- [x] 4.3 New type appears and adds to cargo log (if signed) — e4b0957
+- [x] 4.4 Concentric reducer weight from nested schedule row — e4b0957
+- [x] 4.5 Mixed pipe+fitting list and Send still work — e4b0957
+- [x] 4.6 Fill does not change fitting steel mass — e4b0957
