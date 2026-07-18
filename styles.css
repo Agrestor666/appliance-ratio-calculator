@@ -593,6 +593,9 @@ select:disabled,input:disabled{
   min-width: 140px;
   flex: 1;
 }
+#cargoFillWrap{
+  min-width: 160px;
+}
 .cargoPreview{
   flex: 1;
   min-width: 120px;

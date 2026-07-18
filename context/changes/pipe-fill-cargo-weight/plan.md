@@ -270,28 +270,28 @@ Fill recompute is O(1) per preview (one pipe × density lookup). Catalog enrichm
 
 #### Automated
 
-- [x] 2.1 `node --check data/piping_catalog.js` passes
-- [x] 2.2 Every signed-off accepted row has numeric `t > 0` and `od - 2*t > 0`
-- [x] 2.3 Spot-check: pre-change `od`/`wt` samples unchanged
+- [x] 2.1 `node --check data/piping_catalog.js` passes — fc3882b
+- [x] 2.2 Every signed-off accepted row has numeric `t > 0` and `od - 2*t > 0` — fc3882b
+- [x] 2.3 Spot-check: pre-change `od`/`wt` samples unchanged — fc3882b
 
 #### Manual
 
-- [x] 2.4 Spot-check Sch 40 / Sch 80 / STD `t` vs signed-off proposal
+- [x] 2.4 Spot-check Sch 40 / Sch 80 / STD `t` vs signed-off proposal — fc3882b
 
 ### Phase 3: Wire Fill → Cargo Weight
 
 #### Automated
 
-- [ ] 3.1 `node --check` passes on `app.js` and `fill_media_catalog.js`
-- [ ] 3.2 `index.html` loads `fill_media_catalog.js` before `app.js`
-- [ ] 3.3 Fixture check: Empty vs fresh-water unitKg for a known pipe with `t`
+- [x] 3.1 `node --check` passes on `app.js` and `fill_media_catalog.js`
+- [x] 3.2 `index.html` loads `fill_media_catalog.js` before `app.js`
+- [x] 3.3 Fixture check: Empty vs fresh-water unitKg for a known pipe with `t`
 
 #### Manual
 
-- [ ] 3.4 Fill select lists four media; default Empty
-- [ ] 3.5 Pipe Empty matches prior steel-only; wet fill increases mass; fill change updates preview immediately
-- [ ] 3.6 Non-pipe with Seawater selected stays steel-only
-- [ ] 3.7 Send → Te + recompute; Escape/Reset cargo behavior preserved
+- [x] 3.4 Fill select lists four media; default Empty
+- [x] 3.5 Pipe Empty matches prior steel-only; wet fill increases mass; fill change updates preview immediately
+- [x] 3.6 Non-pipe with Seawater selected stays steel-only
+- [x] 3.7 Send → Te + recompute; Escape/Reset cargo behavior preserved
 
 ### Phase 4: E2E Smoke + S-03 Handoff
 

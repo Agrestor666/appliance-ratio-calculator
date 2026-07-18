@@ -1713,6 +1713,7 @@ const cargoClassSel     = el("cargoClassSel");
 const cargoNpsSel       = el("cargoNpsSel");
 const cargoLenWrap      = el("cargoLenWrap");
 const cargoLenInput     = el("cargoLenInput");
+const cargoFillSel      = el("cargoFillSel");
 const cargoTypeLabel    = el("cargoTypeLabel");
 const cargoClassLabel   = el("cargoClassLabel");
 const cargoQtyWrap      = el("cargoQtyWrap");
@@ -1725,7 +1726,7 @@ const cargoSendBtn      = el("cargoSendBtn");
 
 const cargoState = {
   qty: 1,
-  log: [],        // { id, label, qty, unitKg, totalKg }
+  log: [],        // { id, label, qty, unitKg, totalKg, fillId?, fillLabel? }
   lastSumKg: null,
   savedLen: "1",  // restored when switching back to Pipe
   sentLog: [],    // snapshot saved when "Send to Cargo Weight" is clicked
@@ -1735,6 +1736,35 @@ const cargoState = {
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function getCatalog() { return window.PIPING_CATALOG || null; }
+
+function getFillMediaItems() {
+  const items = window.FILL_MEDIA_CATALOG?.items;
+  return Array.isArray(items) ? items : [];
+}
+
+function findFillMedia(fillId) {
+  return getFillMediaItems().find((i) => i.id === fillId) || null;
+}
+
+/** Pipe steel + fill mass. Fill applies only when geometry (t, ID) is valid. */
+function pipeUnitMass(item, lenM, densityKgPerM3) {
+  const steelKg = item.wt * lenM;
+  const density = Number.isFinite(densityKgPerM3) ? densityKgPerM3 : 0;
+  if (!(density > 0)) {
+    return { steelKg, fillKg: 0, unitKg: steelKg, geometryOk: true };
+  }
+  const t = item.t;
+  if (typeof t !== "number" || !(t > 0)) {
+    return { steelKg, fillKg: 0, unitKg: steelKg, geometryOk: false };
+  }
+  const idMm = item.od - 2 * t;
+  if (!(idMm > 0)) {
+    return { steelKg, fillKg: 0, unitKg: steelKg, geometryOk: false };
+  }
+  const V_m3 = Math.PI * (idMm / 2000) ** 2 * lenM;
+  const fillKg = V_m3 * density;
+  return { steelKg, fillKg, unitKg: steelKg + fillKg, geometryOk: true };
+}
 
 function cargoCategories() {
   return [
@@ -1781,9 +1811,13 @@ function findItem(catId, typeId, classId, nps) {
   return getNpsList(catId, typeId, classId).find(i => i.nps === nps) || null;
 }
 
-function calcUnitKg(item, catId, classId, lenM) {
+function calcUnitKg(item, catId, classId, lenM, fillId) {
   if (!item) return null;
-  if (catId === "pipe") return item.wt * lenM;
+  if (catId === "pipe") {
+    const fill = findFillMedia(fillId);
+    const density = fill?.densityKgPerM3 ?? 0;
+    return pipeUnitMass(item, lenM, density).unitKg;
+  }
   if (catId === "fitting") {
     const tbl = FITTING_SCH_FACTORS[classId] || {};
     const factor = tbl[item.nps] !== undefined ? tbl[item.nps] : (tbl._default || 1.0);
@@ -1804,12 +1838,25 @@ function fillSelect(sel, options, valueKey, labelKey) {
   }
 }
 
+function buildCargoFillSelect() {
+  if (!cargoFillSel) return;
+  const items = getFillMediaItems();
+  if (!items.length) {
+    cargoFillSel.innerHTML = '<option value="empty">Empty</option>';
+    console.error("CARGO: window.FILL_MEDIA_CATALOG is not defined. Check that data/fill_media_catalog.js loads without errors.");
+    return;
+  }
+  fillSelect(cargoFillSel, items, "id", "label");
+  cargoFillSel.value = "empty";
+}
+
 function buildCargoSelects() {
   // Category options are static HTML – no need to rebuild them.
   if (!getCatalog()) {
     if (cargoPreview) cargoPreview.textContent = "⚠ piping_catalog.js not loaded";
     console.error("CARGO: window.PIPING_CATALOG is not defined. Check that data/piping_catalog.js loads without errors.");
   }
+  buildCargoFillSelect();
   syncCargoType();
 }
 
@@ -1884,8 +1931,10 @@ function updateCargoPreview() {
   const classId = cargoClassSel.value;
   const nps     = cargoNpsSel.value;
   const lenM    = parseNumber(cargoLenInput?.value) ?? 1;
+  const fillId  = cargoFillSel?.value || "empty";
+  const fill    = findFillMedia(fillId);
   const item    = findItem(catId, typeId, classId, nps);
-  const unitKg  = calcUnitKg(item, catId, classId, lenM);
+  const unitKg  = calcUnitKg(item, catId, classId, lenM, fillId);
 
   if (!cargoPreview) return;
   if (unitKg == null || !Number.isFinite(unitKg)) {
@@ -1896,7 +1945,20 @@ function updateCargoPreview() {
   const cats = cargoCategories();
   const cat  = cats.find(c => c.id === catId);
   if (cat?.hasLength) {
-    cargoPreview.textContent = `${formatKg(item.wt)} kg/m × ${lenM} m = ${formatKg(unitKg)} kg/pc`;
+    const density = fill?.densityKgPerM3 ?? 0;
+    const mass = pipeUnitMass(item, lenM, density);
+    let text = `${formatKg(item.wt)} kg/m × ${lenM} m`;
+    if (density > 0) {
+      if (!mass.geometryOk) {
+        text += ` = ${formatKg(mass.unitKg)} kg/pc (fill geometry unavailable)`;
+      } else {
+        const fillLabel = fill?.label || fillId;
+        text += ` + ${fillLabel} = ${formatKg(mass.unitKg)} kg/pc`;
+      }
+    } else {
+      text += ` = ${formatKg(mass.unitKg)} kg/pc`;
+    }
+    cargoPreview.textContent = text;
   } else if (catId === "fitting" && classId && classId !== "Sch 40") {
     const tbl = FITTING_SCH_FACTORS[classId] || {};
     const f   = tbl[item.nps] !== undefined ? tbl[item.nps] : (tbl._default || 1.0);
@@ -1914,9 +1976,11 @@ function cargoAddItem() {
   const classId = cargoClassSel.value;
   const nps     = cargoNpsSel.value;
   const lenM    = parseNumber(cargoLenInput?.value) ?? 1;
+  const fillId  = cargoFillSel?.value || "empty";
+  const fill    = findFillMedia(fillId);
   const qty     = cargoState.qty;
   const item    = findItem(catId, typeId, classId, nps);
-  const unitKg  = calcUnitKg(item, catId, classId, lenM);
+  const unitKg  = calcUnitKg(item, catId, classId, lenM, fillId);
 
   if (!item || !Number.isFinite(unitKg) || qty < 1) return;
 
@@ -1928,13 +1992,22 @@ function cargoAddItem() {
   label += ` | NPS ${nps}"`;
   if (!cargoLenInput.disabled) label += ` | ${lenM} m`;
 
-  cargoState.log.push({
+  const entry = {
     id: Date.now() + Math.random(),
     label,
     qty,
     unitKg,
     totalKg: unitKg * qty
-  });
+  };
+
+  if (catId === "pipe") {
+    const fillLabel = fill?.label || "Empty";
+    entry.fillId = fill?.id || "empty";
+    entry.fillLabel = fillLabel;
+    entry.label = `${label} | ${fillLabel}`;
+  }
+
+  cargoState.log.push(entry);
 
   renderCargoLog();
 }
@@ -2087,6 +2160,9 @@ if (cargoNpsSel) {
 }
 if (cargoLenInput) {
   cargoLenInput.addEventListener("input", () => updateCargoPreview());
+}
+if (cargoFillSel) {
+  cargoFillSel.addEventListener("change", () => updateCargoPreview());
 }
 if (cargoAddBtn) {
   cargoAddBtn.addEventListener("click", () => cargoAddItem());
