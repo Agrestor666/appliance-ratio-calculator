@@ -28,23 +28,31 @@ export interface AlertItem {
   text: string;
 }
 
-export function clamp01(n: number): number {
-  if (!Number.isFinite(n)) return 0;
-  return Math.max(0, Math.min(1, n));
-}
-
-/** Chart percentages from utilization ratio (matches legacy `recompute` chart path). */
+/**
+ * Chart percentages from utilization ratio.
+ * When utilization > 1, Used shows the actual percent (may exceed 100) and
+ * Remaining is 0 — overCapacity flags an explicit overload callout in the UI.
+ */
 export function chartPercentsFromUtilization(utilization: number | null): {
   usedPercent: number;
   remainingPercent: number;
+  overCapacity: boolean;
 } {
   if (utilization === null || !Number.isFinite(utilization)) {
-    return { usedPercent: 0, remainingPercent: 100 };
+    return { usedPercent: 0, remainingPercent: 100, overCapacity: false };
   }
-  const usedRatio = clamp01(utilization);
+  if (utilization > 1) {
+    return {
+      usedPercent: utilization * 100,
+      remainingPercent: 0,
+      overCapacity: true,
+    };
+  }
+  const usedRatio = Math.max(0, utilization);
   return {
     usedPercent: usedRatio * 100,
-    remainingPercent: clamp01(1 - usedRatio) * 100,
+    remainingPercent: (1 - usedRatio) * 100,
+    overCapacity: false,
   };
 }
 
@@ -94,13 +102,25 @@ export function evaluateAlerts(
   return { severity: "none", items: [] };
 }
 
+export type ThresholdParseResult =
+  | { ok: true; thresholds: ThresholdState }
+  | { ok: false; error: string };
+
 /** Form-string thresholds (UI) → numeric state for alert evaluation. */
-export function parseThresholdForm(fields: { warn: string; crit: string; enabled: boolean }): ThresholdState {
-  return {
-    warn: parseNumber(fields.warn) ?? THRESHOLD_DEFAULTS.warn,
-    crit: parseNumber(fields.crit) ?? THRESHOLD_DEFAULTS.crit,
-    enabled: fields.enabled,
-  };
+export function parseThresholdForm(fields: {
+  warn: string;
+  crit: string;
+  enabled: boolean;
+}): ThresholdParseResult {
+  const warn = parseNumber(fields.warn);
+  const crit = parseNumber(fields.crit);
+  if (warn === null || crit === null) {
+    return { ok: false, error: "Enter valid warn and critical threshold ratios." };
+  }
+  if (!(warn < crit)) {
+    return { ok: false, error: "Warn threshold must be less than critical threshold." };
+  }
+  return { ok: true, thresholds: { warn, crit, enabled: fields.enabled } };
 }
 
 export function defaultsAsThresholdFormStrings() {

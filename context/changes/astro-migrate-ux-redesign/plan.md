@@ -452,25 +452,25 @@ Make Astro `/` the sole product entry; relocate legacy tree; run full smoke agai
 
 #### Automated
 
-- [x] 5.1 `npm run lint` / `npm run build` pass
+- [x] 5.1 `npm run lint` / `npm run build` pass — ed5e8d2
 
 #### Manual
 
-- [x] 5.2 Happy path: Send cargo → open report → sees inputs/results/logs consistent with UI
-- [x] 5.3 Mismatch path: Send then edit cargo Te → report discloses last-Send breakdown may not match Te
-- [x] 5.4 Print dialog usable (browser Print / PDF)
-- [x] 5.5 Report CTA lives with results, not as the only page purpose
+- [x] 5.2 Happy path: Send cargo → open report → sees inputs/results/logs consistent with UI — ed5e8d2
+- [x] 5.3 Mismatch path: Send then edit cargo Te → report discloses last-Send breakdown may not match Te — ed5e8d2
+- [x] 5.4 Print dialog usable (browser Print / PDF) — ed5e8d2
+- [x] 5.5 Report CTA lives with results, not as the only page purpose — ed5e8d2
 
 ### Phase 6: Cutover & smoke
 
 #### Automated
 
-- [ ] 6.1 `npm run lint` + `npm run build` pass after moves
-- [ ] 6.2 Repo has no requirement that root `index.html` be the product entry
-- [ ] 6.3 Golden one-shot against `src/lib` still passes
+- [x] 6.1 `npm run lint` + `npm run build` pass after moves
+- [x] 6.2 Repo has no requirement that root `index.html` be the product entry
+- [x] 6.3 Golden one-shot against `src/lib` still passes
 
 #### Manual
 
-- [ ] 6.4 Full E2E smoke checklist passes on `npm run dev`
-- [ ] 6.5 `/` shows only the new calculator (no Welcome, no Dialogflow)
-- [ ] 6.6 Legacy files are under `legacy/` and not required for the Astro app to run
+- [x] 6.4 Full E2E smoke checklist passes on `npm run dev`
+- [x] 6.5 `/` shows only the new calculator (no Welcome, no Dialogflow)
+- [x] 6.6 Legacy files are under `legacy/` and not required for the Astro app to run

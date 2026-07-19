@@ -92,9 +92,14 @@ export function CalculatorShell() {
   const chartRef = useRef<UtilizationChartHandle>(null);
 
   const result = computeFromFormStrings(fields);
-  const thresholds = parseThresholdForm(thresholdForm);
-  const { severity, items: alertItems } = evaluateAlerts(result, thresholds);
-  const { usedPercent, remainingPercent } = chartPercentsFromUtilization(result.ok ? result.utilization : null);
+  const thresholdParse = parseThresholdForm(thresholdForm);
+  const { severity, items: alertItems } = thresholdParse.ok
+    ? evaluateAlerts(result, thresholdParse.thresholds)
+    : { severity: "input" as const, items: [{ level: "input" as const, text: thresholdParse.error }] };
+  const thresholds = thresholdParse.ok ? thresholdParse.thresholds : null;
+  const { usedPercent, remainingPercent, overCapacity } = chartPercentsFromUtilization(
+    result.ok ? result.utilization : null,
+  );
 
   const setField = (key: FieldKey, value: string) => {
     setFields((prev) => ({ ...prev, [key]: value }));
@@ -113,10 +118,15 @@ export function CalculatorShell() {
   };
 
   const openReport = () => {
+    if (!thresholdParse.ok) {
+      setReportError(thresholdParse.error);
+      return;
+    }
+
     const chartPng = chartRef.current?.toPngDataUrl() ?? null;
     const payload = buildReportPayload({
       fields,
-      thresholds,
+      thresholds: thresholdParse.thresholds,
       alertSeverity: severity,
       notificationNumber,
       cargoSentLog,
@@ -200,9 +210,11 @@ export function CalculatorShell() {
                 </div>
                 <p className="text-muted-foreground mt-2 text-sm">
                   {result.ok
-                    ? thresholds.enabled
-                      ? `Warn ${formatPercent(thresholds.warn)} · Crit ${formatPercent(thresholds.crit)}`
-                      : "Threshold alerts disabled"
+                    ? thresholds == null
+                      ? thresholdParse.error
+                      : thresholds.enabled
+                        ? `Warn ${formatPercent(thresholds.warn)} · Crit ${formatPercent(thresholds.crit)}`
+                        : "Threshold alerts disabled"
                     : result.error}
                 </p>
               </div>
@@ -235,6 +247,11 @@ export function CalculatorShell() {
                     severity={severity}
                   />
                 </div>
+                {overCapacity ? (
+                  <p className="text-destructive text-xs font-medium">
+                    Over capacity — utilization exceeds 100% (chart Used shows actual %).
+                  </p>
+                ) : null}
               </div>
 
               <div className="space-y-2">

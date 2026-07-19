@@ -72,13 +72,12 @@ export default tseslint.config(
   includeIgnoreFile(gitignorePath),
   {
     ignores: [
-      // Legacy calculator host (relocated in Phase 6) — not part of the Astro app.
-      "app.js",
-      "styles.css",
-      "index.html",
-      "data/**",
+      // Legacy calculator host — not part of the Astro app.
+      "legacy/**",
       // Archived change scripts / one-offs — not runtime source.
       "context/archive/**",
+      // Active-change scratch scripts (_gen_*.cjs, _verify_*.cjs) — not runtime.
+      "context/changes/**/*.cjs",
       // Static catalog dumps (ESM ports of legacy data/*) — not hand-edited source.
       "src/lib/data/*-catalog.js",
     ],

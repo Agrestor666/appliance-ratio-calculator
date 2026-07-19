@@ -45,6 +45,7 @@ export const UtilizationChart = forwardRef<UtilizationChartHandle, UtilizationCh
     },
   }));
 
+  // Create once; prop-driven updates run in the effect below (legacy updateChart style).
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -98,6 +99,18 @@ export const UtilizationChart = forwardRef<UtilizationChartHandle, UtilizationCh
       chartRef.current = null;
       chart.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount/unmount only
+  }, []);
+
+  useEffect(() => {
+    const chart = chartRef.current;
+    if (!chart) return;
+    const dataset = chart.data.datasets[0];
+    if (!dataset) return;
+    const colors = SEGMENT_COLORS[severity];
+    dataset.data = [usedPercent, remainingPercent];
+    dataset.backgroundColor = [colors.used, colors.remaining];
+    chart.update("none");
   }, [usedPercent, remainingPercent, severity]);
 
   return (
