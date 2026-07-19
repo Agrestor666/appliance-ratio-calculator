@@ -125,6 +125,7 @@
 
 /* In-app technical report: hide chrome; print the report article only. */
 @media print {
+  .banner,
   .technical-report-actions {
     display: none !important;
   }
