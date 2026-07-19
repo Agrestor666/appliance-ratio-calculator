@@ -1,10 +1,10 @@
 ---
 change_id: astro-migrate-ux-redesign
 title: Migrate calculator to Astro and redesign UX
-status: impl_reviewed
+status: archived
 created: 2026-07-18
 updated: 2026-07-19
-archived_at: null
+archived_at: 2026-07-19T16:19:54Z
 ---
 
 ## Notes
