@@ -1,7 +1,7 @@
 ---
 change_id: full-schedule-flange-fitting
 title: Full schedule flange fitting
-status: implementing
+status: implemented
 created: 2026-07-19
 updated: 2026-07-20
 

@@ -336,12 +336,12 @@ No user-data migration. Existing sessions referencing only old schedules remain 
 
 #### Automated
 
-- [x] 4.1 `_verify_p4.cjs` (or equivalent) exits 0
-- [x] 4.2 `npm run lint` / parse checks pass for touched files
+- [x] 4.1 `_verify_p4.cjs` (or equivalent) exits 0 — 83f8020
+- [x] 4.2 `npm run lint` / parse checks pass for touched files — 83f8020
 
 #### Manual
 
-- [x] 4.3 Fitting path: new schedule → NPS → kg matches Accepted
-- [x] 4.4 WN path: calculated schedule → NPS → kg matches Accepted
-- [x] 4.5 Skipped schedule absent from dropdown
-- [x] 4.6 Slip-On / Blind still without Flange schedule control
+- [x] 4.3 Fitting path: new schedule → NPS → kg matches Accepted — 83f8020
+- [x] 4.4 WN path: calculated schedule → NPS → kg matches Accepted — 83f8020
+- [x] 4.5 Skipped schedule absent from dropdown — 83f8020
+- [x] 4.6 Slip-On / Blind still without Flange schedule control — 83f8020
