@@ -1,11 +1,11 @@
 ---
 change_id: full-schedule-flange-fitting
 title: Full schedule flange fitting
-status: impl_reviewed
+status: archived
 created: 2026-07-19
 updated: 2026-07-20
 
-archived_at: null
+archived_at: 2026-07-20T20:52:13Z
 ---
 
 ## Notes
