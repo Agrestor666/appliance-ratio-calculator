@@ -310,27 +310,27 @@ No user-data migration. Existing sessions referencing only old schedules remain 
 
 #### Automated
 
-- [x] 2.1 `## Sign-off` section non-empty with Accept/Skip outcome
-- [x] 2.2 No catalog file edits in this phase
+- [x] 2.1 `## Sign-off` section non-empty with Accept/Skip outcome — f9d5a46
+- [x] 2.2 No catalog file edits in this phase — f9d5a46
 
 #### Manual
 
-- [x] 2.3 Human reviewed Proposed vs Skipped (incl. calculated WN); Sign-off recorded
-- [x] 2.4 Ambiguous/Conflict cells resolved before Phase 3
+- [x] 2.3 Human reviewed Proposed vs Skipped (incl. calculated WN); Sign-off recorded — f9d5a46
+- [x] 2.4 Ambiguous/Conflict cells resolved before Phase 3 — f9d5a46
 
 ### Phase 3: Apply Dual Catalog
 
 #### Automated
 
-- [ ] 3.1 Both catalog JS files parse (`node --check` or equivalent)
-- [ ] 3.2 New schedule keys ⊆ 18 pipe keys
-- [ ] 3.3 Spot-check Accepted fitting + calculated WN `wt` present
-- [ ] 3.4 src↔legacy parity for fittings + WN schedule key sets
+- [x] 3.1 Both catalog JS files parse (`node --check` or equivalent)
+- [x] 3.2 New schedule keys ⊆ 18 pipe keys
+- [x] 3.3 Spot-check Accepted fitting + calculated WN `wt` present
+- [x] 3.4 src↔legacy parity for fittings + WN schedule key sets
 
 #### Manual
 
-- [ ] 3.5 Catalog headers cite this change’s candidates path + WN calc note
-- [ ] 3.6 Existing Sch 40/80/STD chart rows not wiped
+- [x] 3.5 Catalog headers cite this change’s candidates path + WN calc note
+- [x] 3.6 Existing Sch 40/80/STD chart rows not wiped
 
 ### Phase 4: Verify + Smoke
 
