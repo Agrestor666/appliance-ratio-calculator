@@ -1028,6 +1028,18 @@ lines.push("");
 lines.push("**Signer / date:** _(empty — Phase 2)_");
 lines.push("");
 
+const force = process.argv.includes("--force");
+if (fs.existsSync(OUT) && !force) {
+  const existing = fs.readFileSync(OUT, "utf8");
+  const signed =
+    /\*\*Decision:\*\*\s*Accept\b/m.test(existing) ||
+    /^- \[x\] \*\*Accept (all|subset)\*\*/m.test(existing);
+  if (signed) {
+    throw new Error(
+      `Refusing to overwrite signed-off ${path.basename(OUT)}; pass --force to regenerate`
+    );
+  }
+}
 fs.writeFileSync(OUT, lines.join("\n"), "utf8");
 console.log("Wrote", OUT);
 console.log({

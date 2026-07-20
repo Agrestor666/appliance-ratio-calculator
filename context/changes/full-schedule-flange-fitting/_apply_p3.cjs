@@ -142,8 +142,12 @@ function parseWnRows(block) {
 }
 
 function parseAccepted(md) {
-  if (!md.includes("**Decision:** Accept all") && !md.includes("- [x] **Accept all**")) {
-    throw new Error("Sign-off is not Accept all — refusing to apply");
+  const hasDecision = /\*\*Decision:\*\*\s*Accept all\b/m.test(md);
+  const hasCheckbox = /^- \[x\] \*\*Accept all\*\*/m.test(md);
+  if (!hasDecision || !hasCheckbox) {
+    throw new Error(
+      "Sign-off must have both checked Accept all and Decision: Accept all — refusing to apply"
+    );
   }
   const a = sectionBlock(md, "### A. Recommended", ["### B. Needs review", "## Skipped"]);
   const b = sectionBlock(md, "### B. Needs review", [
@@ -240,6 +244,12 @@ function assertWnChartUntouched(wn, snap) {
         }
       }
     }
+  }
+}
+
+function assertNestParity(srcNest, legNest, label) {
+  if (JSON.stringify(srcNest) !== JSON.stringify(legNest)) {
+    throw new Error(`Post-write ${label} src↔legacy parity failed`);
   }
 }
 
@@ -476,8 +486,24 @@ function main() {
   applyToFile(SRC_CATALOG, fittingsBlock, wnBlock, flangesHeader);
   applyToFile(LEGACY_CATALOG, fittingsBlock, wnBlock, flangesHeader);
 
+  const srcWritten = loadCatalogObject(SRC_CATALOG);
+  const legWritten = loadCatalogObject(LEGACY_CATALOG);
+  assertNestParity(srcWritten.fittings, legWritten.fittings, "fittings");
+  assertNestParity(
+    srcWritten.flanges["Weld Neck"],
+    legWritten.flanges["Weld Neck"],
+    "Weld Neck"
+  );
+  assertNestParity(
+    srcWritten.flanges["Slip-On"],
+    legWritten.flanges["Slip-On"],
+    "Slip-On"
+  );
+  assertNestParity(srcWritten.flanges.Blind, legWritten.flanges.Blind, "Blind");
+
   console.log(`Wrote ${path.relative(ROOT, SRC_CATALOG)}`);
   console.log(`Wrote ${path.relative(ROOT, LEGACY_CATALOG)}`);
+  console.log("OK post-write src↔legacy parity (fittings + WN + SO + Blind)");
 }
 
 main();
