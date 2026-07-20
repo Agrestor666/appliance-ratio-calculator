@@ -295,28 +295,28 @@ No user-data migration. Existing sessions referencing only old schedules remain 
 
 #### Automated
 
-- [x] 1.1 `schedule-weight-candidates.md` exists with `## WN calc contract`
-- [x] 1.2 Proposed schedule strings are only from the 18 pipe keys
-- [x] 1.3 No edits to `src/lib/data/piping-catalog.js` or `legacy/data/piping_catalog.js` in this phase
-- [x] 1.4 At least one Proposed WN row has source note containing `calculated`
+- [x] 1.1 `schedule-weight-candidates.md` exists with `## WN calc contract` — 8d0baca
+- [x] 1.2 Proposed schedule strings are only from the 18 pipe keys — 8d0baca
+- [x] 1.3 No edits to `src/lib/data/piping-catalog.js` or `legacy/data/piping_catalog.js` in this phase — 8d0baca
+- [x] 1.4 At least one Proposed WN row has source note containing `calculated` — 8d0baca
 
 #### Manual
 
-- [x] 1.5 Gap inventory matches current catalog reality (spot-check)
-- [x] 1.6 Hand-check one WN Δm vs Proposed `wt` within rounding
-- [x] 1.7 Source / calc citations acceptable for cargo planning use
+- [x] 1.5 Gap inventory matches current catalog reality (spot-check) — 8d0baca
+- [x] 1.6 Hand-check one WN Δm vs Proposed `wt` within rounding — 8d0baca
+- [x] 1.7 Source / calc citations acceptable for cargo planning use — 8d0baca
 
 ### Phase 2: Sign-off Gate
 
 #### Automated
 
-- [ ] 2.1 `## Sign-off` section non-empty with Accept/Skip outcome
-- [ ] 2.2 No catalog file edits in this phase
+- [x] 2.1 `## Sign-off` section non-empty with Accept/Skip outcome
+- [x] 2.2 No catalog file edits in this phase
 
 #### Manual
 
-- [ ] 2.3 Human reviewed Proposed vs Skipped (incl. calculated WN); Sign-off recorded
-- [ ] 2.4 Ambiguous/Conflict cells resolved before Phase 3
+- [x] 2.3 Human reviewed Proposed vs Skipped (incl. calculated WN); Sign-off recorded
+- [x] 2.4 Ambiguous/Conflict cells resolved before Phase 3
 
 ### Phase 3: Apply Dual Catalog
 

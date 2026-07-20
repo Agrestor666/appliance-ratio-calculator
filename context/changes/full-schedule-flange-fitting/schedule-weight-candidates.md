@@ -2230,14 +2230,14 @@ Carry-forward from S-04 / S-05 — **no new invent** for fittings beyond the doc
 
 Record decision before Phase 3 edits either catalog file:
 
-- [ ] **Accept all** — load A + B + C as proposed
+- [x] **Accept all** — load A + B + C as proposed
 - [ ] **Accept subset** — describe below (e.g. “A + B only”, “C for Class 150–600 only”, “drop XXS reducers”)
 - [ ] **Reject** — leave catalog schedule coverage as-is
 
-**Decision:** _(empty — Phase 2)_
+**Decision:** Accept all
 
-**Accepted set:** _(empty — Phase 2)_
+**Accepted set:** Batches A (fitting chart Sch 160/XXS reducers, 118 rows) + B (fitting Sch 40S/Sch 80S aliases, 108 rows) + C (WN calculated ρ=7850 L=wn thk, 1280 rows), as listed in ## Proposed rows. Skipped / chart-outside-matrix / WN per-NPS Skip cells remain omitted (no invent).
 
-**Notes / alternate sources:** _(empty — Phase 2)_
+**Notes / alternate sources:** Liability accepted for cargo planning use of both chart fitting masses and calculated WN masses. No conflict/ambiguous cells held open — Conflict / mass policy as written. Class 400 and SO/Blind schedule nest remain out of scope.
 
-**Signer / date:** _(empty — Phase 2)_
+**Signer / date:** Product owner (chat Sign-off) / 2026-07-20
