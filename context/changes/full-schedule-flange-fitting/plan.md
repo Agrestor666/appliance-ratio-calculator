@@ -322,26 +322,26 @@ No user-data migration. Existing sessions referencing only old schedules remain 
 
 #### Automated
 
-- [x] 3.1 Both catalog JS files parse (`node --check` or equivalent)
-- [x] 3.2 New schedule keys ⊆ 18 pipe keys
-- [x] 3.3 Spot-check Accepted fitting + calculated WN `wt` present
-- [x] 3.4 src↔legacy parity for fittings + WN schedule key sets
+- [x] 3.1 Both catalog JS files parse (`node --check` or equivalent) — 68d06ef
+- [x] 3.2 New schedule keys ⊆ 18 pipe keys — 68d06ef
+- [x] 3.3 Spot-check Accepted fitting + calculated WN `wt` present — 68d06ef
+- [x] 3.4 src↔legacy parity for fittings + WN schedule key sets — 68d06ef
 
 #### Manual
 
-- [x] 3.5 Catalog headers cite this change’s candidates path + WN calc note
-- [x] 3.6 Existing Sch 40/80/STD chart rows not wiped
+- [x] 3.5 Catalog headers cite this change’s candidates path + WN calc note — 68d06ef
+- [x] 3.6 Existing Sch 40/80/STD chart rows not wiped — 68d06ef
 
 ### Phase 4: Verify + Smoke
 
 #### Automated
 
-- [ ] 4.1 `_verify_p4.cjs` (or equivalent) exits 0
-- [ ] 4.2 `npm run lint` / parse checks pass for touched files
+- [x] 4.1 `_verify_p4.cjs` (or equivalent) exits 0
+- [x] 4.2 `npm run lint` / parse checks pass for touched files
 
 #### Manual
 
-- [ ] 4.3 Fitting path: new schedule → NPS → kg matches Accepted
-- [ ] 4.4 WN path: calculated schedule → NPS → kg matches Accepted
-- [ ] 4.5 Skipped schedule absent from dropdown
-- [ ] 4.6 Slip-On / Blind still without Flange schedule control
+- [x] 4.3 Fitting path: new schedule → NPS → kg matches Accepted
+- [x] 4.4 WN path: calculated schedule → NPS → kg matches Accepted
+- [x] 4.5 Skipped schedule absent from dropdown
+- [x] 4.6 Slip-On / Blind still without Flange schedule control
