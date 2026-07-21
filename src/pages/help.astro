@@ -1,0 +1,230 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Help · Appliance Ratio Calculator">
+  <div class="bg-background text-foreground min-h-screen">
+    <header class="border-border bg-card/80 border-b backdrop-blur-sm">
+      <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+        <div>
+          <p class="text-foreground text-base font-semibold tracking-tight sm:text-lg">Appliance Ratio Calculator</p>
+          <p class="text-muted-foreground text-xs sm:text-sm">Help · flow and metric definitions</p>
+        </div>
+        <a
+          href="/"
+          class="border-border bg-background text-foreground hover:bg-muted inline-flex items-center rounded-md border px-3 py-1.5 text-sm font-medium transition-colors"
+        >
+          Back to calculator
+        </a>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-3xl space-y-10 px-4 py-8 sm:px-6 sm:py-10">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">Help</h1>
+        <p class="text-muted-foreground mt-2 text-sm sm:text-base">
+          How the Appliance Ratio calculator works, what each indicator means, and the formulas behind Live results.
+        </p>
+      </div>
+
+      <section aria-labelledby="flow-heading" class="space-y-4">
+        <h2 id="flow-heading" class="text-xl font-semibold tracking-tight">How the calculator flows</h2>
+        <ol class="text-muted-foreground list-decimal space-y-3 pl-5 text-sm leading-relaxed sm:text-base">
+          <li>
+            <span class="text-foreground font-medium">Cargo weight</span> — enter a cargo total in Te (manually or by sending
+            a total from the cargo sheet). That Te value is the cargo input to the ratio.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Rigging weight</span> — enter a rigging total in Te (manually or by
+            sending a total from the rigging sheet). That Te value is the rigging input to the ratio.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Contingency &amp; DAF</span> — set the contingency factor and dynamic
+            amplification factor (DAF). Both multiply the combined cargo and rigging weights.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Total weight</span> — the calculator computes total weight from cargo,
+            rigging, contingency, and DAF.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">WLL</span> — enter the appliance working load limit (WLL) at radius
+            in Te. Utilization divides total weight by this value.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Utilization / Appliance Ratio</span> — Live results show utilization
+            (also labeled Appliance ratio and Used). Remaining capacity is one minus utilization.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Thresholds &amp; alerts</span> — optional warn and critical utilization
+            thresholds drive visual alerts when enabled.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Capacity chart</span> — Used vs Remaining from the same utilization;
+            over-capacity is called out when utilization exceeds 100%.
+          </li>
+          <li>
+            <span class="text-foreground font-medium">Technical report</span> — generate a printable summary of inputs, outputs,
+            formulas, and the chart. Notification number is report metadata only; it is not used in the ratio math.
+          </li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="definitions-heading" class="space-y-4">
+        <h2 id="definitions-heading" class="text-xl font-semibold tracking-tight">Definitions</h2>
+        <p class="text-muted-foreground text-sm sm:text-base">
+          Glossary of every ratio-path input and output on the calculator. Cargo and rigging sheet catalogs, fill rules,
+          and line-item math are not covered here — only the Te totals that feed the formula.
+        </p>
+
+        <h3 class="text-foreground text-base font-semibold">Inputs</h3>
+        <dl class="divide-border border-border divide-y rounded-lg border text-sm sm:text-base">
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Cargo weight (Te)</dt>
+            <dd class="text-muted-foreground mt-1">
+              Cargo total in tonnes. Entered directly or sent as a sheet total. Used only as the cargo Te input to total
+              weight.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Rigging weight (Te)</dt>
+            <dd class="text-muted-foreground mt-1">
+              Rigging total in tonnes. Entered directly or sent as a sheet total. Used only as the rigging Te input to
+              total weight.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Contingency</dt>
+            <dd class="text-muted-foreground mt-1">
+              Weight contingency factor applied to the sum of cargo and rigging (for example 1.05). Must be greater than
+              zero.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">DAF</dt>
+            <dd class="text-muted-foreground mt-1">
+              Dynamic amplification factor applied with contingency when computing total weight. Must be greater than
+              zero.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">WLL</dt>
+            <dd class="text-muted-foreground mt-1">
+              Appliance working load limit at radius, in Te. Utilization is total weight divided by WLL. Must be greater
+              than zero.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Utilization thresholds — Warn</dt>
+            <dd class="text-muted-foreground mt-1">
+              Ratio at or above which a warning alert appears (default 0.85). Must be less than the critical threshold.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Utilization thresholds — Critical</dt>
+            <dd class="text-muted-foreground mt-1">
+              Ratio at or above which a critical alert appears (default 0.90). Must be greater than the warn threshold.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Utilization thresholds — Enabled</dt>
+            <dd class="text-muted-foreground mt-1">
+              When checked, warn and critical thresholds drive visual alerts. When unchecked, threshold alerts are off.
+            </dd>
+          </div>
+        </dl>
+
+        <h3 class="text-foreground text-base font-semibold">Outputs and displays</h3>
+        <dl class="divide-border border-border divide-y rounded-lg border text-sm sm:text-base">
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Total weight</dt>
+            <dd class="text-muted-foreground mt-1">
+              Factored lift weight in Te: (cargo weight + rigging weight) × contingency × DAF.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Utilization</dt>
+            <dd class="text-muted-foreground mt-1">
+              Total weight ÷ WLL. The primary Live results figure and the driver for thresholds, alerts, and the
+              capacity chart.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Appliance ratio</dt>
+            <dd class="text-muted-foreground mt-1">
+              Same value as Utilization. Shown as a separate Live results metric for clarity of naming.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Used</dt>
+            <dd class="text-muted-foreground mt-1">
+              Same value as Utilization. Also the “Used” share on the capacity chart (as a percentage of capacity).
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Remaining</dt>
+            <dd class="text-muted-foreground mt-1">
+              1 − utilization. When utilization is above 100%, the chart clamps Remaining display to 0% while Used shows
+              the actual percent (which may exceed 100%).
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Visual alerts</dt>
+            <dd class="text-muted-foreground mt-1">
+              Messages based on utilization vs warn/critical thresholds (when enabled), or an input error when the
+              calculation cannot run.
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Capacity chart</dt>
+            <dd class="text-muted-foreground mt-1">
+              Used vs Remaining from utilization. Over-capacity callout appears when utilization exceeds 100%; Remaining
+              is then shown as 0% on the chart.
+            </dd>
+          </div>
+        </dl>
+
+        <p class="border-border bg-muted/40 text-muted-foreground rounded-lg border px-4 py-3 text-sm">
+          <span class="text-foreground font-medium">Same ratio, three labels.</span>
+          In Live results, <span class="text-foreground font-medium">Utilization</span>,
+          <span class="text-foreground font-medium">Appliance ratio</span>, and
+          <span class="text-foreground font-medium">Used</span> are the same computed ratio (total weight ÷ WLL).
+        </p>
+      </section>
+
+      <section aria-labelledby="formulas-heading" class="space-y-4">
+        <h2 id="formulas-heading" class="text-xl font-semibold tracking-tight">Formulas</h2>
+        <p class="text-muted-foreground text-sm sm:text-base">
+          Algebra matches Live results and the technical report Calculations section.
+        </p>
+        <dl class="divide-border border-border divide-y rounded-lg border text-sm sm:text-base">
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Total weight</dt>
+            <dd class="mt-2 font-mono text-[13px] leading-relaxed sm:text-sm">
+              Total weight = (cargo weight + rigging weight) × contingency × DAF
+            </dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Utilization</dt>
+            <dd class="mt-2 font-mono text-[13px] leading-relaxed sm:text-sm">Utilization = total weight ÷ WLL</dd>
+          </div>
+          <div class="px-4 py-3">
+            <dt class="text-foreground font-medium">Remaining</dt>
+            <dd class="mt-2 space-y-2">
+              <p class="font-mono text-[13px] leading-relaxed sm:text-sm">Remaining = 1 − utilization</p>
+              <p class="text-muted-foreground text-sm">
+                On the capacity chart, when utilization is greater than 100%, Remaining is shown as 0% and Used shows
+                the actual percent (which may exceed 100%).
+              </p>
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <p class="border-border border-t pt-6">
+        <a href="/" class="text-foreground text-sm font-medium underline-offset-4 hover:underline">
+          ← Back to calculator
+        </a>
+      </p>
+    </main>
+  </div>
+</Layout>
