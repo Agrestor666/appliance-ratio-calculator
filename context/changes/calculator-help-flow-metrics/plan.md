@@ -203,13 +203,12 @@ N/A — additive route and header link only.
 
 #### Automated
 
-- [x] 2.1 `npm run lint` passes
-- [x] 2.2 `npm run build` passes
-
+- [x] 2.1 `npm run lint` passes — a6e39bd
+- [x] 2.2 `npm run build` passes — a6e39bd
 
 #### Manual
 
-- [x] 2.3 From `/`, Help in the header opens `/help`
-- [x] 2.4 From `/help`, Back to calculator returns to `/` with calculator usable
-- [x] 2.5 Help remains reachable after a hard refresh on `/help`
-- [x] 2.6 No regression to Live results / inputs / report on `/`
+- [x] 2.3 From `/`, Help in the header opens `/help` — a6e39bd
+- [x] 2.4 From `/help`, Back to calculator returns to `/` with calculator usable — a6e39bd
+- [x] 2.5 Help remains reachable after a hard refresh on `/help` — a6e39bd
+- [x] 2.6 No regression to Live results / inputs / report on `/` — a6e39bd

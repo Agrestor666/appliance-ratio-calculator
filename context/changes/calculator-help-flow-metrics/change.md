@@ -1,7 +1,7 @@
 ---
 change_id: calculator-help-flow-metrics
 title: Calculator help flow metrics
-status: implementing
+status: implemented
 created: 2026-07-21
 updated: 2026-07-21
 archived_at: null
