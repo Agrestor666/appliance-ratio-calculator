@@ -102,16 +102,10 @@ export function evaluateAlerts(
   return { severity: "none", items: [] };
 }
 
-export type ThresholdParseResult =
-  | { ok: true; thresholds: ThresholdState }
-  | { ok: false; error: string };
+export type ThresholdParseResult = { ok: true; thresholds: ThresholdState } | { ok: false; error: string };
 
 /** Form-string thresholds (UI) → numeric state for alert evaluation. */
-export function parseThresholdForm(fields: {
-  warn: string;
-  crit: string;
-  enabled: boolean;
-}): ThresholdParseResult {
+export function parseThresholdForm(fields: { warn: string; crit: string; enabled: boolean }): ThresholdParseResult {
   const warn = parseNumber(fields.warn);
   const crit = parseNumber(fields.crit);
   if (warn === null || crit === null) {

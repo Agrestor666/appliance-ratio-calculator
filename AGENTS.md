@@ -34,6 +34,14 @@ Appliance Ratio Calculator — browser tool for lifting planners (cargo weight, 
 - API handlers: uppercase `GET`/`POST`; validate input with Zod. Shared types in `src/types.ts`.
 - Add shadcn pieces with `npx shadcn@latest add <name>` into `src/components/ui/`.
 
+## Lint / CI (do not regress)
+
+CI runs `npm run lint` before build; a red lint job blocks the pipeline. Before finishing React/TS edits that touch `src/`, run `npm run lint` (or `npm run lint:fix` for Prettier/auto-fixables) and leave it green.
+
+- **React Compiler:** never disable React ESLint rules in components (`eslint-disable` / `eslint-disable-next-line` for `react-hooks/*`, `react/*`, etc.). `react-compiler/react-compiler` fails the lint when any React rule is suppressed. Prefer correct deps (or recreate the effect when inputs change) over mount-only `[]` + disable.
+- **No dead guards:** do not add `if (!x)` / optional chains that TypeScript already proves always truthy/falsy — `@typescript-eslint/no-unnecessary-condition` is an error.
+- **Prettier via ESLint:** keep types and params formatted as Prettier expects (often single-line object/union types). Prefer `npm run lint:fix` or `npm run format` over hand-fighting wrapping; `prettier/prettier` failures fail CI the same as logic lint.
+
 ## Commits and PRs
 
-No git history in this working tree yet — establish Conventional Commits when initializing the repo. PRs should stay green on the CI workflow above before merge.
+Use Conventional Commits. PRs should stay green on the CI workflow above before merge.
