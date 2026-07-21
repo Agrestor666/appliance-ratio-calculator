@@ -184,7 +184,12 @@ export function CalculatorShell() {
               <p className="text-muted-foreground text-xs sm:text-sm">Lifting planner · cargo, rigging, utilization</p>
             </div>
           </div>
-          <Badge variant="outline">Workspace</Badge>
+          <div className="flex shrink-0 items-center gap-2">
+            <Button variant="ghost" size="sm" asChild>
+              <a href="/help">Help</a>
+            </Button>
+            <Badge variant="outline">Workspace</Badge>
+          </div>
         </div>
       </header>
 

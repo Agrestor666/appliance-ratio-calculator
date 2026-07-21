@@ -188,27 +188,28 @@ N/A — additive route and header link only.
 
 #### Automated
 
-- [x] 1.1 `src/pages/help.astro` exists and is reachable as `/help` after `npm run dev` / build
-- [x] 1.2 `npm run lint` passes
-- [x] 1.3 `npm run build` passes
+- [x] 1.1 `src/pages/help.astro` exists and is reachable as `/help` after `npm run dev` / build — 6bbbfa0
+- [x] 1.2 `npm run lint` passes — 6bbbfa0
+- [x] 1.3 `npm run build` passes — 6bbbfa0
 
 #### Manual
 
-- [x] 1.4 `/help` shows Flow, Definitions, and Formulas sections in English
-- [x] 1.5 Glossary includes all ratio inputs/outputs listed in the Contract; cargo/rigging internals absent
-- [x] 1.6 Formulas match the report algebra (spot-check against Live results / Generate technical report)
-- [x] 1.7 A link back to `/` works
+- [x] 1.4 `/help` shows Flow, Definitions, and Formulas sections in English — 6bbbfa0
+- [x] 1.5 Glossary includes all ratio inputs/outputs listed in the Contract; cargo/rigging internals absent — 6bbbfa0
+- [x] 1.6 Formulas match the report algebra (spot-check against Live results / Generate technical report) — 6bbbfa0
+- [x] 1.7 A link back to `/` works — 6bbbfa0
 
 ### Phase 2: Calculator entry point
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` passes
-- [ ] 2.2 `npm run build` passes
+- [x] 2.1 `npm run lint` passes
+- [x] 2.2 `npm run build` passes
+
 
 #### Manual
 
-- [ ] 2.3 From `/`, Help in the header opens `/help`
-- [ ] 2.4 From `/help`, Back to calculator returns to `/` with calculator usable
-- [ ] 2.5 Help remains reachable after a hard refresh on `/help`
-- [ ] 2.6 No regression to Live results / inputs / report on `/`
+- [x] 2.3 From `/`, Help in the header opens `/help`
+- [x] 2.4 From `/help`, Back to calculator returns to `/` with calculator usable
+- [x] 2.5 Help remains reachable after a hard refresh on `/help`
+- [x] 2.6 No regression to Live results / inputs / report on `/`
