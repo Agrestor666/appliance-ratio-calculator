@@ -23,9 +23,11 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
+  # Auto-deploy runs only when Cloudflare secrets are present (see job env).
+  # Without them the job succeeds as a no-op so lint/build stay the CI gate.
   deploy:
     needs: ci
-    if: github.event_name == "push" && github.ref == "refs/heads/master"
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -43,22 +45,31 @@ jobs:
           else
             echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
-      - if: steps.cf.outputs.configured == "true"
+
+      - name: Checkout
+        if: steps.cf.outputs.configured == 'true'
         uses: actions/checkout@v4
-      - if: steps.cf.outputs.configured == "true"
+
+      - name: Setup Node
+        if: steps.cf.outputs.configured == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - if: steps.cf.outputs.configured == "true"
+
+      - name: Install
+        if: steps.cf.outputs.configured == 'true'
         run: npm ci
-      - if: steps.cf.outputs.configured == "true"
+
+      - name: Build
+        if: steps.cf.outputs.configured == 'true'
         run: npm run build
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
       - name: Deploy to Cloudflare Pages
-        if: steps.cf.outputs.configured == "true"
+        if: steps.cf.outputs.configured == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
