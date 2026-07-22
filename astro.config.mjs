@@ -10,13 +10,13 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-/** Drop /api/* endpoints from the static build (no server runtime on Pages). */
+/** @returns {import("astro").AstroIntegration} */
 function omitApiRoutes() {
   return {
     name: "omit-api-routes-for-pages",
     hooks: {
       "astro:build:setup": ({ pages, logger }) => {
-        for (const key of [...pages.keys()]) {
+        for (const key of Array.from(pages.keys())) {
           const normalized = key.replaceAll("\\", "/");
           if (normalized.includes("/pages/api/") || normalized.includes("/api/")) {
             pages.delete(key);
