@@ -23,6 +23,8 @@ Appliance Ratio Calculator — browser tool for lifting planners (cargo weight, 
 
 - `npm run dev` — local Cloudflare workerd dev server.
 - `npm run build` / `npm run preview` — production build and preview.
+- `npm run build:pages` / `npm run deploy:pages` — static Cloudflare Pages deploy (`*.pages.dev`). Astro 6 SSR cannot target Pages; this path prerenders the calculator UI and omits auth API routes from that build.
+- `npm run deploy` — SSR build + Workers deploy (`*.workers.dev`).
 - `npm run lint` / `npm run lint:fix` — ESLint (type-checked); `npm run format` — Prettier.
 - Pre-commit: husky + lint-staged (`@package.json` `lint-staged`).
 - CI: `@.github/workflows/ci.yml` — `npm ci`, `astro sync`, lint, build (needs `SUPABASE_URL` / `SUPABASE_KEY` secrets). No repo test suite yet; do not invent a runner.

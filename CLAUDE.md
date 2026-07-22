@@ -5,7 +5,10 @@ This file provides guidance to AI Agent when working with code in this repositor
 ## Commands
 
 - `npm run dev` — start dev server (Cloudflare workerd runtime)
-- `npm run build` — production build (SSR via `@astrojs/cloudflare`)
+- `npm run build` — production build (SSR via `@astrojs/cloudflare` → Workers)
+- `npm run build:pages` — static production build for Cloudflare Pages (`*.pages.dev`)
+- `npm run deploy` — build + `wrangler deploy` (Workers / `*.workers.dev`)
+- `npm run deploy:pages` — static build + `wrangler pages deploy` (`*.pages.dev`; no paid domain)
 - `npm run preview` — preview production build
 - `npm run lint` — ESLint with type-checked rules
 - `npm run lint:fix` — auto-fix lint issues
@@ -47,7 +50,7 @@ Full server-side rendering (`output: "server"` in astro.config.mjs). All pages a
 - Env vars: `SUPABASE_URL`, `SUPABASE_KEY` (copy `.env.example` to `.env` for Node, or `.dev.vars` for Cloudflare local dev)
 - Local Supabase: `npx supabase start` (requires Docker)
 - Cloudflare local dev: secrets go in `.dev.vars` (gitignored)
-- Deploy: `npx wrangler deploy` (requires Cloudflare account + `wrangler` auth)
+- Deploy: `npm run deploy` (Workers) or `npm run deploy:pages` (static Pages → `*.pages.dev`; Astro 6 SSR is not supported on Pages). Requires Cloudflare account + `wrangler` auth.
 
 ## CI
 

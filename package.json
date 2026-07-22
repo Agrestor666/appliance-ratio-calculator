@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:pages": "node scripts/build-pages.mjs",
+    "deploy": "astro build && wrangler deploy",
+    "deploy:pages": "node scripts/deploy-pages.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",
