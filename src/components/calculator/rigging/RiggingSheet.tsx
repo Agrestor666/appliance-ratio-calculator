@@ -151,7 +151,16 @@ export function RiggingSheet({
                               <TableRow
                                 key={key}
                                 data-state={sel != null ? "selected" : undefined}
-                                onDoubleClick={() => {
+                                onDoubleClick={(e) => {
+                                  // Qty/Len steppers: rapid + clicks synthesize dblclick and
+                                  // would otherwise uncheck the row via this handler.
+                                  if (
+                                    (e.target as HTMLElement).closest(
+                                      'button, input, textarea, select, a, label, [role="checkbox"]',
+                                    )
+                                  ) {
+                                    return;
+                                  }
                                   togglePick(key, sel == null);
                                 }}
                               >
