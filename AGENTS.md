@@ -1,39 +1,39 @@
 # Repository Guidelines
 
-Appliance Ratio Calculator — browser tool for lifting planners (cargo weight, rigging, Appliance Ratio). Stack: Astro 6 SSR + React 19 islands + TypeScript + Tailwind 4 + Cloudflare (`@astrojs/cloudflare`), bootstrapped from the 10x Astro starter. Deeper agent rules: `@CLAUDE.md`. Product intent: `@context/foundation/prd.md`.
+Appliance Ratio Calculator — browser tool for lifting planners (cargo weight, rigging, Appliance Ratio). Stack: Astro 6 static + React 19 islands + TypeScript + Tailwind 4 + Cloudflare Pages (`*.pages.dev`), bootstrapped from the 10x Astro starter. Deeper agent rules: `@CLAUDE.md`. Product intent: `@context/foundation/prd.md`.
 
 ## Hard rules
 
 - Install only via the project npm mirror in `@.npmrc` (`registry.npmmirror.com`). Do not call `registry.npmjs.org` for installs; `npm audit` is unavailable on this mirror.
-- Never overwrite or delete `@context/` (plans, PRD, tech-stack hand-off). Never commit secrets; use `@.env.example` → `.env` / `.dev.vars` for `SUPABASE_*` (server-only via `astro:env`).
+- Never overwrite or delete `@context/` (plans, PRD, tech-stack hand-off). Never commit secrets; use `@.env.example` → `.env` for optional `SUPABASE_*` (server-only via `astro:env`).
 - Product code lives under `src/` only. The pre-Astro static calculator is archived at `@context/archive/2026-07-21-legacy-calculator/` — do not revive dual hosts or sync catalogs back into a live `legacy/` tree.
-- App is SSR (`output: "server"` in `@astro.config.mjs`). API routes under `src/pages/api/` must export `const prerender = false`.
+- App is **static** (`output: "static"` in `@astro.config.mjs`) and deploys **only** to Cloudflare Pages. Do not reintroduce `@astrojs/cloudflare` Workers SSR or `*.workers.dev` as the primary host — corporate networks block it. Auth API routes under `src/pages/api/` are starter leftovers and are omitted from the Pages build.
 - Node **22.14.0** per `@.nvmrc`. Path alias `@/*` → `./src/*` (`@tsconfig.json`).
 
 ## Project structure
 
-- `src/pages/` — routes; `src/pages/api/` — HTTP handlers; `src/pages/auth/`, `src/pages/dashboard.astro` — starter auth examples.
+- `src/pages/` — routes; `src/pages/api/` — starter auth handlers (not shipped on Pages); `src/pages/auth/`, `src/pages/dashboard.astro` — starter auth examples.
 - `src/components/` — Astro + React; `src/components/ui/` — shadcn (new-york); hooks in `src/components/hooks/`.
 - `src/lib/` — Supabase client, `cn()`, helpers, calculator logic + catalogs (`src/lib/data/`); `src/middleware.ts` — session + `PROTECTED_ROUTES`.
 - `supabase/migrations/` — SQL migrations (`YYYYMMDDHHmmss_short_description.sql`); enable RLS on new tables.
-- `public/`, `wrangler.jsonc` — static assets and Cloudflare config.
+- `public/`, `wrangler.jsonc` — static assets and Cloudflare Pages config (`pages_build_output_dir`).
+- `scripts/deploy.mjs` — build + `wrangler pages deploy`.
 - `context/` — shaping/PRD/stack notes (not runtime); archived changes and the retired static calculator under `context/archive/`.
 
 ## Build, test, and development
 
-- `npm run dev` — local Cloudflare workerd dev server.
-- `npm run build` / `npm run preview` — production build and preview.
-- `npm run build:pages` / `npm run deploy:pages` — static Cloudflare Pages deploy (`*.pages.dev`). Astro 6 SSR cannot target Pages; this path prerenders the calculator UI and omits auth API routes from that build.
-- `npm run deploy` — SSR build + Workers deploy (`*.workers.dev`).
+- `npm run dev` — local Astro dev server.
+- `npm run build` / `npm run preview` — static production build and preview.
+- `npm run deploy` — static build + Cloudflare Pages deploy (`*.pages.dev`).
 - `npm run lint` / `npm run lint:fix` — ESLint (type-checked); `npm run format` — Prettier.
 - Pre-commit: husky + lint-staged (`@package.json` `lint-staged`).
-- CI: `@.github/workflows/ci.yml` — `npm ci`, `astro sync`, lint, build (needs `SUPABASE_URL` / `SUPABASE_KEY` secrets). No repo test suite yet; do not invent a runner.
+- CI: `@.github/workflows/ci.yml` — lint + build on push/PR to master; on push to master also deploys to Cloudflare Pages. Needs repo secrets: `SUPABASE_URL`, `SUPABASE_KEY`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`. No repo test suite yet; do not invent a runner.
 
 ## Coding style
 
 - Astro for layout/static; React only for interactivity. No Next.js `"use client"`.
 - Merge Tailwind classes with `cn()` from `@/lib/utils` — do not concatenate class strings.
-- API handlers: uppercase `GET`/`POST`; validate input with Zod. Shared types in `src/types.ts`.
+- API handlers (if kept for local experiments): uppercase `GET`/`POST`; validate input with Zod. Shared types in `src/types.ts`.
 - Add shadcn pieces with `npx shadcn@latest add <name>` into `src/components/ui/`.
 
 ## Lint / CI (do not regress)

@@ -4,6 +4,5 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Appliance Ratio Calculator">
-  {/* client:only avoids Cloudflare workerd SSR React hook desync in Astro 6.dev */}
-  <CalculatorApp client:only="react" />
+  <CalculatorApp client:load />
 </Layout>

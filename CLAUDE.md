@@ -4,11 +4,9 @@ This file provides guidance to AI Agent when working with code in this repositor
 
 ## Commands
 
-- `npm run dev` — start dev server (Cloudflare workerd runtime)
-- `npm run build` — production build (SSR via `@astrojs/cloudflare` → Workers)
-- `npm run build:pages` — static production build for Cloudflare Pages (`*.pages.dev`)
-- `npm run deploy` — build + `wrangler deploy` (Workers / `*.workers.dev`)
-- `npm run deploy:pages` — static build + `wrangler pages deploy` (`*.pages.dev`; no paid domain)
+- `npm run dev` — start Astro dev server
+- `npm run build` — static production build (Cloudflare Pages)
+- `npm run deploy` — build + `wrangler pages deploy` (`*.pages.dev`)
 - `npm run preview` — preview production build
 - `npm run lint` — ESLint with type-checked rules
 - `npm run lint:fix` — auto-fix lint issues
@@ -18,17 +16,17 @@ Pre-commit hooks: husky + lint-staged runs `eslint --fix` on `*.{ts,tsx,astro}` 
 
 ## Architecture
 
-**Astro 6 SSR app** with React 19 islands, Tailwind 4, Supabase auth, and shadcn/ui components. Deployed to Cloudflare Workers.
+**Astro 6 static app** with React 19 islands, Tailwind 4, optional Supabase auth scaffold, and shadcn/ui components. Deployed to **Cloudflare Pages only** (`appliance-ratio-calculator-pages.pages.dev`).
 
 ### Rendering mode
 
-Full server-side rendering (`output: "server"` in astro.config.mjs). All pages are server-rendered by default. API routes must export `const prerender = false`.
+Static site (`output: "static"` in astro.config.mjs). Pages are prerendered at build time; the calculator is a React island (`client:load`). Auth API routes under `src/pages/api/` are omitted from the Pages build (no server runtime).
 
 ### Auth flow
 
 - `src/lib/supabase.ts` — creates a Supabase SSR client using `@supabase/ssr` with cookie-based sessions. Uses `astro:env/server` for `SUPABASE_URL` and `SUPABASE_KEY` (server-only secrets declared in astro.config.mjs `env.schema`).
-- `src/middleware.ts` — runs on every request, resolves the current user, attaches to `context.locals.user`. Redirects unauthenticated users away from routes listed in `PROTECTED_ROUTES`.
-- API endpoints: `src/pages/api/auth/{signin,signup,signout}.ts`
+- `src/middleware.ts` — runs at build/prerender time for static pages; resolves user when Supabase is configured. Redirects unauthenticated users away from routes listed in `PROTECTED_ROUTES`.
+- API endpoints: `src/pages/api/auth/{signin,signup,signout}.ts` (starter; not deployed on Pages)
 - Auth pages: `src/pages/auth/{signin,signup,confirm-email}.astro`
 - Protected page example: `src/pages/dashboard.astro`
 
@@ -38,7 +36,7 @@ Full server-side rendering (`output: "server"` in astro.config.mjs). All pages a
 - **Astro components** for static content/layout; **React components** only when interactivity is needed.
 - **Tailwind class merging**: use the `cn()` helper from `@/lib/utils` (clsx + tailwind-merge) for conditional/merged class names. Do not concatenate class strings manually.
 - **shadcn/ui**: components live in `src/components/ui/`, "new-york" style variant. Install new ones with `npx shadcn@latest add [name]`.
-- **API routes**: use uppercase `GET`, `POST` exports; validate input with zod.
+- **API routes**: use uppercase `GET`, `POST` exports; validate input with zod. Not part of the Pages deploy.
 - **Supabase migrations**: `supabase/migrations/` using naming format `YYYYMMDDHHmmss_short_description.sql`. Always enable RLS on new tables with granular per-operation, per-role policies.
 - **React**: no Next.js directives ("use client" etc.). Extract hooks to `src/components/hooks/`.
 - **Services/helpers** go in `src/lib/` (or `src/lib/services/` for extracted business logic).
@@ -47,11 +45,10 @@ Full server-side rendering (`output: "server"` in astro.config.mjs). All pages a
 ### Environment
 
 - Node.js v22.14.0 (see `.nvmrc`)
-- Env vars: `SUPABASE_URL`, `SUPABASE_KEY` (copy `.env.example` to `.env` for Node, or `.dev.vars` for Cloudflare local dev)
+- Env vars: `SUPABASE_URL`, `SUPABASE_KEY` (copy `.env.example` to `.env`; optional for the calculator)
 - Local Supabase: `npx supabase start` (requires Docker)
-- Cloudflare local dev: secrets go in `.dev.vars` (gitignored)
-- Deploy: `npm run deploy` (Workers) or `npm run deploy:pages` (static Pages → `*.pages.dev`; Astro 6 SSR is not supported on Pages). Requires Cloudflare account + `wrangler` auth.
+- Deploy: `npm run deploy` → Cloudflare Pages (`*.pages.dev`). Requires Cloudflare account + `wrangler` auth. Do not use Workers / `wrangler deploy` as the product host.
 
 ## CI
 
-GitHub Actions workflow (`.github/workflows/ci.yml`) runs lint + build on every push and PR to master. Requires `SUPABASE_URL` and `SUPABASE_KEY` repository secrets for the build step.
+GitHub Actions workflow (`.github/workflows/ci.yml`) runs lint + build on every push and PR to master. On push to master it also deploys to Cloudflare Pages. Requires repository secrets: `SUPABASE_URL`, `SUPABASE_KEY`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.

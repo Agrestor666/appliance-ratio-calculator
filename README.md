@@ -11,7 +11,7 @@ A modern, opinionated starter template for building fast, accessible web applica
 - [TypeScript](https://www.typescriptlang.org/) v5 - Type-safe JavaScript
 - [Tailwind CSS](https://tailwindcss.com/) v4 - Utility-first CSS framework
 - [Supabase](https://supabase.com/) - Authentication and backend-as-a-service
-- [Cloudflare Workers](https://workers.cloudflare.com/) - Edge deployment runtime
+- [Cloudflare Pages](https://pages.cloudflare.com/) - Static hosting (`*.pages.dev`)
 
 ## Prerequisites
 
@@ -35,10 +35,10 @@ npm install
 
 3. Set up Supabase and configure environment variables — see [Supabase Configuration](#supabase-configuration) below.
 
-4. Create a `.dev.vars` file for local Cloudflare dev secrets:
+4. Create a `.env` file (optional — calculator works without Supabase):
 
 ```bash
-cp .env.example .dev.vars
+cp .env.example .env
 ```
 
 5. Run the development server:
@@ -49,8 +49,9 @@ npm run dev
 
 ## Available Scripts
 
-- `npm run dev` - Start development server (Cloudflare workerd runtime)
-- `npm run build` - Build for production
+- `npm run dev` - Start development server
+- `npm run build` - Static production build
+- `npm run deploy` - Build and deploy to Cloudflare Pages
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint with type-checked rules
 - `npm run lint:fix` - Auto-fix ESLint issues
@@ -63,11 +64,12 @@ npm run dev
 ├── src/
 │ ├── layouts/ # Astro layouts
 │ ├── pages/ # Astro pages
-│ │ └── api/ # API endpoints
+│ │ └── api/ # Starter auth endpoints (omitted from Pages build)
 │ ├── components/ # UI components (Astro & React)
 │ └── assets/ # Static assets
 ├── public/ # Public assets
-├── wrangler.jsonc # Cloudflare Workers config
+├── scripts/deploy.mjs # Pages deploy helper
+├── wrangler.jsonc # Cloudflare Pages config
 ```
 
 ## Supabase Configuration
@@ -96,7 +98,7 @@ npx supabase init
 npx supabase start
 ```
 
-4. Copy the credentials printed by the CLI into your `.env` and `.dev.vars`:
+4. Copy the credentials printed by the CLI into your `.env`:
 
 ```
 SUPABASE_URL=http://127.0.0.1:54321
@@ -115,7 +117,7 @@ No database tables or migrations are required — this project uses Supabase Aut
 
 ### Using a cloud Supabase project instead
 
-If you prefer to use a hosted Supabase project, add these variables to your `.env` and `.dev.vars` files:
+If you prefer to use a hosted Supabase project, add these variables to your `.env` file:
 
 | Variable       | Description                                                |
 | -------------- | ---------------------------------------------------------- |
@@ -150,25 +152,27 @@ Route protection is handled in `src/middleware.ts`. Add paths to the `PROTECTED_
 
 ## Deployment
 
-This project deploys to [Cloudflare Workers](https://workers.cloudflare.com/).
-
-1. Build the project:
+This project deploys to [Cloudflare Pages](https://pages.cloudflare.com/) only (`*.pages.dev`).
 
 ```bash
-npm run build
+npm run deploy
 ```
 
-2. Deploy with Wrangler:
+Production URL: `https://appliance-ratio-calculator-pages.pages.dev`
 
-```bash
-npx wrangler deploy
-```
-
-Set `SUPABASE_URL` and `SUPABASE_KEY` as secrets in your Cloudflare dashboard or via `npx wrangler secret put`.
-
+Requires `wrangler` login (`npx wrangler login`). Do not use `wrangler deploy` / Workers as the product host — local networks often block `*.workers.dev`.
 ## CI
 
-GitHub Actions runs lint + build on every push and PR to `master`. Configure `SUPABASE_URL` and `SUPABASE_KEY` as repository secrets in GitHub for the build step.
+GitHub Actions runs lint + build on every push and PR to `master`. Pushes to `master` also deploy to Cloudflare Pages.
+
+Configure these repository secrets in GitHub (Settings → Secrets and variables → Actions):
+
+| Secret | Purpose |
+| --- | --- |
+| `SUPABASE_URL` | Optional build-time env (calculator works without it) |
+| `SUPABASE_KEY` | Optional build-time env |
+| `CLOUDFLARE_API_TOKEN` | API token with **Cloudflare Pages — Edit** |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account ID (dashboard → Workers & Pages → right sidebar / overview) |
 
 ## License
 
