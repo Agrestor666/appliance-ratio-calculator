@@ -1,9 +1,9 @@
 ---
 project: appliance-ratio-calculator
-version: 4
+version: 5
 status: draft
 created: 2026-07-17
-updated: 2026-07-20
+updated: 2026-07-22
 prd_version: 1
 main_goal: speed
 top_blocker: time
@@ -37,6 +37,7 @@ Istniejący kalkulator dla osób budujących lifting plany ma łączyć w jednym
 | S-05 | b16-5-flange-catalog | Planner może wybrać flange z katalogu zgodnego z ASME B16.5 (w tym wybór schedule tam, gdzie brakuje) | S-01 | US-01, FR-001 | done |
 | S-06 | astro-migrate-ux-redesign | Planner może użyć całego kalkulatora (ratio + cargo + rigging) w aplikacji Astro z przeprojektowanym UX | S-03 | US-01, FR-004, FR-005 | done |
 | S-07 | full-schedule-flange-fitting | Planner może wybrać flange i fitting po pełnym zestawie 18 podstawowych schedule (Sch 5 / 5S → XXS, jak w pipes) | S-04, S-05 | US-01, FR-001 | done |
+| S-08 | calculator-help-flow-metrics | Planner może otworzyć stronę pomocy z opisem flow kalkulatora i definicjami wszystkich wskaźników wejściowych i wyliczanych (bez detali wewnątrz cargo / rigging) | S-06 | US-01, FR-004, FR-005 | done |
 
 ## Streams
 
@@ -44,7 +45,7 @@ Navigation aid — groups items that share a Prerequisites chain. Canonical orde
 
 | Stream | Theme | Chain | Note |
 |---|---|---|---|
-| A | Katalog cargo | `S-01` → `S-02` → `S-03` → `S-06` | Must-have path pod `speed`; S-06 po domknięciu handoffu cargo→ratio (legacy → Astro + redesign UX). |
+| A | Katalog cargo | `S-01` → `S-02` → `S-03` → `S-06` → `S-08` | Must-have path pod `speed`; S-08 po shellu Astro — pomoc do flow ratio, nie do katalogów cargo/rigging. |
 | B | Dane fill | `F-01` | Joins Stream A at `S-02` — parallel z `S-01` przy blokerze `time`. |
 | C | Zgodność katalogu ASME | `S-04` ∥ `S-05` → `S-07` | Catalog fidelity po S-01; `S-07` domyka 18 schedule (flange + fitting = pipe keys); parallel z `S-06` — nie blokuje migracji UX. |
 
@@ -170,6 +171,20 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Risk:** Po S-04/S-05 (kształt katalogu już ustalony); parallel z S-06; WN calc is approximate cylinder model — Sign-off owns liability; fittings thin schedules may still Skip.
 - **Status:** done
 
+### S-08: Help page — flow + metric definitions
+
+- **Outcome:** Planner może otworzyć stronę pomocy w aplikacji, która wyjaśnia cały flow kalkulatora (cargo weight → rigging weight → czynniki → Appliance Ratio / utilization → alerty / wykres / raport) oraz podaje definicje wszystkich wskaźników wprowadzanych i wyliczanych na ścieżce ratio; **bez** rozbijania wnętrza cargo weight i rigging weight (katalog piping, fill, arkusze pozycji — poza zakresem; te wagi traktowane jako wejścia / sumy).
+- **Change ID:** calculator-help-flow-metrics
+- **PRD refs:** US-01, FR-004, FR-005; PRD §Current System Overview (ścieżka 3-w-1: ratio wymaga cargo + rigging); §Change category (architectural/UX)
+- **Prerequisites:** S-06
+- **Parallel with:** —
+- **Blockers:** —
+- **Unknowns:**
+  - Czy pomoc to osobna trasa (`/help`) z linkiem z shellu, czy modal / panel w kalkulatorze? — Owner: user. Block: no (rozstrzygane w `/10x-plan`).
+  - Język treści v1 (EN jak UI kalkulatora vs PL)? — Owner: user. Block: no.
+- **Risk:** Po S-06, żeby treść i nawigacja siedziały w aktualnym shellu Astro; zakres świadomie wąski (flow + definicje metryk ratio) — unika dryfu w dokumentację katalogów ASME / rigging sheets.
+- **Status:** done
+
 ## Backlog Handoff
 
 | Roadmap ID | Change ID | Suggested issue title | Ready for `/10x-plan` | Notes |
@@ -180,8 +195,9 @@ Foundations below assume these are present and do NOT re-scaffold them.
 | S-03 | cargo-weight-to-ratio | Feed cargo weight into Appliance Ratio without regression | yes | Done — archived; unlocks S-06 |
 | S-04 | b16-9-fitting-catalog-schedule | Align BW fittings + schedule weights to ASME B16.9 | yes | Done — archived |
 | S-05 | b16-5-flange-catalog | Align flanges to ASME B16.5; add schedule where missing | yes | Done — archived |
-| S-06 | astro-migrate-ux-redesign | Migrate calculator to Astro + redesign UX | yes | Prerequisites met (S-03 done); PRD architectural/UX path |
-| S-07 | full-schedule-flange-fitting | Cover all 18 pipe schedules on flanges + fittings (Sch 5→XXS) | yes | Prerequisites met (S-04/S-05 done); parallel with S-06 |
+| S-06 | astro-migrate-ux-redesign | Migrate calculator to Astro + redesign UX | yes | Done — archived |
+| S-07 | full-schedule-flange-fitting | Cover all 18 pipe schedules on flanges + fittings (Sch 5→XXS) | yes | Done — archived |
+| S-08 | calculator-help-flow-metrics | Help page: calculator flow + definitions of all ratio inputs/outputs | yes | Prerequisites met (S-06 done); omit cargo/rigging internals |
 
 ## Open Roadmap Questions
 
@@ -213,3 +229,4 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **S-05: Planner może wybrać flange do listy cargo z wagą / pokryciem zgodnym z ASME B16.5 (`data/ASME B16.5.pdf`); uzupełniony jest brakujący wybór po schedule tam, gdzie aplikacja / matching do rury tego wymaga (dziś flansze: typ + class, bez schedule).** — Archived 2026-07-18 → `context/archive/2026-07-18-b16-5-flange-catalog/`. Lesson: —.
 - **S-06: Planner może użyć całego kalkulatora (Appliance Ratio + cargo weight + rigging) w aplikacji Astro — zamiast legacy `index.html` / `app.js` — z przeprojektowanym layoutem i UX XXI wieku; wzór utilization / Appliance Ratio, fill→cargo, handoff do ratio oraz raport techniczny nie regresują; ręczne wpisanie wagi nadal działa.** — Archived 2026-07-19 → `context/archive/2026-07-18-astro-migrate-ux-redesign/`. Lesson: —.
 - **S-07: Planner może wybrać Weld Neck flange oraz butt-weld fitting po pełnym zestawie 18 podstawowych schedule zgodnym z kluczami pipes — od Sch 5 / Sch 5S przez Sch 10/10S, 20, 30, 40/40S, 60, 80/80S, 100, 120, 140, 160, STD, XS aż do XXS — z wagami w katalogu (nie tylko wąski podzbiór Sch 40/80/STD jak dziś).** — Archived 2026-07-20 → `context/archive/2026-07-19-full-schedule-flange-fitting/`. Lesson: —.
+- **S-08: Planner może otworzyć stronę pomocy w aplikacji, która wyjaśnia cały flow kalkulatora (cargo weight → rigging weight → czynniki → Appliance Ratio / utilization → alerty / wykres / raport) oraz podaje definicje wszystkich wskaźników wprowadzanych i wyliczanych na ścieżce ratio; bez rozbijania wnętrza cargo weight i rigging weight (katalog piping, fill, arkusze pozycji — poza zakresem; te wagi traktowane jako wejścia / sumy).** — Archived 2026-07-22 → `context/archive/2026-07-21-calculator-help-flow-metrics/`. Lesson: —.
