@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { Wrench } from "lucide-react";
 
+import { ChainBlockIcon } from "@/components/calculator/icons/ChainBlockIcon";
 import { QtyStepper } from "@/components/calculator/QtyStepper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -95,7 +95,7 @@ export function RiggingSheet({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button type="button" variant="secondary" size="sm">
-          <Wrench className="size-4" aria-hidden />
+          <ChainBlockIcon className="size-4" />
           Rigging
         </Button>
       </SheetTrigger>

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Scale } from "lucide-react";
 
 import { CargoSheet } from "@/components/calculator/cargo/CargoSheet";
+import { LiftDiagram } from "@/components/calculator/LiftDiagram";
 import { RiggingSheet } from "@/components/calculator/rigging/RiggingSheet";
 import { TechnicalReportView } from "@/components/calculator/report/TechnicalReportView";
 import { ThresholdControls, type ThresholdFormState } from "@/components/calculator/ThresholdControls";
@@ -369,6 +370,18 @@ export function CalculatorShell() {
                 <Button type="button" variant="outline" size="sm" onClick={reset}>
                   Reset to defaults
                 </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="gap-3 py-4">
+            <CardHeader className="pb-0">
+              <CardTitle className="text-sm font-medium">Lift overview</CardTitle>
+              <CardDescription>Cargo vs rigging on a typical pipe lift.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="border-border bg-muted/20 rounded-md border px-3 py-3">
+                <LiftDiagram />
               </div>
             </CardContent>
           </Card>
