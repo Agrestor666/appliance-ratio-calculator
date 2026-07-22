@@ -270,7 +270,7 @@ export function CalculatorShell() {
           </Card>
         </section>
 
-        <section aria-labelledby="inputs-heading" className="order-2 space-y-4 lg:order-1">
+        <section aria-labelledby="inputs-heading" className="order-2 flex flex-col gap-4 lg:order-1">
           <Card className="gap-4 py-5">
             <CardHeader className="border-border border-b pb-4">
               <CardTitle id="inputs-heading">Inputs</CardTitle>
@@ -374,14 +374,14 @@ export function CalculatorShell() {
             </CardContent>
           </Card>
 
-          <Card className="gap-3 py-4">
-            <CardHeader className="pb-0">
+          <Card className="flex min-h-0 flex-1 flex-col gap-3 py-4">
+            <CardHeader className="shrink-0 pb-0">
               <CardTitle className="text-sm font-medium">Lift overview</CardTitle>
               <CardDescription>Cargo vs rigging on a typical pipe lift.</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="border-border bg-muted/20 rounded-md border px-3 py-3">
-                <LiftDiagram />
+            <CardContent className="flex min-h-0 flex-1 flex-col">
+              <div className="border-border bg-muted/20 flex min-h-[220px] flex-1 items-center justify-center rounded-md border px-3 py-3 lg:min-h-0">
+                <LiftDiagram className="h-full w-full" />
               </div>
             </CardContent>
           </Card>

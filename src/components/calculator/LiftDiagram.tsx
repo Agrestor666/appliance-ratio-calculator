@@ -7,10 +7,16 @@ import { cn } from "@/lib/utils";
 export function LiftDiagram({ className }: { className?: string }) {
   return (
     <figure
-      className={cn("text-muted-foreground flex flex-col items-center justify-center gap-2", className)}
+      className={cn("text-muted-foreground flex h-full w-full flex-col items-center justify-center gap-2", className)}
       aria-label="Schematic: pipe lift showing cargo weight and rigging weight"
     >
-      <svg viewBox="0 0 220 200" className="h-auto w-full max-w-[240px]" role="img" aria-hidden>
+      <svg
+        viewBox="0 0 220 200"
+        className="h-full max-h-full w-full max-w-md object-contain"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-hidden
+      >
         <title>Pipe lift schematic</title>
         <defs>
           <linearGradient id="lift-pipe" x1="0" y1="0" x2="0" y2="1">
