@@ -1,178 +1,154 @@
-# 10x Astro Starter
+# Appliance Ratio Calculator
 
-![](./public/template.png)
+Browser tool for lifting planners: **Appliance Ratio**, cargo weight, and rigging weight in one place.
 
-A modern, opinionated starter template for building fast, accessible web applications.
+Live: [appliance-ratio-calculator-pages.pages.dev](https://appliance-ratio-calculator-pages.pages.dev)
 
-## Tech Stack
+## What it does
 
-- [Astro](https://astro.build/) v6 - Modern web framework with server-first rendering
-- [React](https://react.dev/) v19 - UI library for interactive components
-- [TypeScript](https://www.typescriptlang.org/) v5 - Type-safe JavaScript
-- [Tailwind CSS](https://tailwindcss.com/) v4 - Utility-first CSS framework
-- [Supabase](https://supabase.com/) - Authentication and backend-as-a-service
-- [Cloudflare Pages](https://pages.cloudflare.com/) - Static hosting (`*.pages.dev`)
+The lift is evaluated in Te along one path:
+
+```text
+total weight = (cargo weight + rigging weight) × contingency × DAF
+utilization  = total weight ÷ WLL        (= Appliance ratio = Used)
+remaining    = 1 − utilization
+```
+
+Everything else feeds or presents those numbers:
+
+- **Cargo sheet** — build a cargo list from catalog line items (pipe, fitting, flange, valve) by type / class / schedule / NPS, with quantities, or type a total by hand. Pipe items can be filled (empty, fresh water, seawater, light oil); the fill adds to the line weight. Catalog weights come from ASME B16.5 (flanges) and B16.9 (fittings) plus pipe schedule tables.
+- **Rigging sheet** — pick gear from the rigging catalog (shackles, beam clamps, chain blocks, slings) with WLL and per-item weight, or type a total by hand.
+- **Ratio inputs** — contingency, DAF, and appliance WLL at radius.
+- **Live results** — total weight and utilization, with warn / critical utilization thresholds (defaults 0.85 / 0.90) driving visual alerts.
+- **Capacity chart** — Used vs Remaining, with an over-capacity callout above 100%.
+- **Lift overview diagram** — schematic of the configured lift.
+- **Technical report** — printable summary of inputs, outputs, formulas, and the chart.
+
+Routes: `/` is the calculator, [`/help`](https://appliance-ratio-calculator-pages.pages.dev/help) documents the flow, every input/output, and the formulas. No login is required.
+
+## Tech stack
+
+- [Astro](https://astro.build/) 6 — static site + React islands
+- [React](https://react.dev/) 19 — calculator UI
+- [TypeScript](https://www.typescriptlang.org/) 5
+- [Tailwind CSS](https://tailwindcss.com/) 4 + shadcn/ui (new-york) + [Lucide](https://lucide.dev/) icons
+- [Chart.js](https://www.chartjs.org/) 4 — capacity chart
+- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) — `sitemap-index.xml` at build time
+- [Supabase](https://supabase.com/) — optional auth scaffold (not required for the calculator)
+- [Cloudflare Pages](https://pages.cloudflare.com/) — only host (`*.pages.dev`)
 
 ## Prerequisites
 
-- Node.js v22.14.0 (as specified in `.nvmrc`)
-- npm (comes with Node.js)
+- Node.js **22.14.0** (see `.nvmrc`)
+- npm (project registry mirror is set in `.npmrc` → `registry.npmmirror.com`)
 
-## Getting Started
-
-1. Clone the repository:
+## Getting started
 
 ```bash
-git clone https://github.com/przeprogramowani/10x-astro-starter.git
-cd 10x-astro-starter
-```
-
-2. Install dependencies:
-
-```bash
+git clone https://github.com/Agrestor666/appliance-ratio-calculator.git
+cd appliance-ratio-calculator
 npm install
-```
-
-3. Set up Supabase and configure environment variables — see [Supabase Configuration](#supabase-configuration) below.
-
-4. Create a `.env` file (optional — calculator works without Supabase):
-
-```bash
-cp .env.example .env
-```
-
-5. Run the development server:
-
-```bash
 npm run dev
 ```
 
-## Available Scripts
+Open the URL printed by Astro (default `http://localhost:4321/`).
 
-- `npm run dev` - Start development server
-- `npm run build` - Static production build
-- `npm run deploy` - Build and deploy to Cloudflare Pages
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint with type-checked rules
-- `npm run lint:fix` - Auto-fix ESLint issues
-- `npm run format` - Run Prettier
+No `.env` is needed — the calculator runs without Supabase. See [Supabase (optional)](#supabase-optional) to enable the auth scaffold.
 
-## Project Structure
+## Scripts
 
-```md
-.
-├── src/
-│ ├── layouts/ # Astro layouts
-│ ├── pages/ # Astro pages
-│ │ └── api/ # Starter auth endpoints (omitted from Pages build)
-│ ├── components/ # UI components (Astro & React)
-│ └── assets/ # Static assets
-├── public/ # Public assets
-├── scripts/deploy.mjs # Pages deploy helper
-├── wrangler.jsonc # Cloudflare Pages config
+| Command            | Purpose                            |
+| ------------------ | ---------------------------------- |
+| `npm run dev`      | Astro dev server                   |
+| `npm run build`    | Static production build → `dist/`  |
+| `npm run preview`  | Preview the production build       |
+| `npm run deploy`   | Build + deploy to Cloudflare Pages |
+| `npm run lint`     | ESLint (type-checked)              |
+| `npm run lint:fix` | Auto-fix ESLint issues             |
+| `npm run format`   | Prettier                           |
+
+## Project structure
+
+```text
+src/
+  pages/              # Routes: index.astro (calculator), help.astro, auth examples
+  pages/api/          # Starter auth handlers — omitted from the Pages build
+  layouts/Layout.astro
+  components/         # Astro + React
+    calculator/       # CalculatorApp/Shell, cargo + rigging sheets, chart, report, diagram
+    ui/               # shadcn (new-york)
+  lib/                # appliance-ratio, cargo, rigging, report, format helpers
+    data/             # piping / fill-media / rigging catalogs + types
+  styles/global.css   # Tailwind entry + theme tokens
+  middleware.ts       # Session + PROTECTED_ROUTES
+public/               # Favicons, PWA icons, site.webmanifest
+flanges/              # Raw ASME B16.5 dimension/weight CSVs — see below
+scripts/deploy.mjs    # Cloudflare Pages deploy helper
+wrangler.jsonc        # Pages project name + output dir
+.github/workflows/    # CI + deploy
+supabase/             # Local Supabase / migrations (optional)
+context/              # PRD, roadmap, change + archive notes (not runtime)
 ```
 
-## Supabase Configuration
+`flanges/FLG{150…2500}.csv` are raw per-pressure-class ASME B16.5 flange dimension and weight tables, kept as source material for future catalog imports. They are **not** read at runtime — the app only reads the generated objects in `src/lib/data/`.
 
-This project uses [Supabase](https://supabase.com/) for authentication. Environment variables are declared via Astro's `astro:env` schema and are treated as **server-only secrets** — they are never exposed to the client.
+Agent-facing conventions live in `AGENTS.md` and `CLAUDE.md`; product intent in `context/foundation/prd.md`.
 
-### First-time setup (local, no cloud project needed)
-
-Requires [Docker](https://www.docker.com/) and ~7 GB RAM.
-
-1. Create your `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-2. Initialize the local Supabase project (creates a `supabase/` config folder):
-
-```bash
-npx supabase init
-```
-
-3. Start the local stack (downloads Docker images on first run):
-
-```bash
-npx supabase start
-```
-
-4. Copy the credentials printed by the CLI into your `.env`:
-
-```
-SUPABASE_URL=http://127.0.0.1:54321
-SUPABASE_KEY=<anon key from CLI output>
-```
-
-5. To stop the stack when done:
-
-```bash
-npx supabase stop
-```
-
-The local Studio UI is available at `http://localhost:54323`.
-
-No database tables or migrations are required — this project uses Supabase Auth's built-in `auth.users` table only.
-
-### Using a cloud Supabase project instead
-
-If you prefer to use a hosted Supabase project, add these variables to your `.env` file:
-
-| Variable       | Description                                                |
-| -------------- | ---------------------------------------------------------- |
-| `SUPABASE_URL` | Project URL from Supabase dashboard → Settings → API       |
-| `SUPABASE_KEY` | `anon` public key from Supabase dashboard → Settings → API |
-
-```
-SUPABASE_URL=https://<project-ref>.supabase.co
-SUPABASE_KEY=<anon-key>
-```
-
-### Email confirmation in local development
-
-By default Supabase requires email confirmation before a user can sign in. To skip this during local development:
-
-1. Open the Supabase dashboard for your project
-2. Go to **Authentication → Email → Confirm email**
-3. Toggle it **off**
-
-Users can then sign in immediately after sign-up without clicking a confirmation link.
-
-### Auth routes
-
-| Route                 | Description                                                             |
-| --------------------- | ----------------------------------------------------------------------- |
-| `/auth/signin`        | Email/password sign-in form                                             |
-| `/auth/signup`        | Email/password sign-up form                                             |
-| `/auth/confirm-email` | Post-signup "check your inbox" page                                     |
-| `/dashboard`          | Example protected page (redirects to `/auth/signin` if unauthenticated) |
-
-Route protection is handled in `src/middleware.ts`. Add paths to the `PROTECTED_ROUTES` array there to require authentication.
+There is no test suite in this repo — `npm run lint` and `npm run build` are the only automated gates.
 
 ## Deployment
 
-This project deploys to [Cloudflare Pages](https://pages.cloudflare.com/) only (`*.pages.dev`).
+Deploy target is **Cloudflare Pages only** (not Workers / `*.workers.dev`).
 
 ```bash
 npm run deploy
 ```
 
-Production URL: `https://appliance-ratio-calculator-pages.pages.dev`
+Requires Wrangler auth (`npx wrangler login`). Production URL:
 
-Requires `wrangler` login (`npx wrangler login`). Do not use `wrangler deploy` / Workers as the product host — local networks often block `*.workers.dev`.
+`https://appliance-ratio-calculator-pages.pages.dev`
+
 ## CI
 
-GitHub Actions runs lint + build on every push and PR to `master`. Pushes to `master` also deploy to Cloudflare Pages.
+GitHub Actions on every push/PR to `master`:
 
-Configure these repository secrets in GitHub (Settings → Secrets and variables → Actions):
+1. **ci** — `npm ci` → `npx astro sync` → lint → build
+2. **deploy** — on push to `master`, deploys to Pages **only if** Cloudflare secrets are set; otherwise the job soft-skips with a warning
 
-| Secret | Purpose |
-| --- | --- |
-| `SUPABASE_URL` | Optional build-time env (calculator works without it) |
-| `SUPABASE_KEY` | Optional build-time env |
-| `CLOUDFLARE_API_TOKEN` | API token with **Cloudflare Pages — Edit** |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account ID (dashboard → Workers & Pages → right sidebar / overview) |
+Repository secrets (Settings → Secrets and variables → Actions):
+
+| Secret                  | Purpose                                 |
+| ----------------------- | --------------------------------------- |
+| `SUPABASE_URL`          | Optional build-time env                 |
+| `SUPABASE_KEY`          | Optional build-time env                 |
+| `CLOUDFLARE_API_TOKEN`  | Pages Edit token (needed for CI deploy) |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account ID                   |
+
+## Supabase (optional)
+
+Auth is a starter leftover. Env vars are **server-only** via `astro:env` (`SUPABASE_URL`, `SUPABASE_KEY`).
+
+### Local stack
+
+Needs Docker.
+
+```bash
+cp .env.example .env
+npx supabase start
+```
+
+Copy the printed URL and anon key into `.env`, then `npx supabase stop` when done. Studio: `http://localhost:54323`.
+
+### Auth routes
+
+| Route                 | Description             |
+| --------------------- | ----------------------- |
+| `/auth/signin`        | Sign-in                 |
+| `/auth/signup`        | Sign-up                 |
+| `/auth/confirm-email` | Post-signup inbox check |
+| `/dashboard`          | Example protected page  |
+
+Protection is configured in `src/middleware.ts` (`PROTECTED_ROUTES`).
 
 ## License
 
