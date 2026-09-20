@@ -4,7 +4,6 @@ Appliance Ratio Calculator — browser tool for lifting planners (cargo weight, 
 
 ## Hard rules
 
-- Install only via the project npm mirror in `@.npmrc` (`registry.npmmirror.com`). Do not call `registry.npmjs.org` for installs; `npm audit` is unavailable on this mirror.
 - Never overwrite or delete `@context/` (plans, PRD, tech-stack hand-off). Never commit secrets; use `@.env.example` → `.env` for optional `SUPABASE_*` (server-only via `astro:env`).
 - Product code lives under `src/` only. The pre-Astro static calculator is archived at `@context/archive/2026-07-21-legacy-calculator/` — do not revive dual hosts or sync catalogs back into a live `legacy/` tree.
 - App is **static** (`output: "static"` in `@astro.config.mjs`) and deploys **only** to Cloudflare Pages. Do not reintroduce `@astrojs/cloudflare` Workers SSR or `*.workers.dev` as the primary host — corporate networks block it. Auth API routes under `src/pages/api/` are starter leftovers and are omitted from the Pages build.

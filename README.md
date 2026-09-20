@@ -40,7 +40,7 @@ Routes: `/` is the calculator, [`/help`](https://appliance-ratio-calculator-page
 ## Prerequisites
 
 - Node.js **22.14.0** (see `.nvmrc`)
-- npm (project registry mirror is set in `.npmrc` → `registry.npmmirror.com`)
+- npm (comes with Node.js)
 
 ## Getting started
 
